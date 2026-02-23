@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; bottom: 3%; left: 2%; width: 30%; height: 10%; position: absolute; flex-direction: column-reverse;">
+        <ui:Label text="EDITOR" name="Version" enable-rich-text="false" emoji-fallback-support="false" double-click-selects-word="false" triple-click-selects-line="false" display-tooltip-when-elided="false" picking-mode="Ignore" style="-unity-text-align: middle-left; white-space: nowrap; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 30%; color: rgb(255, 255, 255); opacity: 0.5;"/>
+    </ui:VisualElement>
+</ui:UXML>
