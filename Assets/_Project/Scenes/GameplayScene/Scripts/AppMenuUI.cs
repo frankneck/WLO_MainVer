@@ -63,7 +63,7 @@ public class AppMenuUI : MonoBehaviour
     {
         menuEnable = !menuEnable;
     }
-
+    
     void UpdateMenuEnable()
     {
         var em = World.DefaultGameObjectInjectionWorld.EntityManager;
