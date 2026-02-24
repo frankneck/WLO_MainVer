@@ -37,6 +37,16 @@ public partial class FirstPersonPlayerInputsSystem : SystemBase
     {
         foreach (var (playerInputs, player) in SystemAPI.Query<RefRW<FirstPersonPlayerInputs>, FirstPersonPlayer>().WithAll<GhostOwnerIsLocal>())
         {
+            // Freeze character
+            var menuState = SystemAPI.GetSingleton<MenuStateComponent>();
+            if (menuState.State != MenuState.Game)
+            {
+                playerInputs.ValueRW.MoveInput = float2.zero;
+                InputDeltaUtilities.AddInputDelta(ref playerInputs.ValueRW.LookInput, Vector2.zero);
+
+                return;
+            }
+
             playerInputs.ValueRW.MoveInput = (float2) inputActions.Player.Move.ReadValue<Vector2>();
 
             var lookDelta = inputActions.Player.Look.ReadValue<Vector2>() * player.LookInputSensitivity;
@@ -126,4 +136,12 @@ public partial struct FirstPersonPlayerFixedStepControlSystem : ISystem
             }
         }
     }
+
+    public static class AdditionalHelper
+    {
+        public static void FreezeCharacter()
+        {
+
+        }
+    }      
 }

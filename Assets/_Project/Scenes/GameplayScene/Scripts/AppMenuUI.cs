@@ -33,8 +33,6 @@ public class AppMenuUI : MonoBehaviour
         document = GetComponent<UIDocument>();
         playerListUI = GetComponent<UpdatePlayerListUI>();
 
-        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
-
         menuScreen = document.rootVisualElement.Query<VisualElement>("AppMenuScreen");
         disconnectButton = menuScreen.Query<Button>("disconnectButton");
         appQuitButton = menuScreen.Query<Button>("appQuitButton");
@@ -68,13 +66,21 @@ public class AppMenuUI : MonoBehaviour
 
     void UpdateMenuEnable()
     {
+        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+
         if (menuEnable)
         {
-            menuScreen.style.display = DisplayStyle.Flex; 
+            menuScreen.style.display = DisplayStyle.Flex;
+            var entity = em.CreateEntity();
+            // Debug.Log($"Entity has created {entity}. Display {menuScreen.style.display}");
+            em.AddComponentData(entity, new NewMenuState { NewState = MenuState.Menu });
         }
         else
         {
             menuScreen.style.display = DisplayStyle.None;
+            var entity = em.CreateEntity();
+            // Debug.Log($"Entity has created {entity}. Display {menuScreen.style.display}");
+            em.AddComponentData(entity, new NewMenuState { NewState = MenuState.Game });
         }
-    } 
+    }
 }

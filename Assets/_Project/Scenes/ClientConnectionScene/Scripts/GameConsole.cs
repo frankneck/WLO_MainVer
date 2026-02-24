@@ -28,7 +28,7 @@ public class GameConsole : MonoBehaviour
         set
         {
             _consoleVisible = value;
-            consoleVE.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
+            UpdateConsoleEnable();
         }
     }
 
@@ -151,6 +151,26 @@ public class GameConsole : MonoBehaviour
             {
                 logListView.ScrollToItem(messages.Count - 1);
             }
+        }
+    }
+
+    void UpdateConsoleEnable()
+    {    
+        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+        if (_consoleVisible)
+        {
+            consoleVE.style.display = DisplayStyle.Flex;
+            var entity = em.CreateEntity();
+            // Debug.Log($"Entity has created {entity}. Display {menuScreen.style.display}");
+            em.AddComponentData(entity, new NewMenuState { NewState = MenuState.Menu });
+        }
+        else
+        {
+            consoleVE.style.display = DisplayStyle.None;
+            var entity = em.CreateEntity();
+            // Debug.Log($"Entity has created {entity}. Display {menuScreen.style.display}");
+            em.AddComponentData(entity, new NewMenuState { NewState = MenuState.Game });
         }
     }
 }
