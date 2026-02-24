@@ -17,7 +17,7 @@ public partial struct InitializationCharacterSystem : ISystem
         var builder = new EntityQueryBuilder(Allocator.Temp).WithAll<FirstPersonCharacterComponent>();
         _characterControllerEntityQuery = state.GetEntityQuery(builder);
         
-        state.RequireForUpdate<PlayerTeam>();
+        state.RequireForUpdate<GameTeam>();
         state.RequireForUpdate(_characterControllerEntityQuery);
     }
 
@@ -27,7 +27,7 @@ public partial struct InitializationCharacterSystem : ISystem
 
         using (var characterControllers = _characterControllerEntityQuery.ToEntityArray(Allocator.Temp))
         {
-            foreach (var (playerTeam, playerComponent, playerEntity) in SystemAPI.Query<PlayerTeam, FirstPersonPlayer>().WithAll<NewPlayerTag>().WithEntityAccess())
+            foreach (var (playerTeam, playerComponent, playerEntity) in SystemAPI.Query<GameTeam, FirstPersonPlayer>().WithAll<NewPlayerTag>().WithEntityAccess())
             {
                 var teamColor = playerTeam.Value switch
                 {

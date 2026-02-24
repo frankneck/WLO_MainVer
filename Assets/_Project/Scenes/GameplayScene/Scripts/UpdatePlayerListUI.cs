@@ -62,12 +62,12 @@ public class UpdatePlayerListUI : MonoBehaviour
 
         World world = World.DefaultGameObjectInjectionWorld;
         EntityManager em = world.EntityManager;
-        var query = em.CreateEntityQuery(ComponentType.ReadOnly<PlayerName>(), ComponentType.ReadOnly<PlayerTeam>(), ComponentType.ReadOnly<PlayerPing>());
+        var query = em.CreateEntityQuery(ComponentType.ReadOnly<PlayerName>(), ComponentType.ReadOnly<GameTeam>(), ComponentType.ReadOnly<PlayerPing>());
 
         foreach(var entity in query.ToEntityArray(Allocator.Temp))
         {
             var name = em.GetComponentData<PlayerName>(entity);
-            var playerTeam = em.GetComponentData<PlayerTeam>(entity);
+            var playerTeam = em.GetComponentData<GameTeam>(entity);
             var ping = em.GetComponentData<PlayerPing>(entity);
 
             if (playerTeam.Value == TeamType.Red)

@@ -62,10 +62,11 @@ public partial struct PlayerSpawnSystem : ISystem
             LocalTransform localTransform = LocalTransform.FromPositionRotation(spawnPos, spawnRot);
             ecb.SetComponent(characterEntity, localTransform);
             int clientConnectionId = SystemAPI.GetComponent<NetworkId>(connectionEntity).Value;
+            ecb.SetComponent(characterEntity, new GameTeam { Value = requestedTeamType });
             ecb.SetComponent(characterEntity, new GhostOwner { NetworkId = clientConnectionId });
             
             ecb.SetComponent(playerEntity, new GhostOwner { NetworkId = clientConnectionId });
-            ecb.SetComponent(playerEntity, new PlayerTeam { Value = requestedTeamType });
+            ecb.SetComponent(playerEntity, new GameTeam { Value = requestedTeamType });
             ecb.SetComponent(playerEntity, new PlayerName { Value = requestedPlayerName });
 
             FirstPersonPlayer player = SystemAPI.GetComponent<FirstPersonPlayer>(gameSetup.PlayerPrefab);

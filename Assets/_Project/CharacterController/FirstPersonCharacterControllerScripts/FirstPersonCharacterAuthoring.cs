@@ -55,6 +55,8 @@ public class FirstPersonCharacterAuthoring : MonoBehaviour
             });
             AddComponent(entity, new FirstPersonCharacterControl());
             AddComponent(entity, new NewPlayerTag());
+            AddComponent<AttackInput>(entity);
+            AddComponent<GameTeam>(entity);
 
             AddComponent(entity, new CharacterRender
             {

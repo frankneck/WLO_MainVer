@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 3734404854010988071}
   - component: {fileID: -4807664156089346947}
   - component: {fileID: 4828043915425515821}
+  - component: {fileID: 5382662744488959140}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: Untagged
@@ -299,6 +300,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPointsAuthoring
   MaxHitPoints: 100
+--- !u!114 &5382662744488959140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555240849038293811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251ee766abecd42459b01a2196aba097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellAuthoring
+  AoeSpell: {fileID: 5537249849309860163, guid: 412a1f46c087b8e479c7ca5a34c717e8, type: 3}
+  AoeSpellCooldown: 2
+  SkillShotSpell: {fileID: 5537249849309860163, guid: fc828661885373c4aa609d36d58ad7f3, type: 3}
+  SkillShotSpellCooldown: 2
+  SpellMoveSpeed: 10
 --- !u!1 &3463604651959167738
 GameObject:
   m_ObjectHideFlags: 0

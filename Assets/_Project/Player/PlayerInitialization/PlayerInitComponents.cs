@@ -20,7 +20,7 @@ public struct ServerPlayerInitRequest : IComponentData
     public TeamType TeamValue;
 }
 
-public struct PlayerTeam : IComponentData
+public struct GameTeam : IComponentData
 {
     [GhostField] public TeamType Value;
 }

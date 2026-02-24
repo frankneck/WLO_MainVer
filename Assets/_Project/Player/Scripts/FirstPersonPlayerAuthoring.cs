@@ -21,7 +21,7 @@ public class FirstPersonPlayerAuthoring : MonoBehaviour
             AddComponent<FirstPersonPlayerInputs>(entity);
             AddComponent<FirstPersonPlayerNetworkInput>(entity);
             
-            AddComponent(entity, new PlayerTeam());
+            AddComponent(entity, new GameTeam());
             AddComponent(entity, new PlayerName());
             AddComponent(entity, new NewPlayerTag());
             AddComponent<PlayerPing>(entity);
