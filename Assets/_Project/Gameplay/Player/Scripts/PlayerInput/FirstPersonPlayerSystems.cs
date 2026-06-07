@@ -145,6 +145,19 @@ public partial class FirstPersonPlayerInputsSystem : SystemBase
             {
                 playerCommands.ValueRW.InteractPressed.Set();
             }
+            
+            // Interact
+            if (inputPermissions.ValueRO.Value.HasFlag(InputFlags.Drop))
+                inputActions.Player.Drop.Enable();
+            else
+                inputActions.Player.Drop.Disable();
+            
+            // Drop item
+            playerCommands.ValueRW.DropPressed = default;
+            if (inputActions.Player.Drop.WasPressedThisFrame())
+            {
+                playerCommands.ValueRW.DropPressed.Set();
+            }
         }
     }
 }

@@ -223,6 +223,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "cd5874ae-baa7-4703-9f56-a1d9c9fb70c2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pickup",
                     "type": "Button",
                     "id": "4781c7fa-be7c-489d-b899-ef32e01f5388",
@@ -752,7 +761,7 @@
                     "name": "",
                     "id": "0162059d-a477-4edd-84fb-639614b256cf",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Pickup",
@@ -767,6 +776,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "WeaponScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4eb97f43-f865-479a-af89-017bff366aa9",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

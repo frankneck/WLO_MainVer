@@ -108,5 +108,6 @@ public enum InputFlags
     Inventory = 1 << 3,
     Menu = 1 << 4,
     PlayerList = 1 << 5,
-    Interact = 1 << 6
+    Interact = 1 << 6,
+    Drop = 1 << 7
 }

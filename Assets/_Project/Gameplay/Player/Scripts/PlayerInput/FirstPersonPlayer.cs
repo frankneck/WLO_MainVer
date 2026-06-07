@@ -47,6 +47,7 @@ public struct FirstPersonPlayerCommands : IInputComponentData
 
     // Interact
     public InputEvent InteractPressed;
+    public InputEvent DropPressed;
 }
 
 [Serializable]

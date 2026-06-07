@@ -68,32 +68,32 @@ public partial struct GameEntityDeathSystem : ISystem
             }
 
             // Drop items 
-            if (SystemAPI.HasComponent<WithCharacterContainers>(entity))
-            {
-                if (!SystemAPI.HasComponent<LocalTransform>(entity))
-                    continue;
+            // if (SystemAPI.HasComponent<WithCharacterContainers>(entity))
+            // {
+            //     if (!SystemAPI.HasComponent<LocalTransform>(entity))
+            //         continue;
 
-                var entityTransform = SystemAPI.GetComponent<LocalTransform>(entity);
+            //     var entityTransform = SystemAPI.GetComponent<LocalTransform>(entity);
 
-                var containers = SystemAPI.GetComponent<WithCharacterContainers>(entity);
+            //     var containers = SystemAPI.GetComponent<WithCharacterContainers>(entity);
 
-                Entity consumableContainer = containers.ConsumableEquipmentContainer;
-                Entity weaponContainer =  containers.WeaponEquipmentContainer;
-                Entity inventoryContainer = containers.InventoryContainer;
+            //     Entity consumableContainer = containers.ConsumableEquipmentContainer;
+            //     Entity weaponContainer =  containers.WeaponEquipmentContainer;
+            //     Entity inventoryContainer = containers.InventoryContainer;
 
-                if (SystemAPI.HasBuffer<ContainerBuffer>(consumableContainer) &&
-                    SystemAPI.HasBuffer<ContainerBuffer>(weaponContainer) && 
-                    SystemAPI.HasBuffer<ContainerBuffer>(inventoryContainer))
-                {
-                    var consumableBuffer = SystemAPI.GetBuffer<ContainerBuffer>(consumableContainer);
-                    var weaponBuffer = SystemAPI.GetBuffer<ContainerBuffer>(weaponContainer);
-                    var inevntoryBuffer = SystemAPI.GetBuffer<ContainerBuffer>(inventoryContainer);
+            //     if (SystemAPI.HasBuffer<ContainerBuffer>(consumableContainer) &&
+            //         SystemAPI.HasBuffer<ContainerBuffer>(weaponContainer) && 
+            //         SystemAPI.HasBuffer<ContainerBuffer>(inventoryContainer))
+            //     {
+            //         var consumableBuffer = SystemAPI.GetBuffer<ContainerBuffer>(consumableContainer);
+            //         var weaponBuffer = SystemAPI.GetBuffer<ContainerBuffer>(weaponContainer);
+            //         var inevntoryBuffer = SystemAPI.GetBuffer<ContainerBuffer>(inventoryContainer);
 
-                    DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, consumableBuffer);
-                    DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, weaponBuffer);
-                    DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, inevntoryBuffer);
-                }
-            }
+            //         DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, consumableBuffer);
+            //         DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, weaponBuffer);
+            //         DropContainerItemsOnDeathFromContainer(ref ecb, entityTransform, inevntoryBuffer);
+            //     }
+            // }
             
             ecb.RemoveComponent<PendingDeathTag>(entity);
             ecb.AddComponent<DestroyEntityTag>(entity);
