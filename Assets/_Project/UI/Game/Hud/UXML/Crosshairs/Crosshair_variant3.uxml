@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/crosshair/crosshair.uss?fileID=7433441132597879392&amp;guid=e5214e119c86c814a9882d49185666cc&amp;type=3#crosshair"/>
+    <Style src="project://database/Assets/UIStyles/hud.uss?fileID=7433441132597879392&amp;guid=47e7c4e90fd52f14fbc2379fc228afaa&amp;type=3#hud"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3"/>
+    <ui:Image name="Image" style="background-image: url(&quot;project://database/Assets/_Project/Sprites/Food/Bean_soup.png?fileID=2800000&amp;guid=8e21e2227f4e14044b8b87c1c13f983f&amp;type=3#Bean_soup&quot;); height: 100%; position: relative; width: 100%; left: auto;"/>
+</ui:UXML>

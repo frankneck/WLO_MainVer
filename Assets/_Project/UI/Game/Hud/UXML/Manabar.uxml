@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/manabar/manabar.uss?fileID=7433441132597879392&amp;guid=da19bdb4150dfd5408258628c3884e21&amp;type=3#manabar"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="manabar__container" class="manabar__container">
+        <ui:VisualElement name="manabar__root" class="container__root">
+            <ui:VisualElement name="manabar__background" class="root__background root__border">
+                <ui:VisualElement name="manabar__fill" class="background__fill"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

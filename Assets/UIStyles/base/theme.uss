@@ -1,0 +1,47 @@
+:root {
+    --first-color: rgb(72, 38, 38);
+    --second-color: rgb(185, 157, 117);
+    --third-color: rgb(134, 103, 103);
+    --fourth-color: rgb(222, 194, 156);
+    --fifth-color: rgba(95, 71, 71, 0.82);
+    
+    --level-one-color: rgb(190, 190, 190); 
+    --level-two-color: rgba(119, 162, 60, 1); 
+    --level-three-color: rgba(64, 122, 169, 1); 
+    --level-fourth-color: rgba(134, 80, 152, 1); 
+    --level-five-color: rgba(192, 132, 47, 1); 
+
+    /* teams */
+
+    --red-team-color: rgb(148, 46, 46);
+    --blue-team-color: rgb(66, 86, 152);
+
+    /* main menu buttons */
+
+    --neutral-button-color: rgb(185, 157, 117);
+    --positive-button-color: rgb(119, 162, 60);
+    --negative-button-color: rgb(148, 46, 46);
+
+    --border-neutral-button-color: rgb(142, 119, 85);
+    --border-positive-button-color: rgb(57, 137, 60);
+    --border-negative-button-color: rgb(129, 24, 24);
+
+    --hover-neutral-color: rgb(185, 157, 117);
+    --hover-positive-button-color: rgb(119, 162, 60);
+    --hover-negative-button-color: rgb(255, 255, 255);
+
+    /* input fields */
+
+    --input-field-background-color: rgb(185, 157, 117);
+    --input-field-border-color: rgb(142, 119, 85);
+
+    /* team selection buttons */
+
+    --red-team-button-background-color: rgb(148, 46, 46);
+    --blue-team-button-background-color: rgb(66, 86, 152);
+
+    --red-team-button-border-color: rgb(119, 38, 38);
+    --blue-team-button-border-color: rgb(51, 67, 119);
+}
+
+

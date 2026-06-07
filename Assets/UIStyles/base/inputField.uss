@@ -1,0 +1,50 @@
+.input-field {
+    background-color: var(--input-field-background-color);
+    border-radius: 4px;
+    font-size: 18px;
+    padding: 6px 10px;
+    color: var(--first-color);
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    flex-grow: 0;
+    margin-bottom: 10px;
+    width: 465px;
+    height: 75px;
+    align-items: center;
+    align-self: center;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-color: var(--input-field-border-color);
+    border-right-color: var(--input-field-border-color);
+    border-bottom-color: var(--input-field-border-color);
+    border-left-color: var(--input-field-border-color);
+}
+
+.unity-text-field__input {
+    color: var(--first-color);
+    background-color: var(--fourth-color);
+}
+
+.unity-base-field__input {
+    color: var(--first-color);
+    background-color: var(--fourth-color);
+}
+
+.unity-base-popup-field__menu {
+    color: var(--first-color);
+    background-color: var(--fourth-color);
+}
+
+.unity-list-view__item {
+    color: var(--first-color);
+    background-color: var(--fourth-color);
+}
+
+.unity-integer-field__input {
+    color: var(--first-color);
+    background-color: var(--fourth-color);
+}

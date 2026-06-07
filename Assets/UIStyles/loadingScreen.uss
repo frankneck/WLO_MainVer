@@ -1,0 +1,13 @@
+.loading-screen__status {
+    font-size: 90px;
+    position: absolute;
+    bottom: 3%;
+    right: 5%;
+    width: auto;
+    background-color: var(--secon-color);
+    color: var(--first-color);
+}
+
+.loading-screen {
+    background-color: var(--second-color);
+}

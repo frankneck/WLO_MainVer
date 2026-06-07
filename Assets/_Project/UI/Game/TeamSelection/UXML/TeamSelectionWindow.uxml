@@ -1,0 +1,19 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/teamSelection/teamSelection.uss?fileID=7433441132597879392&amp;guid=4c7893107dddb3c46b3898706a589e12&amp;type=3#teamSelection"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/playerList.uss?fileID=7433441132597879392&amp;guid=9ba6660a4f39a44449eb0dcbd9af3000&amp;type=3#playerList"/>
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <ui:VisualElement name="teamSelectionContainer" class="team-selection__container" style="flex-grow: 1; justify-content: center; display: none;">
+        <ui:Label text="Select Team" name="Title" class="title" style="top: auto; right: auto; align-items: center; position: relative; margin-bottom: 40px;"/>
+        <ui:VisualElement name="buttonSection" usage-hints="None" class="container__button-section" style="flex-grow: 0; width: 640px; justify-content: space-between; position: relative;">
+            <ui:VisualElement name="RedTeamSection" focusable="true" class="button-sections__section" style="flex-grow: 1;">
+                <ui:Button text="Red" name="RedTeamButton" focusable="false" class="button-section__button button__red button"/>
+                <ui:Label text="x0" name="playerNumbersRed" class="section__playersNumber"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="BlueTeamSection" focusable="true" class="button-sections__section" style="flex-grow: 1;">
+                <ui:Button text="Blue" name="BlueTeamButton" focusable="false" class="button-section__button button__blue button"/>
+                <ui:Label text="x0" name="playerNumbersBlue" class="section__playersNumber"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

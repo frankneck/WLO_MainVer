@@ -1,0 +1,132 @@
+:root {
+}
+
+.screencontainer {
+    background-color: var(--first-color);
+    width: 100%;
+    height: 100%;
+}
+
+.screen-container__content {
+    height: auto;
+    flex-shrink: 0;
+    width: 1000px;
+    align-self: center;
+}
+
+.content__section {
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.content__title-section {
+    align-self: center;
+    justify-content: center;
+    height: 156px;
+    width: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.title-section__title-text {
+    color: var(--second-color);
+    font-size: 40px;
+    -unity-text-align: middle-center;
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.content__main-content-section {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0;
+    height: 712px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.main-content-section__column {
+    width: 100%;
+    background-color: var(--second-color);
+    height: 100%;
+}
+
+.main-content-section__separator {
+    width: 37px;
+}
+
+.column__team-title {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    font-size: 46px;
+    -unity-text-align: upper-center;
+    color: var(--second-color);
+}
+
+.team-title__red-color {
+    background-color: var(--red-team-color);
+}
+
+.team-title__blue-color {
+    background-color: var(--blue-team-color);
+    display: flex;
+}
+
+.deathmatchPendingScreen {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.dominationContent__column {
+    background-color: var(--second-color);
+    width: 100%;
+}
+
+.dominationContent__title {
+    background-color: rgb(118, 39, 39);
+}
+
+.dominationSection {
+    width: 600px;
+    align-self: center;
+    flex-direction: row;
+    height: 100%;
+}
+
+.footer-section {
+}
+
+.footer__text {
+    -unity-text-align: middle-center;
+    font-size: 50px;
+    color: var(--second-color);
+    padding-top: 51px;
+}

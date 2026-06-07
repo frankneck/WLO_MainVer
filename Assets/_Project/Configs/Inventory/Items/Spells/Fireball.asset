@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4749f20036ea01e47ad8f09a0f95f2e8, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: Assembly-CSharp::SpellItemDetails
+  Id:
+    Value: 1
+  Sprite: {fileID: 21300000, guid: d20bd518138ce9e41b4b3480265877e9, type: 3}
+  Name: Fireball
+  Description: This is fireball
+  MaxStack: 1
+  AllowedSlots: 9
+  Type: 1
+  PickupMode: 2
+  ProjectilePrefab: {fileID: 5537249849309860163, guid: fc828661885373c4aa609d36d58ad7f3, type: 3}

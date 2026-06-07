@@ -1,0 +1,57 @@
+<engine:UXML xmlns:engine="UnityEngine.UIElements" editor-extension-mode="False">
+    <engine:Template name="Slot" src="project://database/Assets/_Project/UI/Game/Slot/Slot.uxml?fileID=9197481963319205126&amp;guid=dc6172ee0dad21b4cabfb4bfb43cdac5&amp;type=3#Slot"/>
+    <engine:Template name="WeaponWindow" src="project://database/Assets/_Project/UI/Game/Inventory/UXML/WeaponWindow.uxml?fileID=9197481963319205126&amp;guid=61a5e0571b85b9f47a37f5064d42d4eb&amp;type=3#WeaponWindow"/>
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/inventory/inventory.uss?fileID=7433441132597879392&amp;guid=404a6cb508a36234988f31b7e7394eed&amp;type=3#inventory"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/inventory/weapon_window.uss?fileID=7433441132597879392&amp;guid=507bf83ad9e5ac04d8029786b4d22ad4&amp;type=3#weapon_window"/>
+    <Style src="project://database/Assets/UIStyles/weaponLevels.uss?fileID=7433441132597879392&amp;guid=13a7860bfa72efb4893776a41719d243&amp;type=3#weaponLevels"/>
+    <engine:VisualElement name="inventory__container" class="inventory-container fade" style="display: none; flex-wrap: wrap;">
+        <engine:VisualElement name="inventory__weapon-frame" class="window__weapon-frame" style="width: 100%; position: absolute; top: 0; left: auto; height: auto; flex-direction: row; flex-wrap: wrap;">
+            <engine:VisualElement name="WeaponSlots" class="weaponSlots" style="top: auto;">
+                <engine:Instance template="WeaponWindow" class="weapon-window__template"/>
+                <engine:Instance template="WeaponWindow" class="weapon-window__template"/>
+                <engine:Instance template="WeaponWindow" class="weapon-window__template"/>
+                <engine:Instance template="WeaponWindow" class="weapon-window__template"/>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="inventory__equipment-window" class="inventory-frame__window inventory-frame__equipment" style="width: auto; bottom: 351px; right: 549px;">
+            <engine:Label text="Equipment" name="Title" class="subtitle"/>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <engine:VisualElement name="WeaponEquipmentSlots" class="equipmentSlots">
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                </engine:VisualElement>
+                <engine:VisualElement name="ConsumableEquipmentSlots" class="equipmentSlots">
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                    <engine:Instance template="Slot" name="TemplateContainer"/>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="inventory__backpack-window" class="inventory-frame__window inventory-frame__backpack" style="bottom: 210px; position: absolute; top: auto; right: 32px; width: 502px; height: 316px;">
+            <engine:Label text="Backpack&#10;" name="Title" class="subtitle"/>
+            <engine:VisualElement name="InventorySlots" class="inventorySlots">
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+                <engine:Instance template="Slot"/>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

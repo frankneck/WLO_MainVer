@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f214689079c0447b1b53a2a180bc1e, type: 3}
+  m_Name: WeaponLevelFunctionsSet
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponLevelFunctionsSet
+  m_WeaponlevelConfigs:
+  - {fileID: 11400000, guid: 9a281dc4b7acc65439b4ce4e0bea66e0, type: 2}
+  - {fileID: 11400000, guid: dc4a53d384d5a664cb23b060d3824dc6, type: 2}
+  - {fileID: 11400000, guid: 3904b43fdb83aa14b828c5712ae9ddae, type: 2}
+  - {fileID: 11400000, guid: 5e3fb1d1675bfa44bb2d854b3e8ee41e, type: 2}
+  - {fileID: 11400000, guid: fb3fbfcf3cfb5e245b30d1e0d9e4f519, type: 2}

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae096a4f6cb77543a1da982725edb9f, type: 3}
+  m_Name: WeaponSpellSetConfig_2
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSpellSetConfig
+  m_FillChangceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.4252012
+      outSlope: -0.4252012
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.2314394
+      value: 0.05118929
+      inSlope: -0.3720032
+      outSlope: -0.0038894783
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.11095003
+      outWeight: 0.065939814
+    - serializedVersion: 3
+      time: 15
+      value: 0
+      inSlope: -0.0067487964
+      outSlope: -0.0067487964
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10081017
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_Spells:
+  - SpellPrefab: {fileID: 6809764291451548628, guid: df5f1b01920694d47bac808b4bd9d1cb, type: 3}
+    Weight: 30
+  - SpellPrefab: {fileID: 3144428798722842747, guid: 24baae0d76e77514fa69450ca0193c18, type: 3}
+    Weight: 60
+  m_MaxSlots: 15

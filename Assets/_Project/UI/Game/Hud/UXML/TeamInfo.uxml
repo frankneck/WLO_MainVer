@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/playerInfoWindow.uss?fileID=7433441132597879392&amp;guid=e1628e07890db6f4ea8a750283fa9f75&amp;type=3#playerInfoWindow"/>
+    <Style src="project://database/Assets/UIStyles/healthBar/healthbar.uss?fileID=7433441132597879392&amp;guid=2ef0fac5bcf1cc44ea16f52717988941&amp;type=3#healthbar"/>
+    <Style src="project://database/Assets/UIStyles/manabar/manabar.uss?fileID=7433441132597879392&amp;guid=da19bdb4150dfd5408258628c3884e21&amp;type=3#manabar"/>
+    <ui:VisualElement name="team-player-info__container" class="team-player-info__container" style="top: auto; left: auto; height: 26px; width: 165px;">
+        <ui:Label text="Name" name="team-player-info__name" class="team-player-info__name"/>
+        <ui:VisualElement name="team-player-info__root" class="container__root" style="flex-grow: 1;">
+            <ui:VisualElement name="team-player-info__bg" class="root__bg" style="flex-grow: 1;">
+                <ui:VisualElement name="team-player-info__health" class="bg__fill bg__healt-fill" style="flex-grow: 1;"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

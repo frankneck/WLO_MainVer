@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 [InitializeOnLoad]
 public static class AutoSetConnectionScene
 {
-    private const string scenePath = "Assets/_Project/Scenes/ClientConnectionScene/ClientConnectionScene.unity";
+    private const string scenePath = "Assets/_Project/Scenes/MainMenu/Scene/MainMenu.unity";
     private const string sessionKey = "AutoSetConnectionScene.previousScenePath";
 
     static AutoSetConnectionScene()

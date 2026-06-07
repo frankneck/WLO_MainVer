@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/hud/respawnInfo.uss?fileID=7433441132597879392&amp;guid=9d1422dc5031dba4a9570ccfb4ad37e0&amp;type=3#respawnInfo"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="RespawnInfoContainer" class="respawn-info__container">
+        <ui:VisualElement name="Content" class="container__content">
+            <ui:Label text="Respawn through 0 seconds" name="RespawnInfoText" class="content__respawn-info-text"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

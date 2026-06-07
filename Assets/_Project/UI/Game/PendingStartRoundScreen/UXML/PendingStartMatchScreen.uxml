@@ -1,0 +1,46 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/playerList/playerListCommon.uss?fileID=7433441132597879392&amp;guid=7c03810943495b84a87e4f773add80ad&amp;type=3#playerListCommon"/>
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="PendingsStartMatchScreenContainer" class="screencontainer" style="flex-grow: 1; display: flex;">
+        <ui:VisualElement name="Content" class="screen-container__content" style="top: auto;">
+            <ui:VisualElement name="titleSection" class="content__title-section">
+                <ui:Label text="Remaining N players to start Match&#10;" name="Title" class="title-section__title-text"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="mainContentSection" class="content__main-content-section" style="display: flex;">
+                <ui:VisualElement name="DeathmatchSection" class="deathmatchPendingScreen" style="margin-bottom: 0; display: none; visibility: visible;">
+                    <ui:VisualElement name="RedTeamColumn" class="main-content-section__column">
+                        <ui:Label text="Red 0/0" name="RedTeamTitle" class="column__team-title team-title__red-color"/>
+                        <ui:MultiColumnListView columns="" sort-column-descriptions="" name="RedTeamListView" style="background-color: rgb(147, 138, 138);">
+                            <ui:Columns>
+                                <ui:Column name="player-name" title="NAME" width="75%" visible="true" optional="false" resizable="false" cell-template="" header-template=""/>
+                                <ui:Column name="player-ping" title="PING" width="25%" sortable="true" resizable="false" optional="false" stretchable="false"/>
+                            </ui:Columns>
+                        </ui:MultiColumnListView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Separator" class="main-content-section__separator" style="height: 100%;"/>
+                    <ui:VisualElement name="BlueTeamColumn" class="main-content-section__column">
+                        <ui:Label text="Blue 0/0" name="BlueTeamTitle" class="column__team-title team-title__blue-color"/>
+                        <ui:MultiColumnListView columns="" sort-column-descriptions="" name="BlueTeamListView" style="background-color: rgb(147, 138, 138);">
+                            <ui:Columns>
+                                <ui:Column name="player-name" title="NAME" width="75%"/>
+                                <ui:Column name="player-ping" title="PING" width="25%"/>
+                            </ui:Columns>
+                        </ui:MultiColumnListView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="DominationSection" class="dominationSection" style="display: flex;">
+                    <ui:VisualElement name="PlayersColumn" class="dominationContent__column" style="flex-grow: 1;">
+                        <ui:Label text="Players 0/0" name="PlayersNumber" class="column__team-title dominationContent__title"/>
+                        <ui:MultiColumnListView columns="" sort-column-descriptions="" name="DominationListView" style="background-color: rgb(147, 138, 138);">
+                            <ui:Columns>
+                                <ui:Column name="player-name" title="NAME" width="80%" visible="true" optional="false" resizable="false" cell-template="" header-template=""/>
+                                <ui:Column name="player-ping" title="PING" width="20%" sortable="true" resizable="false" optional="false" stretchable="false"/>
+                            </ui:Columns>
+                        </ui:MultiColumnListView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

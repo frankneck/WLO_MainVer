@@ -1,5 +1,6 @@
 {
     "name": "Unity.Physics.Custom",
+    "rootNamespace": "",
     "references": [
         "Unity.Burst",
         "Unity.Collections",
@@ -10,11 +11,20 @@
         "Unity.Physics.Hybrid",
         "Unity.Transforms"
     ],
+    "includePlatforms": [
+        "Editor",
+        "WSA",
+        "WindowsStandalone32",
+        "WindowsStandalone64",
+        "WindowsStandalone32Server",
+        "WindowsStandalone64Server"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

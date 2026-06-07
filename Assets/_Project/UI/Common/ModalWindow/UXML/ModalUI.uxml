@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/mainMenu/popup.uss?fileID=7433441132597879392&amp;guid=07e2fba23c7dc3d4eb842f217b490776&amp;type=3#popup"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/base/button.uss?fileID=7433441132597879392&amp;guid=b565e8b4043efee4da189f3fad2ec07f&amp;type=3#button"/>
+    <ui:VisualElement name="Screen" class="popup__container" style="display: none;">
+        <ui:VisualElement name="Window" class="window border">
+            <ui:VisualElement name="content" class="window__content">
+                <ui:VisualElement name="TitleSection" class="section" style="flex-grow: 0; height: 156px;">
+                    <ui:Label name="ModalLabel" text="Label" class="title"/>
+                </ui:VisualElement>
+                <ui:ScrollView name="ContentSection" class="text scroll-view section">
+                    <ui:Label text="Label" name="Message"/>
+                </ui:ScrollView>
+                <ui:VisualElement name="buttonSection" class="main__button-section section" style="justify-content: center;">
+                    <ui:Button text="CLOSE" name="CloseButton" class="button neutral-button"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

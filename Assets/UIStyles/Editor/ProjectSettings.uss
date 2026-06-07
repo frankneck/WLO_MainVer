@@ -1,0 +1,37 @@
+:root {
+}
+
+.mainContainer {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.mainContainer__skipMenuSettingsToggle {
+    flex-basis: auto;
+    height: auto;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.mainContainer__SelectLevelSettingContainer {
+    flex-basis: auto;
+}
+
+.SelectLevelSettingContainer__LevelContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.SelectLevelSettingContainer__SelectLevelLabel {
+    align-self: flex-start;
+}
+
+.LevelContainer__Button {
+    width: 100px;
+    height: 40px;
+}

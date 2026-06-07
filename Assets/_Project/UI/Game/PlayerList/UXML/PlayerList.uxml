@@ -1,0 +1,38 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/playerList.uss?fileID=7433441132597879392&amp;guid=9ba6660a4f39a44449eb0dcbd9af3000&amp;type=3#playerList"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/playerList/playerListCommon.uss?fileID=7433441132597879392&amp;guid=7c03810943495b84a87e4f773add80ad&amp;type=3#playerListCommon"/>
+    <ui:VisualElement name="PlayerListContainer" class="fade" style="flex-grow: 0; width: 100%; height: 100%; align-self: center; align-items: center; justify-content: center; display: flex;">
+        <ui:VisualElement name="Content" class="screen-container__content" style="display: flex;">
+            <ui:VisualElement name="TitleSection" style="flex-grow: 1;"/>
+            <ui:VisualElement name="MainSection" class="content__main-content-section">
+                <ui:VisualElement name="TeamsColumns" class="deathmatchPendingScreen">
+                    <ui:VisualElement name="RedTeamColumn" class="dominationContent__column">
+                        <ui:Label text="Red" name="RedTeamTitle" class="team-title__red-color column__team-title"/>
+                        <ui:MultiColumnListView name="RedTeamPlayerListView" virtualization-method="DynamicHeight" focusable="false" selection-type="None">
+                            <ui:Columns>
+                                <ui:Column name="player-name" title="NAME" width="25%"/>
+                                <ui:Column name="player-ping" title="PING" width="25%"/>
+                                <ui:Column name="player-kills" title="KILLS" width="25%"/>
+                                <ui:Column name="player-deaths" title="DEATHS" width="25%"/>
+                            </ui:Columns>
+                        </ui:MultiColumnListView>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Separator" class="separator-teams" style="display: flex; visibility: hidden; width: 19px;"/>
+                    <ui:VisualElement name="BlueTeamColumn" class="dominationContent__column">
+                        <ui:Label text="Blue" name="BlueTeamTitle" class="team-title__blue-color column__team-title"/>
+                        <ui:MultiColumnListView name="BlueTeamPlayerListView" virtualization-method="DynamicHeight" focusable="false" selection-type="None">
+                            <ui:Columns>
+                                <ui:Column name="player-name" title="NAME" width="25%"/>
+                                <ui:Column name="player-ping" title="PING" width="25%"/>
+                                <ui:Column name="player-kills" title="KILLS" width="25%"/>
+                                <ui:Column name="player-deaths" title="DEATHS" width="25%"/>
+                            </ui:Columns>
+                        </ui:MultiColumnListView>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,86 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Template name="Crosshair" src="project://database/Assets/_Project/UI/Game/Hud/UXML/Crosshairs/Crosshair_variant2.uxml?fileID=9197481963319205126&amp;guid=08fb92fb769cc69468fcc9f9719a8b58&amp;type=3#Crosshair_variant2"/>
+    <ui:Template name="DeadInfo" src="project://database/Assets/_Project/UI/Game/Hud/UXML/DeadInfo.uxml?fileID=9197481963319205126&amp;guid=ffb876ae03db0734da3d424825fa9b9e&amp;type=3#DeadInfo"/>
+    <ui:Template name="DeathmatchHeader" src="project://database/Assets/_Project/UI/Game/Hud/UXML/Deathmatch/DeathmatchHeader.uxml?fileID=9197481963319205126&amp;guid=ff42e5e1f515ff642ad571e3498431a3&amp;type=3#DeathmatchHeader"/>
+    <ui:Template name="Healthbar" src="project://database/Assets/_Project/UI/Game/Hud/UXML/Healthbar.uxml?fileID=9197481963319205126&amp;guid=9de9d8fa4fc08a348b168d0098ccfc66&amp;type=3#Healthbar"/>
+    <ui:Template name="Manabar" src="project://database/Assets/_Project/UI/Game/Hud/UXML/Manabar.uxml?fileID=9197481963319205126&amp;guid=ef6ddfbf6daa6a349b3aef0f337dfbbf&amp;type=3#Manabar"/>
+    <ui:Template name="RespawnInfo" src="project://database/Assets/_Project/UI/Game/Hud/UXML/RespawnInfo.uxml?fileID=9197481963319205126&amp;guid=5d5ee1f712b6fa644bf918db24312a7b&amp;type=3#RespawnInfo"/>
+    <ui:Template name="RoundWinnerInfo" src="project://database/Assets/_Project/UI/Game/Hud/UXML/RoundWinnerInfo.uxml?fileID=9197481963319205126&amp;guid=b237aebb0a0983948bdfc0747612d454&amp;type=3#RoundWinnerInfo"/>
+    <ui:Template name="Tooltip" src="project://database/Assets/_Project/UI/Game/Hud/UXML/Tooltip.uxml?fileID=9197481963319205126&amp;guid=53cde86a7028f644c82cc0f4acd7e877&amp;type=3#Tooltip"/>
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/hud.uss?fileID=7433441132597879392&amp;guid=47e7c4e90fd52f14fbc2379fc228afaa&amp;type=3#hud"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/playerInfoWindow.uss?fileID=7433441132597879392&amp;guid=e1628e07890db6f4ea8a750283fa9f75&amp;type=3#playerInfoWindow"/>
+    <Style src="project://database/Assets/UIStyles/hud/tooltip.uss?fileID=7433441132597879392&amp;guid=9c463650ccd2fe74c96963701713ad71&amp;type=3#tooltip"/>
+    <Style src="project://database/Assets/UIStyles/weaponLevels.uss?fileID=7433441132597879392&amp;guid=13a7860bfa72efb4893776a41719d243&amp;type=3#weaponLevels"/>
+    <Style src="project://database/Assets/UIStyles/hud/winnerWindow.uss?fileID=7433441132597879392&amp;guid=a5f29fe27b9b659469e2edaac5621db0&amp;type=3#winnerWindow"/>
+    <Style src="project://database/Assets/UIStyles/hud/respawnInfo.uss?fileID=7433441132597879392&amp;guid=9d1422dc5031dba4a9570ccfb4ad37e0&amp;type=3#respawnInfo"/>
+    <Style src="project://database/Assets/UIStyles/hud/help.uss?fileID=7433441132597879392&amp;guid=519ffc429afab564083d35590eafc39d&amp;type=3#help"/>
+    <ui:VisualElement name="hud__container" class="container" style="display: flex;">
+        <ui:VisualElement name="container__crosshair-section" class="crosshair-section" style="flex-grow: 1;">
+            <ui:Instance template="Crosshair" name="crosshair__template" class="crosshair__position" style="align-items: center; justify-content: center; position: relative; height: 42px; width: 43px; left: auto; top: auto;"/>
+            <ui:Instance template="Tooltip" name="tooltip" style="bottom: auto; right: auto; position: absolute; top: -2px; left: 41px;"/>
+        </ui:VisualElement>
+        <ui:Instance template="Manabar" name="manabar__template" class="manabar__position" style="top: auto; left: auto; flex-direction: row; height: 18px; width: 196px; position: absolute;"/>
+        <ui:Instance template="Healthbar" name="Healthbar" class="healthbar__position" style="height: 52px; bottom: 80px; width: 394px; right: auto; left: 40px;"/>
+        <ui:VisualElement name="equipment" class="equipment" style="bottom: 40px; display: flex;">
+            <ui:VisualElement name="equipmentFrame" class="equipmentFrame" style="flex-grow: 1;">
+                <ui:VisualElement name="WeaponSlots" class="slotsContainer" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:VisualElement name="slot1" class="slot">
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
+                            <ui:Label text="1&#10;" class="stackCount" style="height: 8px;"/>
+                            <ui:Image source="project://database/Assets/_Project/Sprites/Weapon/Weapon.png?fileID=2800000&amp;guid=0b9e47905c38ed74687802b803e5b6d8&amp;type=3#Weapon" uv="0,0,1,1" enabled="true" tooltip="Something" class="slotIcon"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ConsumableSlots" class="slotsContainer" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
+                            <ui:Image class="slotIcon"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
+                        <ui:Image class="slotIcon"/>
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color" style="flex-grow: 1;"/>
+                        <ui:Label text="2" class="slotKeyLabel"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
+                        <ui:Image class="slotIcon"/>
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color" style="flex-grow: 1;"/>
+                        <ui:Label text="3" class="slotKeyLabel"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
+                        <ui:Image class="slotIcon"/>
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color" style="flex-grow: 1;"/>
+                        <ui:Label text="4" class="slotKeyLabel"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="winnerContainer" class="winnerContainer" style="display: none;">
+            <ui:Instance template="RoundWinnerInfo" style="display: flex;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Header" class="header" style="display: flex; height: 123px; width: 365px;">
+            <ui:Instance template="DeathmatchHeader" name="DeathmatchHeader" class="header" style="display: none; height: 119px; width: 363px;"/>
+            <ui:Instance template="DeathmatchHeader" name="DominationHeader" class="header" style="display: none; height: 119px; width: 363px;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="HelpSection" class="help-section">
+            <ui:VisualElement name="OpenInventoryHelp" class="help-section__open-inventory" style="flex-grow: 1;">
+                <ui:VisualElement name="OpenInventoryButton" class="open-inventory-help-button" style="flex-grow: 1;">
+                    <ui:Label text="I" name="OpenInventoryHelpText" class="help-text" style="width: 100%; height: 100%;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="OpenInventoryDescription" style="flex-grow: 1; margin-left: 8px;">
+                    <ui:Label text="Open inventory" name="DescriptionText" class="description-text"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="DeadInfoSection" class="deadInfo" style="flex-grow: 1; display: none;">
+            <ui:Instance template="DeadInfo"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="RespawnInfoSection" class="respawnInfo" style="flex-grow: 1; display: none;">
+            <ui:Instance template="RespawnInfo"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,46 @@
+:root {
+}
+
+.crosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    translate: -50% -50%;
+}
+
+.line {
+    position: absolute;
+    background-color: white;
+}
+
+.vertical {
+    width: 2px;
+    height: 10px;
+    left: 50%;
+    translate: -50% 0;
+}
+
+.horizontal {
+    width: 10px;
+    height: 2px;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+#top {
+    top: -20px;
+}
+
+#bottom {
+    bottom: -6px;
+}
+
+#left {
+    left: -6px;
+}
+
+#right {
+    right: -6px;
+}

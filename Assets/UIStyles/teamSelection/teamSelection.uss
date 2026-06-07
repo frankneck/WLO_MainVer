@@ -1,0 +1,94 @@
+:root {
+}
+
+.team-selection__container {
+    background-color: var(--first-color);
+    align-items: center;
+}
+
+.container__button-section {
+    flex-shrink: 0;
+    flex-direction: row;
+    position: absolute;
+    top: auto;
+    right: auto;
+}
+
+.button-section__button {
+    width: 285px;
+    height: 140px;
+    font-size: 45px;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: var(--second-color);
+}
+
+.button-sections__section {
+    align-items: center;
+    transition-property: scale;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    flex-direction: column;
+}
+
+.section__playersNumber {
+    color: var(--second-color);
+    font-size: 22px;
+}
+
+.button__red {
+    background-color: var(--red-team-button-background-color);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-color: var(--red-team-button-border-color);
+    border-right-color: var(--red-team-button-border-color);
+    border-bottom-color: var(--red-team-button-border-color);
+    border-left-color: var(--red-team-button-border-color);
+}
+
+.button__blue {
+    background-color: var(--blue-team-button-background-color);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-color: var(--blue-team-button-border-color);
+    border-right-color: var(--blue-team-button-border-color);
+    border-bottom-color: var(--blue-team-button-border-color);
+    border-left-color: var(--blue-team-button-border-color);
+}
+
+.button {
+    scale: 1;
+    transition-property: scale;
+    transition-duration: 0.2s;
+}
+
+.button:hover {
+    scale: 1.2;
+    transition-property: scale;
+    transition-duration: 0.2s;
+}
+
+.button:active {
+    scale: 1;
+    transition-property: scale;
+    transition-duration: 0.2s;
+}

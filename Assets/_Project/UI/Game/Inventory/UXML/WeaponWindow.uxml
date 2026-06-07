@@ -1,0 +1,37 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Slot" src="project://database/Assets/_Project/UI/Game/Inventory/UXML/Slot.uxml?fileID=9197481963319205126&amp;guid=dc6172ee0dad21b4cabfb4bfb43cdac5&amp;type=3#Slot"/>
+    <Style src="project://database/Assets/UIStyles/inventory/inventory.uss?fileID=7433441132597879392&amp;guid=404a6cb508a36234988f31b7e7394eed&amp;type=3#inventory"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/inventory/weapon_window.uss?fileID=7433441132597879392&amp;guid=507bf83ad9e5ac04d8029786b4d22ad4&amp;type=3#weapon_window"/>
+    <Style src="project://database/Assets/UIStyles/inventory/information_window.uss?fileID=7433441132597879392&amp;guid=56d39dac9e27cea4ca4295c2af21631e&amp;type=3#information_window"/>
+    <ui:VisualElement name="weaponWindow" class="weapon__window" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;">
+        <ui:VisualElement name="ImageFrame" class="window__image-frame">
+            <ui:Image name="itemIcon" class="itemIcon" style="width: 150px; height: 150px;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="WeaponWindowContent" class="window__content" style="align-items: flex-start;">
+            <ui:VisualElement name="infroFrame" class="window__information">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Shuffle: Yes" name="ShuffleValueText" class="parameter-section__text"/>
+                    <ui:Label text="Spread: 7 deg" name="SpreadValueText" class="parameter-section__text"/>
+                    <ui:Label text="Cast delay: 0.25 sec" name="CapacityValueText" class="parameter-section__text"/>
+                    <ui:Label text="Cast spell number: 1 spells" name="CastSpellNumberValueText" class="parameter-section__text"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="parameter-section__divider" style="flex-grow: 1; width: 1px;"/>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Capacity: 4 slots" name="RecoveryRateValueText" class="parameter-section__text"/>
+                    <ui:Label text="Max mana: 420 mana" name="MaxManaValueText" class="parameter-section__text"/>
+                    <ui:Label text="Mana recover rate: 40 mana/sec" name="CastDelayValueText" class="parameter-section__text"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="itemFrame" class="window__item-frame">
+                <ui:VisualElement name="slotsContainer" class="slotsContainer">
+                    <ui:Instance template="Slot"/>
+                    <ui:Instance template="Slot"/>
+                    <ui:Instance template="Slot"/>
+                    <ui:Instance template="Slot"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

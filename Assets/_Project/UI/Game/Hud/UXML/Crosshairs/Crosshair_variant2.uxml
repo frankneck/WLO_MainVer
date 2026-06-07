@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/crosshair/crosshair.uss?fileID=7433441132597879392&amp;guid=e5214e119c86c814a9882d49185666cc&amp;type=3#crosshair"/>
+    <Style src="project://database/Assets/UIStyles/hud.uss?fileID=7433441132597879392&amp;guid=47e7c4e90fd52f14fbc2379fc228afaa&amp;type=3#hud"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="crosshair" class="crosshair">
+        <ui:VisualElement name="top" class="line vertical" style="top: -15px;"/>
+        <ui:VisualElement name="bottom" class="line vertical" style="bottom: -15px;"/>
+        <ui:VisualElement name="left" class="line horizontal" style="left: -15px;"/>
+        <ui:VisualElement name="right" class="line horizontal" style="right: -15px;"/>
+    </ui:VisualElement>
+</ui:UXML>

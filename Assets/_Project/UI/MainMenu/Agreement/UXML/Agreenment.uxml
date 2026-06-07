@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/mainMenu/popup.uss?fileID=7433441132597879392&amp;guid=07e2fba23c7dc3d4eb842f217b490776&amp;type=3#popup"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/base/button.uss?fileID=7433441132597879392&amp;guid=b565e8b4043efee4da189f3fad2ec07f&amp;type=3#button"/>
+    <ui:VisualElement name="agreementContainer" class="container" style="display: flex;">
+        <ui:VisualElement name="agreenment" class="window border">
+            <ui:VisualElement name="content" class="window__content">
+                <ui:VisualElement name="contentMain" class="content__body content__main">
+                    <ui:VisualElement name="TitleSection" class="section" style="flex-grow: 1; margin-top: 0;">
+                        <ui:Label text="Agreement" name="Title" class="title"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="infoSection" class="section">
+                        <ui:Label text="This version of the game is provided for testing purposes only.&#10;The application may contain bugs, incomplete features, or other technical issues.&#10;&#10;By continuing to use this software, you acknowledge that this is a test build and agree to participate in the testing process.&#10;If you encounter any bugs or unexpected behavior, please report them to the developers. " name="infoWindow" class="text" style="height: 520px; width: 596px;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="buttonSection" class="main__button main__button-section section" style="height: auto; justify-content: space-around;">
+                        <ui:Button text="Exit" name="exitButton" class="negative-button button"/>
+                        <ui:Button text="Agree" name="agreeButton" class="button-primary positive-button button" style="border-left-color: rgb(88, 120, 46); border-right-color: rgb(88, 120, 46); border-top-color: rgb(88, 120, 46); border-bottom-color: rgb(88, 120, 46);"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

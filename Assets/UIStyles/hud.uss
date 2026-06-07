@@ -1,0 +1,272 @@
+.deadInfo {
+    bottom: 139px;
+    position: absolute;
+}
+
+.respawnInfo {
+    position: absolute;
+    bottom: 250px;
+}
+
+.winnerContainer {
+    position: absolute;
+    top: 233px;
+}
+
+.red__score {
+    background-color: var(--red-team-color);
+}
+
+.blue__score {
+    background-color: var(--blue-team-color);
+}
+
+.header__main-section {
+    width: 167px;
+    height: 79px;
+    background-color: var(--first-color);
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.header__blue-team-score {
+}
+
+.header__red-team-score {
+}
+
+.header__score-section {
+    width: 100px;
+    height: 79px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-top-width: 3px;
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    align-self: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+}
+
+.score__text {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-center;
+    color: var(--second-color);
+    font-size: 40px;
+}
+
+.timer-section {
+    flex-direction: row;
+    width: 350px;
+    position: absolute;
+    top: 20px;
+    height: 100px;
+    align-items: center;
+}
+
+.round-timer__text {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    color: var(--second-color);
+    -unity-text-align: upper-center;
+    font-size: 24px;
+}
+
+.team__info {
+    width: auto;
+    height: auto;
+}
+
+.team__container {
+    position: absolute;
+    display: flex;
+    width: 400px;
+    height: 200px;
+    left: 40px;
+    bottom: 225px;
+}
+
+.manabar__position {
+    bottom: 400px;
+}
+
+.crosshair__position {
+}
+
+.healthbar__position {
+    bottom: 0;
+    right: 0;
+    translate: 0 0;
+    position: absolute;
+}
+
+.slotsContainer {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.equipment {
+    top: auto;
+    left: auto;
+    transform-origin: center;
+    translate: 0 0;
+    position: absolute;
+    bottom: 10px;
+}
+
+.slot {
+    width: 60px;
+    height: 60px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.slotFrame {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: var(--color-hud-slot-border);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-color: var(--first-color);
+    border-right-color: var(--first-color);
+    border-bottom-color: var(--first-color);
+    border-left-color: var(--first-color);
+}
+
+.slotFrame__hover {
+    transition: background-color 0.2s ease;
+    background-color: var(--fourth-color);
+}
+
+.slotIcon {
+    padding: 4px;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    scale: 1 1;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.slotKeyLabel {
+    position: absolute;
+    top: 24px;
+    left: 36px;
+    font-size: 23px;
+    color: rgba(27, 27, 27, 0.51);
+    padding: 2px 4px;
+    border-radius: 2px;
+    -unity-text-align: middle-center;
+    transform-origin: center;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.slotFrame__hover {
+}
+
+.tooltip {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: var(--first-color);
+    border-top-width: 9px;
+    border-right-width: 9px;
+    border-bottom-width: 9px;
+    border-left-width: 9px;
+    border-left-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-top-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    bottom: 40px;
+    right: 45px;
+}
+
+.name {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-left;
+    -unity-font-style: bold;
+}
+
+.slotFrame__choosed {
+    border-top-color: var(--first-color);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    scale: 1.1 1.1 1.1;
+    border-right-color: var(--first-color);
+    border-bottom-color: var(--first-color);
+    border-left-color: var(--first-color);
+}
+
+.crosshair-section {
+    position: absolute;
+    flex-direction: row;
+}
+
+.stackCount {
+    display: flex;
+    position: absolute;
+    right: 3px;
+    bottom: 13px;
+    top: 0;
+}
+
+.player__rounds {
+    color: var(--second-color);
+    -unity-text-align: upper-center;
+}

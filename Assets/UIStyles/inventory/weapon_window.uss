@@ -1,0 +1,65 @@
+:root {
+}
+
+.weapon__window {
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 0;
+    padding: 6px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: var(--color-weapon-border);
+    background-color: var(--first-color);
+    width: auto;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    height: auto;
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    flex-grow: 0;
+    transition-property: scale;
+    transition-duration: 0.12s;
+    scale: 1;
+}
+
+.weapon-window--selected {
+    scale: 1.03;
+}
+
+.information-frame__name {
+    font-size: 31px;
+    color: var(--second-color);
+}
+
+.window__image-frame {
+    background-color: var(--second-color);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    width: 144px;
+    height: 150px;
+}
+
+.window__item-frame {
+}

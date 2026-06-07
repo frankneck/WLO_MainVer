@@ -1,0 +1,96 @@
+:root {
+}
+
+.negative-button {
+    background-color: var(--negative-button-color);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-color: var(--border-negative-button-color);
+    border-right-color: var(--border-negative-button-color);
+    border-bottom-color: var(--border-negative-button-color);
+    border-left-color: var(--border-negative-button-color);
+    font-size: 35px;
+    color: var(--first-color);
+}
+
+.positive-button {
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-color: var(--border-positive-button-color);
+    border-right-color: var(--border-positive-button-color);
+    border-bottom-color: var(--border-positive-button-color);
+    border-left-color: var(--border-positive-button-color);
+    font-size: 35px;
+    color: var(--first-color);
+    background-color: var(--positive-button-color);
+}
+
+.neutral-button {
+    font-size: 30px;
+    background-color: var(--neutral-button-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-color: var(--border-neutral-button-color);
+    border-right-color: var(--border-neutral-button-color);
+    border-bottom-color: var(--border-neutral-button-color);
+    border-left-color: var(--border-neutral-button-color);
+}
+
+.button {
+    width: 270px;
+    height: 100px;
+    scale: 1;
+    transition-property: scale;
+    transition-duration: 0.1s;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.button:hover {
+    scale: 1.05;
+    transition-property: scale;
+    transition-duration: 0.1s;
+}
+
+.button:active {
+    scale: 1;
+    transition-property: scale;
+    transition-duration: 0.01s;
+}
+
+.connection-menu__button {
+    width: 495px;
+    height: 100px;
+}

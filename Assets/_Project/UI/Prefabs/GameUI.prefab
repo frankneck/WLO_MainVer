@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8846489051236408242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8769965360970051725}
+  - component: {fileID: 1413470737332502275}
+  m_Layer: 0
+  m_Name: GameUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8769965360970051725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846489051236408242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1413470737332502275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846489051236408242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07048ac6ec4e8f24cb602d34dfc2466f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEntryPoint
+  m_InventoryConfig: {fileID: 11400000, guid: c2fd7fa763e0cc344bbf7b1897c64188, type: 2}
+  m_ItemManagedDatabase: {fileID: 1505100670631899408, guid: cccf9ef9e491dde4fbda2642b0525e9c, type: 3}
+  m_UIController: {fileID: -9139669824364221436, guid: bedaf6cb50ad79d4d90ba4b5cd9c80c0, type: 3}
+  m_Inventory: {fileID: 315648653886735421, guid: 5b35a2a4729e6b24ea31638579cb6449, type: 3}
+  m_HudView: {fileID: 3380159862392991213, guid: 308fcb56ecccea142a1ff8a1db5b123a, type: 3}
+  m_AppMenuWindow: {fileID: 7828042563240768399, guid: 195078c8aca869145ab938c1d4d37c25, type: 3}
+  m_AppStatsUI: {fileID: 8228277190325275418, guid: d8a6465674c167445a08d715be429dc0, type: 3}
+  m_PlayerLisWindow: {fileID: 7338467862723185564, guid: 9da1f9943319f8d4cb7177edf6deda37, type: 3}
+  m_WorldSpaceUIController: {fileID: 4654090847598698988, guid: 74e3bb9af2bc8b34c88ef925a6febefd, type: 3}
+  m_GameConsoleWindow: {fileID: 4152819454347112501, guid: 5a9a77368f9ef484eb13b364d1e7c94c, type: 3}
+  m_TeamSelectionScreen: {fileID: 9079056842628318349, guid: aee1e65d869db5c419cb50c805991019, type: 3}
+  m_PendingStarMatchScreen: {fileID: -3026518217271962327, guid: f52ea25ad314424438d616c5f8c5d8f2, type: 3}
+  m_FinishingMatchScreen: {fileID: 535120801502045917, guid: b294269a5b980204d85114ef9e08ec2a, type: 3}

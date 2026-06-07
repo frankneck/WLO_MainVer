@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.NetCode.Authoring.Hybrid::Unity.NetCode.Hybrid.NetCodeServerSettings
   FilterSettings:
     ExcludedBakingSystemAssemblies: []
-  AdditionalScriptingDefines:
-  - 
+  AdditionalScriptingDefines: []

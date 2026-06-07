@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/hud/winnerWindow.uss?fileID=7433441132597879392&amp;guid=a5f29fe27b9b659469e2edaac5621db0&amp;type=3#winnerWindow"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="winnerWindowContainer" class="winnder-window-container">
+        <ui:VisualElement name="contentSection" class="winner-windowcontainer__content-section" style="flex-grow: 1; justify-content: center;">
+            <ui:Label text="No one team" name="WinnerText" class="winner-text" style="width: auto;"/>
+            <ui:Label text=" is #1" name="DominationText" class="content-section__winner-text" style="display: none;"/>
+            <ui:Label text=" won round" name="DeathmatchText" class="content-section__winner-text" style="margin-left: 0; display: flex; margin-top: 0; margin-right: 0; margin-bottom: 0; width: auto;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

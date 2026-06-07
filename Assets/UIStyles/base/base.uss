@@ -1,0 +1,163 @@
+.container {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    display: flex;
+    align-content: flex-start;
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.title {
+    font-size: 50px;
+    -unity-text-align: middle-center;
+    color: var(--second-color);
+    margin-bottom: 0;
+    margin-top: 0;
+    height: 100px;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.old-button {
+    font-size: 30px;
+    height: 80px;
+    padding: 8px 12px;
+    width: auto;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: var(--color-button-border);
+    border-right-color: var(--color-button-border);
+    border-top-color: var(--color-button-border);
+    border-bottom-color: var(--color-button-border);
+    background-color: var(--second-color);
+    color: var(--first-color);
+    flex-grow: 1;
+    margin-top: 12px;
+    margin-right: 4px;
+    margin-bottom: 0;
+    margin-left: 4px;
+}
+
+.old-button:hover {
+    background-color: var(--fourth-color);
+}
+
+.text {
+    font-size: 30px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    white-space: pre-wrap;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    color: var(--first-color);
+    background-color: var(--second-color);
+    padding-top: 27px;
+    padding-right: 27px;
+    padding-bottom: 27px;
+    padding-left: 27px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-color: var(--third-color);
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+}
+
+.equipmentFrame {
+    flex-grow: 0;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-start;
+    align-content: center;
+    flex-direction: row;
+    width: auto;
+}
+
+.slotsContainer {
+    background-color: rgba(255, 255, 255, 0);
+    margin-left: 0;
+    align-self: center;
+    align-content: center;
+    flex-grow: 0;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.fade {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.subtitle {
+    font-size: 40px;
+    color: var(--second-color);
+}
+
+.border {
+    border-top-color: var(--third-color);
+    border-top-width: 15px;
+    border-right-width: 15px;
+    border-bottom-width: 15px;
+    border-left-width: 15px;
+    border-right-color: var(--third-color);
+    border-bottom-color: var(--third-color);
+    border-left-color: var(--third-color);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.player-list__container {
+}
+
+.template {
+    margin-right: 8px;
+}
+
+.weapon-window__template {
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.played-rounds__text {
+    color: var(--second-color);
+    font-size: 16px;
+    -unity-text-align: upper-center;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+}
+
+
+
+
+
+
+
+
+
+

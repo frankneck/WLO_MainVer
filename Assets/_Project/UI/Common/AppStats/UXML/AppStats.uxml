@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+        <ui:VisualElement name="AppStats" style="flex-grow: 1; right: 2%; top: 4%; width: 600px; height: 4%; position: absolute; flex-direction: row-reverse; opacity: 0.75; display: flex;">
+        <ui:Label text="- FPS" name="FPS" style="color: rgb(255, 255, 255); font-size: 30%; -unity-text-align: middle-right;"/>
+        <ui:Label text="- PING" name="ping" style="color: rgb(255, 255, 255); font-size: 30%; -unity-text-align: middle-right;"/>
+        <ui:Label text="- LOSS" name="loss" style="color: rgb(255, 255, 255); font-size: 30%; -unity-text-align: middle-right;"/>
+    </ui:VisualElement>
+</ui:UXML>

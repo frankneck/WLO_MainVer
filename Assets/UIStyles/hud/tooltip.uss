@@ -1,0 +1,8 @@
+:root {
+}
+
+.tooltip__text {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+}

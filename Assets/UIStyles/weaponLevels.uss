@@ -1,0 +1,27 @@
+.slot-original__color {
+    background-color: var(--second-color);
+}
+
+.level-one__color {
+    background-color: var(--level-one-color);
+}
+
+.level-two__color {
+    background-color: var(--level-two-color);
+}
+
+.level-three__color {
+    background-color: var(--level-three-color);
+}
+
+.level-four__color {
+    background-color: var(--level-fourth-color);
+}
+
+.level-five__color {
+    background-color: var(--level-five-color);
+}
+
+.level-none__color {
+    background-color: var(--fourth-color);
+}

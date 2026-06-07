@@ -1,0 +1,42 @@
+:root {
+    --color-mana: rgb(61, 145, 223);
+}
+
+.manabar__container {
+    width: 200px;
+    height: 20px;
+    position: absolute;
+    top: auto;
+    left: auto;
+    translate: 0% 0%;
+    opacity: 0.65;
+    visibility: visible;
+}
+
+.container__root {
+    width: 100%;
+    height: 100%;
+}
+
+.root__background {
+    width: 100%;
+    height: 100%;
+    background-color: var(--second-color);
+}
+
+.background__fill {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-mana);
+}
+
+.root__border {
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-color: var(--first-color);
+    border-right-color: var(--first-color);
+    border-bottom-color: var(--first-color);
+    border-left-color: var(--first-color);
+}

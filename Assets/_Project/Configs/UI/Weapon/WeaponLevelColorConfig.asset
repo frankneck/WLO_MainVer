@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5380909a21fa247bb202baac71e245, type: 3}
+  m_Name: WeaponLevelColorConfig
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponLevelColorConfig
+  Default: {r: 0.7254902, g: 0.6156863, b: 0.45882353, a: 1}
+  Level_1: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+  Level_2: {r: 0.46666667, g: 0.63529414, b: 0.23529412, a: 1}
+  Level_3: {r: 0.2509804, g: 0.47843137, b: 0.6627451, a: 1}
+  Level_4: {r: 0.5254902, g: 0.3137255, b: 0.59607846, a: 1}
+  Level_5: {r: 0.7529412, g: 0.5176471, b: 0.18431373, a: 1}

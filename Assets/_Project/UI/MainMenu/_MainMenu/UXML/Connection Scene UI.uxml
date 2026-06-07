@@ -1,0 +1,52 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/mainMenu/mainMenu.uss?fileID=7433441132597879392&amp;guid=4012abbc5ae5591479eb91fc53843920&amp;type=3#mainMenu"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/base/button.uss?fileID=7433441132597879392&amp;guid=b565e8b4043efee4da189f3fad2ec07f&amp;type=3#button"/>
+    <Style src="project://database/Assets/UIStyles/base/inputField.uss?fileID=7433441132597879392&amp;guid=ab6be7c237ea0ec47918abae00b5afaf&amp;type=3#inputField"/>
+    <ui:VisualElement name="MainMenuScreen" class="main-menu-screen" style="display: flex;">
+        <ui:VisualElement name="StartScreen" class="container main-menu start-screen__window" style="display: none;">
+            <ui:VisualElement name="MainMenuStartWindow" class="main-menu__window border">
+                <ui:VisualElement name="MainMenuContent" class="window__content">
+                    <ui:VisualElement name="MainMenuBody" class="content__body" style="height: 852px;">
+                        <ui:Label text="WIZARD LOOK OUT" class="menu-title title" style="margin-bottom: 100px;"/>
+                        <ui:VisualElement name="buttons" class="main-menu__buttons" style="justify-content: flex-start;">
+                            <ui:Button text="START GAME" name="Start" class="button neutral-button connection-menu__button"/>
+                            <ui:Button text="Options" name="Options" class="button neutral-button connection-menu__button" style="margin-top: 19px;"/>
+                            <ui:Button text="EXIT" name="Exit" class="glass-button button negative-button connection-menu__button" style="margin-top: 20px;"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="ConnectionScreen" class="container main-menu connection-screen__window" style="display: flex;">
+            <ui:VisualElement name="MainMenuConnectionWindow" class="main-menu__window border" style="height: 1129px; display: flex;">
+                <ui:VisualElement name="Content" style="flex-grow: 1;">
+                    <ui:VisualElement name="TitleSection" class="mainMenu__section" style="flex-grow: 1; padding-top: 28px; padding-bottom: 28px; padding-right: 28px; padding-left: 28px; height: 151px;">
+                        <ui:Label text="Start Game" class="menu-title title"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MainMenuConnectionBody" class="content__body mainMenu__section" style="height: 873px;">
+                        <ui:VisualElement name="ConnectionProperties" class="connection-properties main-menu__form">
+                            <ui:DropdownField label="Connection mode" choices="Host,Client,Server" index="0" name="ConnectionMode" class="input-field main-menu__input-field" style="display: flex;"/>
+                            <ui:TextField label="IP" placeholder-text="IP Connection" value="127.0.0.1" name="IP" class="input-field" style="display: none;"/>
+                            <ui:IntegerField label="PORT" value="7979" name="Port" class="input-field" style="display: flex;"/>
+                            <ui:TextField label="Nickname&#10;" placeholder-text="Nickname for game" value="Player" name="nickname" class="input-field" style="display: flex;"/>
+                            <ui:DropdownField label="Game mode" choices="Deathmatch, Domination" index="0" name="GameMode" class="input-field main-menu__input-field" style="display: flex;"/>
+                            <ui:DropdownField label="Level&#10;" choices="Level 0,Level 1,Level 2" index="0" name="Level" class="input-field"/>
+                            <ui:DropdownField label="Max players" choices="6, 8, 12" index="0" name="MaxPlayers" class="input-field mode" style="display: flex;"/>
+                            <ui:IntegerField label="MaxScore" value="100" name="DominationMaxScore" class="glass-input input-field" style="display: flex;"/>
+                            <ui:TextField label="Match time&#10;" placeholder-text="seconds" value="60" name="DominationMatchTime" class="glass-input input-field" style="display: flex;"/>
+                            <ui:TextField label="Revival time" placeholder-text="seconds" value="5" name="DominationRevivalTime" password="false" class="input-field"/>
+                            <ui:TextField label="Round time&#10;" placeholder-text="seconds" value="60" name="DeathmatchRoundTime" class="glass-input input-field" style="display: none;"/>
+                            <ui:TextField label="Rounds" placeholder-text="number" value="2" name="DeathmatchNumberOfRounds" password="false" class="input-field" style="display: none;"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="buttonSection" class="mainMenu__section window__button-section" style="height: auto; bottom: auto; top: auto;">
+                        <ui:Button text="Cancel" name="Cancel" class="button neutral-button button-section__button" style="width: 245px; height: 85px;"/>
+                        <ui:Button text="Start" name="StartConnection" class="button positive-button button-section__button" style="width: 245px; height: 85px;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

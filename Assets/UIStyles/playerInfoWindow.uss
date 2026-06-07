@@ -1,0 +1,63 @@
+:root {
+}
+
+.team-player-info__container {
+    position: relative;
+    width: 300px;
+    height: 40px;
+    flex-direction: row;
+    margin-top: 17px;
+}
+
+.container__root {
+    width: 100%;
+    height: 100%;
+}
+
+.team-player-info__name {
+    color: var(--second-color);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    background-color: var(--first-color);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.bg__mana-fill {
+    background-color: var(--color-mana);
+}
+
+.root__bg {
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-top-color: var(--first-color);
+    border-right-color: var(--first-color);
+    border-bottom-color: var(--first-color);
+    border-left-color: var(--first-color);
+    background-color: var(--second-color);
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.bg__healt-fill {
+    border-top-color: var(--first-color);
+    background-color: var(--color-hp);
+    width: 100%;
+    height: 0;
+}

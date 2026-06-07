@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/gameMenu.uss?fileID=7433441132597879392&amp;guid=3119e98d52f00a547bd902907c2ae4e2&amp;type=3#gameMenu"/>
+    <Style src="project://database/Assets/UIStyles/mainMenu/mainMenu.uss?fileID=7433441132597879392&amp;guid=4012abbc5ae5591479eb91fc53843920&amp;type=3#mainMenu"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <Style src="project://database/Assets/UIStyles/base/button.uss?fileID=7433441132597879392&amp;guid=b565e8b4043efee4da189f3fad2ec07f&amp;type=3#button"/>
+    <ui:VisualElement name="AppMenuScreen" class="game-menu-container fade" style="display: flex;">
+        <ui:VisualElement name="mainMenu" class="border mainMenu game-menu-container__game-menu-window" style="height: 724px; width: 555px;">
+            <ui:VisualElement name="content" class="border game-menu-window__content">
+                <ui:VisualElement name="body" style="justify-content: space-between; align-items: center; height: 776px; width: 439px;">
+                    <ui:VisualElement name="TitleSection" style="flex-grow: 1;">
+                        <ui:Label text="Wizard Look Out" name="Title" class="title" style="margin-bottom: 138px;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="buttonSection" class="main-menu__buttons" style="width: 100%; justify-content: flex-start; align-items: center;">
+                        <ui:Button text="Disconnect" name="disconnectButton" class="button button-section__buton neutral-button" style="width: 380px; margin-bottom: 20px;"/>
+                        <ui:Button text="Close HOST" name="closeHostButton" class="button neutral-button button-section__buton" style="width: 380px; margin-bottom: 20px;"/>
+                        <ui:Button text="Options" name="Options" class="button neutral-button button-section__buton" style="width: 380px; margin-bottom: 20px;"/>
+                        <ui:Button text="Quit game" name="appQuitButton" class="button neutral-button button-section__buton" style="width: 380px; margin-bottom: 20px;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

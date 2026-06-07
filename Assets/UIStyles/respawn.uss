@@ -1,0 +1,15 @@
+.respawn-container {
+    background-color: var(--second-color);
+    display: none;
+}
+
+.respawn {
+    background-color: var(--color-main-theme);
+}
+
+.respawn__timer {
+    -unity-text-align: upper-center;
+    font-size: 78px;
+}
+
+

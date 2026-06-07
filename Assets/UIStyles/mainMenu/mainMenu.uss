@@ -1,0 +1,139 @@
+:root {
+    --first-bg-color: rgb(152, 84, 48);
+}
+
+.button-section__buton {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.mainMenu__section {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 1px;
+    margin-left: 0;
+    padding-top: 15px;
+    padding-right: 0;
+    padding-bottom: 26px;
+    padding-left: 0;
+    width: 510px;
+    align-self: center;
+    align-items: center;
+    height: 375px;
+}
+
+.window__button-section {
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: stretch;
+    align-self: stretch;
+}
+
+.main-menu-screen {
+    width: 100%;
+    height: 100%;
+    background-color: var(--first-bg-color);
+}
+
+.button-section__button {
+}
+
+.main-menu {
+    align-self: auto;
+    align-content: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-menu__buttons {
+    align-self: auto;
+    justify-content: space-evenly;
+    align-items: auto;
+    align-content: auto;
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-direction: column;
+    height: 846px;
+}
+
+.buttons__button {
+    width: 480px;
+    flex-grow: 0;
+    align-self: stretch;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: auto;
+}
+
+.main-menu__form {
+}
+
+.main-menu__window {
+    background-color: var(--first-color);
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    height: 1015px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    align-content: auto;
+    align-items: center;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    min-height: auto;
+    min-width: 675px;
+    justify-content: space-between;
+}
+
+.row__buttons {
+    flex-direction: row;
+    flex-grow: 1;
+    width: auto;
+}
+
+.window__content {
+    width: auto;
+    height: auto;
+    background-color: var(--color-window-content);
+    align-items: center;
+    align-content: auto;
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    min-height: 450px;
+    background-size: 100% 300px;
+    justify-content: flex-end;
+}
+
+.content__body {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    align-self: center;
+    height: auto;
+    background-size: 100px 100%;
+    flex-grow: 0;
+    align-content: auto;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.connection-screen__window {
+    display: flex;
+}
+
+.start-screen__window {
+}
+
+.main-menu__input-field {
+    width: 400px;
+}

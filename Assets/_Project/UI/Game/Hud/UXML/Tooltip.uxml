@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/hud/tooltip.uss?fileID=7433441132597879392&amp;guid=9c463650ccd2fe74c96963701713ad71&amp;type=3#tooltip"/>
+    <ui:VisualElement name="tooltip" class="tooltipContainer">
+        <ui:Label text="[E]" name="tooltipText" class="tooltip__text"/>
+    </ui:VisualElement>
+</ui:UXML>

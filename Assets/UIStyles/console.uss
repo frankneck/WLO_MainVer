@@ -1,0 +1,35 @@
+.console {
+    background-color: var(--first-color);
+    width: 675px;
+    height: 988px;
+    display: flex;
+}
+
+.console__log {
+    background-color: var(--second-color);
+}
+
+.console__title {
+    align-items: auto;
+    justify-content: flex-start;
+    align-self: center;
+    flex-direction: column;
+    align-content: auto;
+}
+
+.console__body {
+    background-color: var(--color-window-content);
+    margin-top: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    height: auto;
+    width: auto;
+}
+
+.body__content {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}

@@ -1,0 +1,17 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/console.uss?fileID=7433441132597879392&amp;guid=1571ed51592208647a5d7e198f78c1b7&amp;type=3#console"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="consoleContainer" enabled="true" picking-mode="Ignore" class="container" style="display: none; overflow: visible;">
+        <ui:VisualElement name="consoleWindow" class="border console">
+            <ui:VisualElement name="consoleBody" class="console__body">
+                <ui:VisualElement name="consoleContent" class="body__content">
+                    <ui:VisualElement name="consoleTitle" class="console__title">
+                        <ui:Label text="Console" class="title" style="margin-bottom: 32px; font-size: 44px; margin-top: 6px;"/>
+                    </ui:VisualElement>
+                    <ui:ListView name="logList" virtualization-method="DynamicHeight" class="console__log" style="color: rgb(255, 255, 255); display: flex;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

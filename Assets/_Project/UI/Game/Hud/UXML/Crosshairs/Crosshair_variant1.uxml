@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/crosshair/crosshair.uss?fileID=7433441132597879392&amp;guid=e5214e119c86c814a9882d49185666cc&amp;type=3#crosshair"/>
+    <Style src="project://database/Assets/UIStyles/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3"/>
+    <Style src="project://database/Assets/UIStyles/hud.uss?fileID=7433441132597879392&amp;guid=47e7c4e90fd52f14fbc2379fc228afaa&amp;type=3#hud"/>
+    <ui:VisualElement name="crosshair" class="main__crosshair" style="rotate: 45deg;">
+        <ui:VisualElement name="crosshair__element" class="main-crosshair__element" style="top: -28px; left: -3px; height: 25px; width: 10px;"/>
+        <ui:VisualElement name="crosshair__element" class="main-crosshair__element" style="top: 6px; left: -3px; height: 23px; width: 10px;"/>
+        <ui:VisualElement name="crosshair__element" class="main-crosshair__element" style="top: -3px; left: 7px; height: 9px; width: 23px;"/>
+        <ui:VisualElement name="crosshair__element" class="main-crosshair__element" style="top: -3px; left: -28px; height: 9px; width: 25px;"/>
+    </ui:VisualElement>
+</ui:UXML>
