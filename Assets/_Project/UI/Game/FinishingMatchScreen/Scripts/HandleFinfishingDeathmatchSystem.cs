@@ -60,7 +60,7 @@ public partial class UpdateNextMatchTimerSystem : SystemBase
             if (!SystemAPI.HasComponent<LeftSecondsToFinishRoundTimer>(match.Entity))
                 continue;
 
-            UnityEngine.Debug.Log("UpdateNextMatchTimerSystem");
+            //UnityEngine.Debug.Log("UpdateNextMatchTimerSystem");
 
             var timeInSecondsToStartNewRound = SystemAPI.GetComponent<LeftSecondsToFinishRoundTimer>(match.Entity);
             finishingScreen.UpdateTimer(timeInSecondsToStartNewRound.Value);

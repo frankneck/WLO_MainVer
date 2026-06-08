@@ -26,7 +26,7 @@ public partial class UpdateHudEquipmentSystem : SystemBase
             if (!SystemAPI.HasBuffer<CharacterEquipment>(character) || 
                 !SystemAPI.HasComponent<ActiveItem>(character))
             {
-                UnityEngine.Debug.Log("Current player character entity doesn't have equipment buffer and current stuff component.");
+                //UnityEngine.Debug.Log("Current player character entity doesn't have equipment buffer and current stuff component.");
                 continue;
             }
 

@@ -73,7 +73,7 @@ public partial struct InstantiateSpellForWeaponContainerJob : IJobEntity
         {
             float randomFillValue = rng.NextFloat(0f, 1f);
 
-            UnityEngine.Debug.Log($"iteration [{i}] [Random generator] randomFillValue={randomFillValue}; fillChance value={fillChance[i].Value}");
+            //UnityEngine.Debug.Log($"iteration [{i}] [Random generator] randomFillValue={randomFillValue}; fillChance value={fillChance[i].Value}");
             
             if (randomFillValue > fillChance[i].Value)
                 break;

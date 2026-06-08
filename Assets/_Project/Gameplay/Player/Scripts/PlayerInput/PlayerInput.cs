@@ -14,9 +14,6 @@ public static class PlayerInput
 
     public static void Initialize()
     {
-#if UNITY_EDITOR
-        Debug.Log("Player Input Initialize");
-#endif
         var playerActionMap = InputSystem.actions.FindActionMap("Player");
         var inventoryActionMap = InputSystem.actions.FindActionMap("Inventory");
 
