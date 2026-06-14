@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: WeaponLevelFunctionsSet
   m_EditorClassIdentifier: Assembly-CSharp::WeaponLevelFunctionsSet
   m_WeaponlevelConfigs:
-  - {fileID: 11400000, guid: 9a281dc4b7acc65439b4ce4e0bea66e0, type: 2}
+  - {fileID: 11400000, guid: f5cb864e77a4b4143a81bf2d283c0d61, type: 2}
+  - {fileID: 11400000, guid: 76d69a73bd8cf9c47b498c686faccdd0, type: 2}
   - {fileID: 11400000, guid: dc4a53d384d5a664cb23b060d3824dc6, type: 2}
-  - {fileID: 11400000, guid: 3904b43fdb83aa14b828c5712ae9ddae, type: 2}
-  - {fileID: 11400000, guid: 5e3fb1d1675bfa44bb2d854b3e8ee41e, type: 2}
-  - {fileID: 11400000, guid: fb3fbfcf3cfb5e245b30d1e0d9e4f519, type: 2}
+  - {fileID: 11400000, guid: 51614e7907f731a4aa1028fafcba4bb9, type: 2}
