@@ -15,5 +15,5 @@ MonoBehaviour:
   m_WeaponlevelConfigs:
   - {fileID: 11400000, guid: f5cb864e77a4b4143a81bf2d283c0d61, type: 2}
   - {fileID: 11400000, guid: 76d69a73bd8cf9c47b498c686faccdd0, type: 2}
-  - {fileID: 11400000, guid: dc4a53d384d5a664cb23b060d3824dc6, type: 2}
-  - {fileID: 11400000, guid: 51614e7907f731a4aa1028fafcba4bb9, type: 2}
+  - {fileID: 11400000, guid: 8f422890b360750468f016b2dd56b623, type: 2}
+  - {fileID: 11400000, guid: 6df8809cd2f210b4095a7123ed3e2d38, type: 2}
