@@ -43,7 +43,7 @@ public partial struct InteractSystem : ISystem
             ECB = ecb,
         };
         
-        job.ScheduleParallel();
+        state.Dependency = job.ScheduleParallel(state.Dependency);
     }
 }
 
@@ -58,18 +58,19 @@ public partial struct PickupCollectableItemJob : IJobEntity
     public void Execute(
         [EntityIndexInQuery] int sortKey,
         Entity entity,
-        in CharacterInteractionControl control,
+        in CharacterActionControl control,
         in CharacterInteractionDistance distance,
         in LocalTransform transform,
         in FirstPersonCharacterComponent character
     )
     {
-        if (!control.Interact) return;
+        if (!control.Interact) 
+            return;
 
         float3 forwardLocal = math.forward(character.ViewLocalRotation);
         float3 forwardWorld = math.mul(transform.Rotation, forwardLocal);
 
-        float3 start = transform.Position + new float3(0f, 0.4f, 0f);;
+        float3 start = transform.Position + new float3(0f, 0.4f, 0f);
         float3 end = start + forwardWorld * distance.Value;
 
         RaycastInput selectionInput = new RaycastInput

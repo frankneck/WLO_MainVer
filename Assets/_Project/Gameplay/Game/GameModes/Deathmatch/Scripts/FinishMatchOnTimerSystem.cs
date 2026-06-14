@@ -74,7 +74,6 @@ public partial struct FinishMatchOnTimerSystem : ISystem
             }
             else
             {
-                UnityEngine.Debug.Log($"[Rounds: FinishMatchOnTimerSystem] Match is finishing yet.");
                 // Count seconds to finish rounds
                 var ticksToFinishRound = timer.ValueRW.Tick.TickIndexForValidTick - currentTick.TickIndexForValidTick;
                 var secondsToFinishRound = (int) (ticksToFinishRound / m_SimulationtickRate) + 1;

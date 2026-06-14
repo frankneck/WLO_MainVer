@@ -1,0 +1,17 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIStyles/base/base.uss?fileID=7433441132597879392&amp;guid=9bc4c4040208f6b4bab2bbd7a7a9c0dd&amp;type=3#base"/>
+    <Style src="project://database/Assets/UIStyles/healthBar/worldHealthBar.uss?fileID=7433441132597879392&amp;guid=300e99afe33dffe4aad8b7aad2ff7ceb&amp;type=3#worldHealthBar"/>
+    <Style src="project://database/Assets/UIStyles/base/theme.uss?fileID=7433441132597879392&amp;guid=6c4795b00b78dd0489e90145e24c5eb3&amp;type=3#theme"/>
+    <ui:VisualElement name="player-world-space-ui__container" class="world-health-bar__container" style="align-items: auto; translate: 0 0;">
+        <ui:VisualElement name="container__scale-container" class="container__scale-container" style="width: 100%; height: 100%;">
+            <ui:VisualElement name="player-name__root" style="width: 100%; height: 50%;">
+                <ui:Label text="Playername" name="player-name__label" class="playerName" style="width: 100%; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 50px;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="health-bar__root" class="scale-container__root root__background">
+                <ui:VisualElement name="health-bar__background" class="root__background">
+                    <ui:VisualElement name="health-bar__fill" class="background__fill"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

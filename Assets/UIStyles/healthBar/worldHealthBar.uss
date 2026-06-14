@@ -1,3 +1,9 @@
+.friend-team {
+}
+
+.enemy-team {
+}
+
 .world-health-bar__container {
     position: absolute;
     width: 500px;
@@ -49,7 +55,7 @@
 }
 
 .background__fill {
-    background-color: var(--health-bar-fill-color);
+    background-color: rgb(137, 219, 42);
     height: 100%;
-    width: 83%;
+    width: 100%;
 }

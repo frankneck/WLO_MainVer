@@ -8,7 +8,7 @@ using Unity.NetCode;
 [GhostComponent]
 public struct CharacterEquipment : IBufferElementData
 {
-    [GhostField()] public Entity Item;
+    [GhostField()] public Entity ItemEntity;
     [GhostField()] public int Quantity;
 }
 

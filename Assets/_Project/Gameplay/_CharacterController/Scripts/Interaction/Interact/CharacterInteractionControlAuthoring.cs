@@ -13,7 +13,7 @@ public class CharacterInteractionControlAuthoring : MonoBehaviour
         public override void Bake(CharacterInteractionControlAuthoring authoring)
         {
             var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
-            AddComponent<CharacterInteractionControl>(entity);
+            AddComponent<CharacterActionControl>(entity);
             AddComponent(entity, new CharacterInteractionDistance { Value = authoring.Distance });
         }
     }

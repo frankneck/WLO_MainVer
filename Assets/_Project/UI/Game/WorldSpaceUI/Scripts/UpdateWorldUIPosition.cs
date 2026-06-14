@@ -28,7 +28,7 @@ public partial class UpdateWorldUIPositionSystem : SystemBase
         WorldSpaceControllerData controllerData = SystemAPI.GetSingleton<WorldSpaceControllerData>();
 
         foreach (var (target, offset, cached, entity) in SystemAPI
-            .Query<RefRO<WorldUITargetEntity>, RefRO<WorldUIHeightOffset>, RefRW<CashedWorldUIData>>()
+            .Query<RefRO<WorldUITargetEntity>, RefRO<WorldUIHeightOffset>, RefRW<CashedWorldUITargetEntityInfo>>()
             .WithEntityAccess())
         {
             if (!SystemAPI.Exists(target.ValueRO.Entity))

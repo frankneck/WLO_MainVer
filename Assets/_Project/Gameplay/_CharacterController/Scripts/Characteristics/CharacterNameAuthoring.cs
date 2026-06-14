@@ -10,7 +10,7 @@ public class CharacterNameAuthroing : MonoBehaviour
         public override void Bake(CharacterNameAuthroing authoring)
         {
             var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
-            AddComponent(entity, new PlayerName { Value = authoring.Name });
+            AddComponent(entity, new CharacterName { Value = authoring.Name });
         }
     }
 }

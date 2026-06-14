@@ -21,13 +21,7 @@ public struct WorldUIHeightOffset : IComponentData
     public float Value;
 }
 
-public class WorldUIElements : IComponentData
-{
-    public VisualElement HealthFill;
-    public Label PlayerName; 
-}
-
-public struct CashedWorldUIData : IComponentData
+public struct CashedWorldUITargetEntityInfo : IComponentData
 {
     public float3 Position;
     public FixedString128Bytes Name; 

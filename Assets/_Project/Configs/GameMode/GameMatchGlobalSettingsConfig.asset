@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameMatchGlobalSettingsConfig
   m_EditorClassIdentifier: Assembly-CSharp::GameMatchGlobalSettingsConfig
   MinPlayersPerTeamToStartDeathmatch: 1
-  MinPlayersToStartDominationMatch: 2
+  MinPlayersToStartDominationMatch: 1
   TimeBeforeStartingRound: 5
   TimeAfterFinishingRound: 5
   TimeAfterFinishingMatch: 5

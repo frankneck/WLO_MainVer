@@ -25,79 +25,86 @@ public partial struct CreateContainerSystem : ISystem
             .Query<CreateContainerForEntityRequest>()
             .WithEntityAccess())
         {
-            var containerTargetEntity = request.Entity;
+            var targetEntity = request.Entity;
 
-            bool isWeaponEntity = SystemAPI.HasComponent<WithWeaponContainer>(containerTargetEntity);
-            bool isPlayerCharacterEntity = SystemAPI.HasComponent<WithCharacterContainers>(containerTargetEntity);
+            bool isWeaponEntity = SystemAPI.HasComponent<WithWeaponContainer>(targetEntity);
+            bool isPlayerCharacterEntity = SystemAPI.HasComponent<WithCharacterContainers>(targetEntity);
 
             if (isPlayerCharacterEntity) 
             {
-                var containers = SystemAPI.GetComponentRW<WithCharacterContainers>(containerTargetEntity);
-                var containersCapacity = SystemAPI.GetComponentRW<CharacterContainersCapacity>(containerTargetEntity);
+                var containers = SystemAPI.GetComponentRW<WithCharacterContainers>(targetEntity);
+                var containersCapacity = SystemAPI.GetComponentRW<CharacterContainersCapacity>(targetEntity);
 
                 int inventorySize = containersCapacity.ValueRW.BackpackSize;
                 int weaponEquipmentSize = containersCapacity.ValueRW.WeaponEquipmentSize;
                 int consumableEquipmentSize = containersCapacity.ValueRW.ConsumableEquipmentSize;
 
                 Entity weaponEquipmentContainer = InstantiateContainerAndSendInitRequest(
-                    ref ecb, containerPrefab, containerTargetEntity, 
+                    ref ecb, containerPrefab, targetEntity, 
                     ContainerType.CharacterWeaponEquipment, 
                     weaponEquipmentSize
                 );
 
                 Entity consumableEquipmentContainer = InstantiateContainerAndSendInitRequest(
-                    ref ecb, containerPrefab, containerTargetEntity, 
+                    ref ecb, containerPrefab, targetEntity, 
                     ContainerType.CharacterConsumableEquipment, 
                     consumableEquipmentSize
                 );
 
                 Entity inventoryContainer = InstantiateContainerAndSendInitRequest(
-                    ref ecb, containerPrefab, containerTargetEntity, 
+                    ref ecb, containerPrefab, targetEntity, 
                     ContainerType.CharacterInventory, 
                     inventorySize
                 );
                 
-                ecb.SetComponent(containerTargetEntity, new WithCharacterContainers
+                ecb.SetComponent(targetEntity, new WithCharacterContainers
                 {
                     InventoryContainer = inventoryContainer,                    
                     WeaponEquipmentContainer = weaponEquipmentContainer,
                     ConsumableEquipmentContainer = consumableEquipmentContainer,
                 });
 
-                ecb.AppendToBuffer(containerTargetEntity, new LinkedEntityGroup 
+                ecb.AppendToBuffer(targetEntity, new LinkedEntityGroup 
                 { 
                     Value = consumableEquipmentContainer 
                 });
 
-                ecb.AppendToBuffer(containerTargetEntity, new LinkedEntityGroup 
+                ecb.AppendToBuffer(targetEntity, new LinkedEntityGroup 
                 { 
                     Value = weaponEquipmentContainer 
                 });
 
-                ecb.AppendToBuffer(containerTargetEntity, new LinkedEntityGroup 
+                ecb.AppendToBuffer(targetEntity, new LinkedEntityGroup 
                 { 
                     Value = inventoryContainer 
                 });
 
+                // Add owner reference to container 
+
+                AddOwnerEntityReferenceToContainer(ref ecb, targetEntity, inventoryContainer);
+                AddOwnerEntityReferenceToContainer(ref ecb, targetEntity, consumableEquipmentContainer);
+                AddOwnerEntityReferenceToContainer(ref ecb, targetEntity, weaponEquipmentContainer);
             }
             else if (isWeaponEntity)
             {
-                var containerSize = SystemAPI.GetComponent<WeaponCapacity>(containerTargetEntity).Value;
+                var containerSize = SystemAPI.GetComponent<WeaponCapacity>(targetEntity).Value;
 
                 Entity weaponContainer = InstantiateContainerAndSendInitRequest(
-                    ref ecb, containerPrefab, containerTargetEntity, ContainerType.Weapon, 
+                    ref ecb, containerPrefab, targetEntity, ContainerType.Weapon, 
                     containerSize
                 );
 
-                ecb.SetComponent(containerTargetEntity, new WithWeaponContainer
+                ecb.SetComponent(targetEntity, new WithWeaponContainer
                 {
                     Container = weaponContainer
                 });
 
-                ecb.AppendToBuffer(containerTargetEntity, new LinkedEntityGroup 
+                ecb.AppendToBuffer(targetEntity, new LinkedEntityGroup 
                 { 
                     Value = weaponContainer 
                 });
+
+                AddOwnerEntityReferenceToContainer(ref ecb, targetEntity, weaponContainer);
             }
 
             ecb.DestroyEntity(entity);
@@ -126,5 +133,17 @@ public partial struct CreateContainerSystem : ISystem
         ecb.AddComponent<EntityWithContainerTag>(containerTargetEntity);
 
         return container;
+    }
+
+    private void AddOwnerEntityReferenceToContainer(
+        ref EntityCommandBuffer ecb,
+        Entity ownerEntity,
+        Entity containerEntity 
+    )
+    {
+        ecb.AddComponent(containerEntity, new ContainerOwnerEntityReference
+        {
+            Entity = ownerEntity
+        });
     }
 }

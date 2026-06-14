@@ -42,7 +42,7 @@ public struct UpdateRoundTeamWinnerRpc : IRpcCommand
 /// </summary>
 public struct UpdatePlayerWinnerRpc : IRpcCommand
 {
-    public PlayerName Value;
+    public CharacterName Value;
 }
 
 // Две системы

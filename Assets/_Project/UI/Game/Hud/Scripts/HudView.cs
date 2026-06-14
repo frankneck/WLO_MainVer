@@ -301,7 +301,7 @@ public class HudScreen : MonoBehaviour, IUIView, IGameModeView
     {
         for (int i = 0; i < buffer.Length; i++)
         {
-            var item = buffer[i].Item;
+            var item = buffer[i].ItemEntity;
             var qty = buffer[i].Quantity;
 
             var dataForSlot = new SlotViewData();

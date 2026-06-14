@@ -113,13 +113,11 @@ public partial struct GameEntityDeathSystem : ISystem
             Entity dropReq = ecb.CreateEntity();
             ecb.AddComponent(dropReq, new DropItemRequest
             {
+                // Rot = entityTransform.Rotation,
                 Pos = entityTransform.Position,
-                Rot = entityTransform.Rotation,
                 ItemEntity = e.ItemEntity,
-                Quantity = e.Quantity
+                ItemQuantity = e.Quantity
             });
-
-            ecb.RemoveComponent<ItemOwner>(e.ItemEntity);
         }
     }
 
@@ -134,11 +132,3 @@ public partial struct GameEntityDeathSystem : ISystem
         });
     }
 }
-
-public struct DropItemRequest : IComponentData
-{
-    public float3 Pos;
-    public quaternion Rot;
-    public int Quantity;
-    public Entity ItemEntity; 
-} 

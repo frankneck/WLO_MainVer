@@ -74,7 +74,7 @@ public class FinishingMatchScreen : MonoBehaviour, IUIView, IGameModeView
         foreach(var entity in playerEntities)
         {
             var kd = em.GetComponentData<KDCounter>(entity);
-            var name = em.GetComponentData<PlayerName>(entity);
+            var name = em.GetComponentData<CharacterName>(entity);
             var playerTeam = em.GetComponentData<GameTeam>(entity);
 
             if (playerTeam.Value == TeamType.Red)

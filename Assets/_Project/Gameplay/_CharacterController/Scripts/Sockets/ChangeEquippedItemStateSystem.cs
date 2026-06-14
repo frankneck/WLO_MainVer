@@ -8,31 +8,41 @@ public partial struct ShowItemSystem : ISystem
     {
         var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-        foreach (var (activeItem, lastActiveItem, entity) in SystemAPI
-            .Query<ActiveItem, RefRW<LastActiveItem>>()
+        foreach (var (activeItem, cashed, entity) in SystemAPI
+            .Query<ActiveItem, RefRW<CashedActiveItem>>()
             .WithEntityAccess())
         {
-            if (activeItem.Entity == lastActiveItem.ValueRW.Entity)
+            // if the same skip update tick
+            if (activeItem.Entity == cashed.ValueRW.Entity)
                 continue;
 
+            // get player character equipment buffer 
             var equipment = SystemAPI.GetBuffer<CharacterEquipment>(entity);
 
+            // go for buffer
             foreach (var equipped in equipment)
             {
-                if (equipped.Item == Entity.Null) 
+                if (equipped.ItemEntity == Entity.Null)  
                     continue;
 
-                if (activeItem.Entity == equipped.Item)
+                // skip if it's already world item 
+                if (SystemAPI.HasComponent<WorldItemTag>(equipped.ItemEntity))
+                    continue;
+
+                if (activeItem.Entity == equipped.ItemEntity)
                 {
-                    SendChangeItemStateRequest(ref ecb, equipped.Item, ItemState.Equiped);
+                    // if the same - change item state
+                    SendChangeItemStateRequest(ref ecb, equipped.ItemEntity, ItemState.Equiped);
                 }
                 else
                 {
-                    SendChangeItemStateRequest(ref ecb, equipped.Item, ItemState.InContainer);
+                    // if not - change item state on inventory
+                    SendChangeItemStateRequest(ref ecb, equipped.ItemEntity, ItemState.Inventory);
                 }
             }
 
-            lastActiveItem.ValueRW.Entity = activeItem.Entity;
+            // update last active
+            cashed.ValueRW.Entity = activeItem.Entity;
         }
         ecb.Playback(state.EntityManager);
         ecb.Dispose();

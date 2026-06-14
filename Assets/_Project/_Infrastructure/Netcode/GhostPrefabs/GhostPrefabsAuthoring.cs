@@ -7,8 +7,6 @@ public class PlayerInitAuthoring : MonoBehaviour
     [SerializeField] private GameObject PlayerPrefab;
     [SerializeField] private GameObject RespawnEntity;
     [SerializeField] private GameObject ItemContainerPrefab;
-    [SerializeField] private GameObject PlayerTeamPrefab;
-
     class Baker : Baker<PlayerInitAuthoring>
     {
         public override void Bake(PlayerInitAuthoring authoring)
@@ -19,7 +17,6 @@ public class PlayerInitAuthoring : MonoBehaviour
                 PlayerPrefab = GetEntity(authoring.PlayerPrefab, TransformUsageFlags.None),
                 RespawnEntity = GetEntity(authoring.RespawnEntity, TransformUsageFlags.None),
                 ItemContainer = GetEntity(authoring.ItemContainerPrefab, TransformUsageFlags.None),
-                PlayerTeam = GetEntity(authoring.PlayerTeamPrefab, TransformUsageFlags.None)
             });
         }
     }

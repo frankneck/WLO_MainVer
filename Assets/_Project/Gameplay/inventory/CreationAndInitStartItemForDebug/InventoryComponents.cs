@@ -23,7 +23,7 @@ public struct ChangeCurrentItemState : IComponentData
 public enum ItemState : byte
 {
     World = 1,
-    InContainer = 2,
+    Inventory = 2,
     Equiped = 3,
 }
 

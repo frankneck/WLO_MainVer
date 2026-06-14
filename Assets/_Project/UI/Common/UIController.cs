@@ -24,10 +24,11 @@ public class UIController : MonoBehaviour
     private Dictionary<WindowType, VisualElement> windows = new();
     
     private GameScreen m_CurrentGameScreen;
-    private GameUIState m_CurrentGameUIState;
+    private GameUIWindowsState m_CurrentGameUIState;
     private CursorMode m_CursorMode;
 
     private GameMode m_CurrentGameMode = GameMode.None;
+    private EntityCommandBuffer m_CommandBuffer;
 
     private void Awake()
     {
@@ -116,22 +117,22 @@ public class UIController : MonoBehaviour
     public void OnDisconnectCalled()
     {
         m_CurrentGameScreen = GameScreen.None;
-        m_CurrentGameUIState = GameUIState.None;
+        m_CurrentGameUIState = GameUIWindowsState.None;
     }
 
     // TODO: It used in first person character. Change it in future
-    public bool HasStateFlag(GameUIState target) => m_CurrentGameUIState.HasFlag(target);
+    public bool HasStateFlag(GameUIWindowsState target) => m_CurrentGameUIState.HasFlag(target);
 
     #endregion 
 
-    // private void LateUpdate()
-    // {
-    //     UnityEngine.Debug.Log($"[UIController] Game UI State:{m_CurrentGameUIState}; GameScreen: {m_CurrentGameScreen}; GameMode {m_CurrentGameMode}");
-    //     Render();
-    // }
+    private void Update()
+    {
+        RenderUI();
+    }
 
 #region  GameScreen UI
 
+    // Sets game screens in depends of game mode 
     private void SetGameScreensOnMode()
     {
         m_PendingStartMatchView.SetOnMode(m_CurrentGameMode);
@@ -139,14 +140,15 @@ public class UIController : MonoBehaviour
         m_FinishingMatchScreen.SetOnMode(m_CurrentGameMode);
     }
 
+    // sets current game screen
     private void OpenGameScreen(GameScreen target)
     {
         if (m_CurrentGameScreen == target)
             return;
+        
+        ResetGameUIWindowsState();
 
         m_CurrentGameScreen = target;
-
-        Render();
     }
 
 #endregion
@@ -155,38 +157,34 @@ public class UIController : MonoBehaviour
     
     private void OpenPlayerList()
     {
-        TryOpen(GameUIState.PlayerList);
-        Render();
+        TryOpen(GameUIWindowsState.PlayerList);
     }
 
     private void ClosePlayerList()
     {
-        TryClose(GameUIState.PlayerList);
-        Render();
+        TryClose(GameUIWindowsState.PlayerList);
     }
 
     private void ToggleMenu()
     {
         // if inventory is open and ECS pressed -> close inventory
-        if (m_CurrentGameUIState.HasFlag(GameUIState.Inventory))
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.Inventory))
         {
-            m_CurrentGameUIState &= ~GameUIState.Inventory;
+            m_CurrentGameUIState &= ~GameUIWindowsState.Inventory;
 
             SendCloseInventoryRequest();
-            
-            Render();
         }
         else
         {
             // if not -> simple toggling
-            Toggle(GameUIState.Menu);
+            Toggle(GameUIWindowsState.GameMenu);
         }
 
     }
 
     private void ToggleInventory()
     {
-        if (m_CurrentGameUIState.HasFlag(GameUIState.Inventory))
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.Inventory))
         {
             SendCloseInventoryRequest();
         }
@@ -195,10 +193,10 @@ public class UIController : MonoBehaviour
             SendOpenInventoryRequest();
         }
 
-        Toggle(GameUIState.Inventory);
+        Toggle(GameUIWindowsState.Inventory);
     }
 
-    private void Toggle(GameUIState target)
+    private void Toggle(GameUIWindowsState target)
     {
         if (m_CurrentGameUIState.HasFlag(target))
         {
@@ -208,11 +206,9 @@ public class UIController : MonoBehaviour
         {
             TryOpen(target);
         }
-
-        Render();
     }
 
-    private void TryOpen(GameUIState target)
+    private void TryOpen(GameUIWindowsState target)
     {
         if (!CanOpen(target))
             return;
@@ -220,7 +216,7 @@ public class UIController : MonoBehaviour
         m_CurrentGameUIState |= target;  
     }
 
-    private void TryClose(GameUIState target)
+    private void TryClose(GameUIWindowsState target)
     {
         if (!CanClose(target))
             return;
@@ -230,7 +226,7 @@ public class UIController : MonoBehaviour
 
 #endregion
 
-    private bool CanClose(GameUIState target)
+    private bool CanClose(GameUIWindowsState target)
     {
         if (!m_CurrentGameUIState.HasFlag(target))
             return false;
@@ -238,10 +234,8 @@ public class UIController : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    /// Checking that windw can be opened
-    /// </summary>
-    private bool CanOpen(GameUIState target)
+    // Checking that window can be opened
+    private bool CanOpen(GameUIWindowsState target)
     {
         switch (m_CurrentGameScreen)
         {
@@ -253,23 +247,23 @@ public class UIController : MonoBehaviour
         }
 
         // if inventory is open 
-        if ((m_CurrentGameUIState & GameUIState.Inventory) != 0 && 
-            target != GameUIState.Inventory && 
-            target != GameUIState.Menu)
+        if ((m_CurrentGameUIState & GameUIWindowsState.Inventory) != 0 && 
+            target != GameUIWindowsState.Inventory && 
+            target != GameUIWindowsState.GameMenu)
         {
             return false;
         }
 
         // if menu is open 
-        if ((m_CurrentGameUIState & GameUIState.Menu) != 0 &&
-            (target != GameUIState.Menu))
+        if ((m_CurrentGameUIState & GameUIWindowsState.GameMenu) != 0 &&
+            (target != GameUIWindowsState.GameMenu))
         {
             return false;
         }
 
         // if player list is open
-        if ((m_CurrentGameUIState & GameUIState.PlayerList) != 0 &&
-            (target != GameUIState.PlayerList))
+        if ((m_CurrentGameUIState & GameUIWindowsState.PlayerList) != 0 &&
+            (target != GameUIWindowsState.PlayerList))
         {
             return false;
         }
@@ -277,18 +271,21 @@ public class UIController : MonoBehaviour
         return true;
     }
 
-    private bool IsNotGameplayUI(GameUIState target)
+    private bool IsNotGameplayUI(GameUIWindowsState target)
     {
-        return target == GameUIState.Menu;
+        return target == GameUIWindowsState.GameMenu;
     }
 
     /// <summary>
     /// Render UI based Current Game UI State
     /// </summary>
-    private void Render()
+    private void RenderUI()
     {
+        ResetGameScreen();
+
         SetGameScreensOnMode();
-        UpdateCursor();
+        
+        UpdateCursorMode();
 
         switch (m_CurrentGameScreen)
         {
@@ -317,28 +314,25 @@ public class UIController : MonoBehaviour
                 ShowFinishingMatchScreen();
                 break;
             default :
-                HideAll();
+                ResetGameScreen();
                 break;
         }
 
-        RenderUIView(m_InventoryView, GameUIState.Inventory);
-        RenderUIView(m_AppMenuUI, GameUIState.Menu);
-        RenderUIView(m_PlayerListUI, GameUIState.PlayerList);
-
-        if (m_CurrentGameUIState.HasFlag(GameUIState.Inventory) ||
-            m_CurrentGameUIState.HasFlag(GameUIState.PlayerList) ||
-            m_CurrentGameUIState.HasFlag(GameUIState.Menu))
+        RenderUIWindow(m_InventoryView, GameUIWindowsState.Inventory);
+        RenderUIWindow(m_AppMenuUI, GameUIWindowsState.GameMenu);
+        RenderUIWindow(m_PlayerListUI, GameUIWindowsState.PlayerList);
+        
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.Inventory) ||
+            m_CurrentGameUIState.HasFlag(GameUIWindowsState.PlayerList) ||
+            m_CurrentGameUIState.HasFlag(GameUIWindowsState.GameMenu))
         {
             m_HudView.Hide();
         }
     }
 
     private void ShowSpectationScreen()
-    {
-        HideAll();
-        
+    {        
         m_HudView.Show();
-        
         m_HudView.MatchHeaderShow();
         m_HudView.HealthbarHide();
         m_HudView.EquipmentHide();
@@ -352,11 +346,8 @@ public class UIController : MonoBehaviour
     }
 
     private void ShowDeathWindow()
-    {
-        HideAll();
-        
+    {        
         m_HudView.Show();
-        
         m_HudView.MatchHeaderShow();
         m_HudView.HealthbarHide();
         m_HudView.EquipmentHide();
@@ -371,10 +362,7 @@ public class UIController : MonoBehaviour
 
     private void ShowEndRoundWindow()
     {
-        HideAll();
-
         m_HudView.Show();
-        
         m_HudView.MatchHeaderShow();
         m_HudView.HealthbarShow();
         m_HudView.EquipmentShow();
@@ -389,10 +377,7 @@ public class UIController : MonoBehaviour
 
     private void ShowStartRoundScreen()
     {
-        HideAll();
-
         m_HudView.Show();
-
         m_HudView.MatchHeaderShow();
         m_HudView.HealthbarShow();
         m_HudView.EquipmentShow();
@@ -407,10 +392,7 @@ public class UIController : MonoBehaviour
 
     private void ShowGameplayHud()
     {
-        HideAll();
-
         m_HudView.Show();
-
         m_HudView.MatchHeaderShow();
         m_HudView.HealthbarShow();
         m_HudView.EquipmentShow();
@@ -425,23 +407,23 @@ public class UIController : MonoBehaviour
 
     private void ShowFinishingMatchScreen()
     {
-        HideAll();
         m_FinishingMatchScreen.Show(); 
     }
 
     private void ShowTeamSelectionScreen()
     {
-        HideAll();
         m_TeamSelection.Show();
     }
 
     private void ShowPendingStartMatchScreen()
     {
-        HideAll();
         m_PendingStartMatchView.Show(); 
     }
 
-    private void RenderUIView(IUIView view, GameUIState targetState)
+    private void RenderUIWindow(
+        IUIView view, 
+        GameUIWindowsState targetState
+    )
     {
         if (m_CurrentGameUIState.HasFlag(targetState))
         {            
@@ -453,39 +435,42 @@ public class UIController : MonoBehaviour
         }
     }
 
-    private void HideAll()
-    {
-        UnityEngine.Debug.Log("Hide all");
-
-        m_AppMenuUI.Hide();
+    private void ResetGameScreen()
+    {        
         m_HudView.Hide();
-        m_PlayerListUI.Hide();
-        m_Inventory.GetInventoryView().Hide();
         m_TeamSelection.Hide();
         m_PendingStartMatchView.Hide();
         m_FinishingMatchScreen.Hide();
     }
 
-    private void UpdateCursor()
+    private void ResetGameUIWindowsState()
     {
-        // 1. Меню всегда UI режим
-        if (m_CurrentGameUIState.HasFlag(GameUIState.Menu))
-        {
-            ApplyCursor(CursorMode.UI);
-            return;
-        }
+        // Game windows
+        TryClose(GameUIWindowsState.GameMenu);
+        TryClose(GameUIWindowsState.PlayerList);
+        TryClose(GameUIWindowsState.Inventory);
 
-        // 2. Inventory тоже UI
-        if (m_CurrentGameUIState.HasFlag(GameUIState.Inventory))
+        // if inventory is open send req to close inventory
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.Inventory))
         {
-            ApplyCursor(CursorMode.UI);
+            SendCloseInventoryRequest();
+        }
+    }
+
+    private void UpdateCursorMode()
+    {
+        // 1. Меню, Inventory всегда показывать мышь
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.GameMenu) || 
+            m_CurrentGameUIState.HasFlag(GameUIWindowsState.Inventory))
+        {
+            ApplyCursor(CursorMode.Visible);
             return;
         }
 
         // 3. PlayerList — UI
-        if (m_CurrentGameUIState.HasFlag(GameUIState.PlayerList))
+        if (m_CurrentGameUIState.HasFlag(GameUIWindowsState.PlayerList))
         {
-            ApplyCursor(CursorMode.Gameplay);
+            ApplyCursor(CursorMode.Invisible);
             return;
         }
 
@@ -494,15 +479,17 @@ public class UIController : MonoBehaviour
         {
             case GameScreen.TeamSelectionScreen:
             case GameScreen.StartingMatchScreen:
-                ApplyCursor(CursorMode.UI);
+                ApplyCursor(CursorMode.Visible);
                 return;
+            
             case GameScreen.GameplayHudScreen:
             case GameScreen.StartRoundScreen:
             case GameScreen.EndRoundScreen:
-                ApplyCursor(CursorMode.Gameplay);
+                ApplyCursor(CursorMode.Invisible);
                 return;
+            
             default :
-                ApplyCursor(CursorMode.UI);
+                ApplyCursor(CursorMode.Invisible);
                 return;
         }
     }
@@ -513,16 +500,12 @@ public class UIController : MonoBehaviour
 
         switch (mode)
         {
-            case CursorMode.Gameplay:
+            case CursorMode.Invisible:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
-            case CursorMode.UI:
+            case CursorMode.Visible:
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                break;
-            case CursorMode.LockedUI:
-                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = true;
                 break;
         }
@@ -530,21 +513,55 @@ public class UIController : MonoBehaviour
 
     private void SendCloseInventoryRequest()
     {
-        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
-        var request = em.CreateEntity();
-        em.AddComponent<CloseInventoryRequest>(request);
+        if (m_CommandBuffer.IsCreated)
+        {
+            var request = m_CommandBuffer.CreateEntity();
+            m_CommandBuffer.AddComponent<CloseInventoryRequest>(request);
+        }
+        else
+        {
+            var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var request = em.CreateEntity();
+            em.AddComponent<CloseInventoryRequest>(request);
+        }
     }
 
     private void SendOpenInventoryRequest()
     {
-        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
-        var request = em.CreateEntity();
-        em.AddComponent<OpenInventoryRequest>(request);
+        if (m_CommandBuffer.IsCreated)
+        {
+            var request = m_CommandBuffer.CreateEntity();
+            m_CommandBuffer.AddComponent<OpenInventoryRequest>(request);
+        }
+        else
+        {
+            var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var request = em.CreateEntity();
+            em.AddComponent<OpenInventoryRequest>(request);
+        }
+    }
+
+    /// <summary>
+    /// Set the command buffer for deferred entity changes (used during system updates)
+    /// </summary>
+    public void SetCommandBuffer(
+        ref EntityCommandBuffer ecb
+    )
+    {
+        m_CommandBuffer = ecb;
+    }
+
+    /// <summary>
+    /// Clear the command buffer after system update completes
+    /// </summary>
+    public void ClearCommandBuffer()
+    {
+        m_CommandBuffer = default;
     }
 }
 
 [Flags]
-public enum GameUIState : byte
+public enum GameUIWindowsState : byte
 {
     None = 0,
     
@@ -554,7 +571,7 @@ public enum GameUIState : byte
     PlayerList = 1 << 2,
     
     // Not gameplay states
-    Menu = 1 << 3,
+    GameMenu = 1 << 3,
 }
 
 public enum GameScreen : byte
@@ -573,7 +590,7 @@ public enum GameScreen : byte
 
 public enum CursorMode
 {
-    Gameplay,
-    UI,
+    Invisible,
+    Visible,
     LockedUI
 }

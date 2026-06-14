@@ -13,7 +13,7 @@ public partial class ClientDeathmatchFinishSystem : SystemBase
         RequireForUpdate<FinishingMatchScreen>();   
 
         m_PLayersQuery = new EntityQueryBuilder(Allocator.Temp)
-            .WithAll<KDCounter, PlayerName, GameTeam>().Build(EntityManager);
+            .WithAll<KDCounter, CharacterName, GameTeam>().Build(EntityManager);
     }
 
     protected override void OnUpdate()

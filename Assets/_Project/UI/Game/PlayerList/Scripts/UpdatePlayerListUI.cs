@@ -78,7 +78,7 @@ public class PlayerListWindow : MonoBehaviour, IUIView
         World world = World.DefaultGameObjectInjectionWorld;
         EntityManager em = world.EntityManager;
         
-        var query = em.CreateEntityQuery(ComponentType.ReadOnly<PlayerName>(), 
+        var query = em.CreateEntityQuery(ComponentType.ReadOnly<CharacterName>(), 
             ComponentType.ReadOnly<GameTeam>(), 
             ComponentType.ReadOnly<PlayerPing>()
         );
@@ -86,7 +86,7 @@ public class PlayerListWindow : MonoBehaviour, IUIView
         foreach(var entity in query.ToEntityArray(Allocator.Temp))
         {
             var kd = em.GetComponentData<KDCounter>(entity);
-            var name = em.GetComponentData<PlayerName>(entity);
+            var name = em.GetComponentData<CharacterName>(entity);
             var playerTeam = em.GetComponentData<GameTeam>(entity);
             var ping = em.GetComponentData<PlayerPing>(entity);
 

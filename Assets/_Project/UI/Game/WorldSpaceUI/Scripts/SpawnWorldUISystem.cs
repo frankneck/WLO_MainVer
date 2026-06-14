@@ -25,7 +25,7 @@ public partial class SpawnWorldUISystem : SystemBase
 
         foreach (var (transform, entity) in SystemAPI
             .Query<LocalTransform>()
-            .WithAll<CharacterTag, CurrentHealth, PlayerName>()
+            .WithAll<CharacterTag, CurrentHealth, CharacterName>()
             .WithNone<GhostOwnerIsLocal, EntityWithWorldUITag>()
             .WithEntityAccess())
         {

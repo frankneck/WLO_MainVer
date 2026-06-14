@@ -60,7 +60,7 @@ public class FirstPersonCharacterAuthoring : MonoBehaviour
             AddComponent<NetworkEntityReference>(entity);
 
             AddComponent<ActiveItem>(entity);
-            AddComponent<LastActiveItem>(entity);
+            AddComponent<CashedActiveItem>(entity);
         }
     }
 }

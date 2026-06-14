@@ -107,7 +107,8 @@ public class PendingStartMatchScreen : MonoBehaviour, IUIView, IGameModeView
 
         if (remaining < 0)
         {
-            UnityEngine.Debug.LogWarning("Warning. Invalid value");
+            // UnityEngine.Debug.LogWarning("Warning. Invalid value");
+            return;
         }
 
         m_Title.text = $"Remaining {remaining} players to start match";
@@ -161,8 +162,6 @@ public class PendingStartMatchScreen : MonoBehaviour, IUIView, IGameModeView
 
     public void SetOnMode(GameMode mode)
     {
-        UnityEngine.Debug.Log($"Set on mode has used. Current mode is {mode}");
-
         switch (mode)
         {
             case GameMode.Deathmatch :

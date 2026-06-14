@@ -52,6 +52,34 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         }
     }
 
+    public void SetHealth(Entity entity, float healthFill)
+    {
+        _worldUIMap.TryGetValue(entity, out GameObject playerInfo); 
+
+        if (!playerInfo.activeSelf)
+            return;
+        
+        if (playerInfo.TryGetComponent(out UIDocument document))
+        {
+            VisualElement fill = document.rootVisualElement.Q<VisualElement>(HealthiFill_ElementName);
+            fill.style.width = Length.Percent(healthFill);
+        }
+    }
+
+    public void SetName(Entity entity, string name)
+    {
+        _worldUIMap.TryGetValue(entity, out GameObject playerInfo); 
+
+        if (!playerInfo.activeSelf)
+            return;
+        
+        if (playerInfo.TryGetComponent(out UIDocument document))
+        {
+            Label nameTextField = document.rootVisualElement.Q<Label>(NameText_ElementName);
+            nameTextField.text = name;
+        }
+    }
+
     public void SpawnWorldUIForEntity(EntityCommandBuffer ecb, float3 position, Entity entity)
     {
         // spawn only once
@@ -63,7 +91,6 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         
         float3 newPosition = new float3(position.x, position.y + m_HeightOffset, position.z);
         GameObject worldSpaceHealthbar = Instantiate(m_WorldSpaceHealthbarPrefab, newPosition, Quaternion.identity);
-    
      
         Scene scene = SceneManager.GetSceneByName(m_SceneName);
         SceneManager.MoveGameObjectToScene(worldSpaceHealthbar, scene);
@@ -88,22 +115,19 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         Entity targetEntity)
     {
         var playerInfoEntity = ecb.CreateEntity();
-        ecb.AddComponent(playerInfoEntity, playerInfo);
-        ecb.AddComponent(playerInfoEntity, new WorldUIElements
-        {
-            HealthFill = fill,
-            PlayerName = playerName 
-        });
+
         ecb.AddComponent(playerInfoEntity, new WorldUIHeightOffset 
         { 
             Value = m_HeightOffset 
         });
-        ecb.AddComponent(playerInfoEntity, new CashedWorldUIData 
+
+        ecb.AddComponent(playerInfoEntity, new CashedWorldUITargetEntityInfo 
         { 
             Position = playerInfo.transform.position,
             Name = playerName.text,
             FillLength = fill.style.width
         }); 
+
         ecb.AddComponent(playerInfoEntity, new WorldUITargetEntity
         {
             Entity = targetEntity

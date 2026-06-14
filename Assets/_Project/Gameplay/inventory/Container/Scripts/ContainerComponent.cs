@@ -8,7 +8,6 @@ using Unity.NetCode;
 /// </summary>
 public struct ContainerTag :  IComponentData { }
 
-
 /// <summary>
 /// Data to initialize container. Add to Container Entity
 /// </summary>
@@ -20,7 +19,6 @@ public struct InitContainerRequest : IComponentData
     public int Size;
 }
 
-
 /// <summary>
 /// Buffer stores Item and its count. Add to container Entity
 /// </summary>
@@ -31,18 +29,15 @@ public struct ContainerBuffer : IBufferElementData
     [GhostField()] public int Quantity;
 }
 
-
 /// <summary>
 /// Marks that server container has local container link
 /// </summary>
 public struct EntityWithContainerTag : IComponentData { }
 
-
 /// <summary>
 /// Local container first initialization 
 /// </summary>
 public struct LocalContainerInitialized : IComponentData { }
-
 
 /// <summary>
 /// Defines type of the container. Add to container Entity
@@ -63,8 +58,12 @@ public struct CreateContainerForEntityRequest : IComponentData
     public Entity Entity;
 }
 
-
 public struct NeedToCreateContainer : IEnableableComponent, IComponentData { }
+
+public struct ContainerOwnerEntityReference : IComponentData
+{
+    public Entity Entity;
+}
 
 /// <summary>
 /// Ghost Item Containers for the Character Entity. Add to Character Entity

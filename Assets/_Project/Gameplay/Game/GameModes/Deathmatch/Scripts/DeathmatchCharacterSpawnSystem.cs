@@ -36,7 +36,7 @@ public partial struct DeathmatchCharacterSpawnSystem : ISystem
         {
             NetworkEntityReferenceLookup = SystemAPI.GetComponentLookup<NetworkEntityReference>(true),
             GameTeamLookup = SystemAPI.GetComponentLookup<GameTeam>(true),
-            PlayerNameLookup = SystemAPI.GetComponentLookup<PlayerName>(true),
+            PlayerNameLookup = SystemAPI.GetComponentLookup<CharacterName>(true),
 
             NetworkIdLookup = SystemAPI.GetComponentLookup<NetworkId>(true),
 
@@ -60,7 +60,7 @@ public partial struct DeathmatchSpawnJob : IJobEntity
 {
     [ReadOnly] public ComponentLookup<NetworkEntityReference> NetworkEntityReferenceLookup;
     [ReadOnly] public ComponentLookup<GameTeam> GameTeamLookup;
-    [ReadOnly] public ComponentLookup<PlayerName> PlayerNameLookup;
+    [ReadOnly] public ComponentLookup<CharacterName> PlayerNameLookup;
     [ReadOnly] public ComponentLookup<NetworkId> NetworkIdLookup;
 
     [ReadOnly] public ComponentLookup<PlayerSpawnPointTeam> SpawnPointTeamLookup;
@@ -83,7 +83,7 @@ public partial struct DeathmatchSpawnJob : IJobEntity
 
         NetworkEntityReference connectionEntity = NetworkEntityReferenceLookup[playerEntity];
         GameTeam requestedTeamType = GameTeamLookup[playerEntity];
-        PlayerName requestedPlayerName = PlayerNameLookup[playerEntity];
+        CharacterName requestedPlayerName = PlayerNameLookup[playerEntity];
 
         if (!NetworkIdLookup.HasComponent(connectionEntity.Entity))
             return;
@@ -119,7 +119,7 @@ public partial struct DeathmatchSpawnJob : IJobEntity
             Value = requestedTeamType.Value 
         });
         
-        ECB.SetComponent(playerCharacterEntity, new PlayerName 
+        ECB.SetComponent(playerCharacterEntity, new CharacterName 
         { 
             Value = requestedPlayerName.Value
         });

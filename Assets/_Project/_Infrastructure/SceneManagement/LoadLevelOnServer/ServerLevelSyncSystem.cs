@@ -66,7 +66,7 @@ public partial class ServerLevelSyncSystem : SystemBase
 #if UNITY_EDITOR
                 UnityEngine.Debug.Log($"[_ServerLevelSyncSystem] Added NetworkStreamInGame to connection entity {receive.SourceConnection}.");
 #endif
-                ecb.AddComponent<ReadyPlayerCharacterSpawn>(receive.SourceConnection);
+                ecb.AddComponent<AbleToSnapshotsTag>(receive.SourceConnection);
             }
 
             ecb.DestroyEntity(entity);

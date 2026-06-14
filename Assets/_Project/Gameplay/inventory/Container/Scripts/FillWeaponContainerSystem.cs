@@ -55,7 +55,7 @@ public partial struct AddToContainerJob : IJobEntity
         ECB.AddComponent(changeItemStateReq, new ChangeCurrentItemState 
         { 
             ItemEntity = request.Item,
-            NewState = ItemState.InContainer
+            NewState = ItemState.Inventory
         });
 
         // удаляем request entity

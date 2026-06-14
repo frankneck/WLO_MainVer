@@ -4,16 +4,16 @@ using Unity.Entities;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
 [UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]
-// [BurstCompile]
+[BurstCompile]
 public partial struct StartDominationSystem : ISystem
 {
-    // [BurstCompile]
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<GameMatchGlobalSettings>();
     }
 
-    // [BurstCompile]
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.Temp);

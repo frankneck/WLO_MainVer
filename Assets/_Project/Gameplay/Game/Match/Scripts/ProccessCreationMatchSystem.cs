@@ -3,10 +3,10 @@ using Unity.Entities;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
 [UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]
-// [BurstCompile]
+[BurstCompile]
 public partial struct ProcessCreationMatchSystem : ISystem
 {
-    // [BurstCompile]
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<GameModesPrefabs>();
@@ -18,7 +18,7 @@ public partial struct ProcessCreationMatchSystem : ISystem
         }
     }
 
-    // [BurstCompile]
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
@@ -39,7 +39,7 @@ public partial struct ProcessCreationMatchSystem : ISystem
     }
 }
 
-// [BurstCompile]
+[BurstCompile]
 public partial struct ProcessCreationMatchJob : IJobEntity
 {
     public MatchIdGeneratorComponent GeneratorId;

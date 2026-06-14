@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Unity.Entities;
 using Unity.NetCode;
 
@@ -8,12 +9,25 @@ using Unity.NetCode;
 [UpdateInGroup(typeof(PresentationSystemGroup))]
 public partial class DisplayGameScreenSystem : SystemBase
 {
+    private PlayerState m_CashedState;
+
     protected override void OnUpdate()
     {
+        var ecb = new EntityCommandBuffer(Allocator.Temp);
+
+        // check that ui controller is created
+        if (UIController.Instance == null)
+            return;
+
+        UIController.Instance.SetCommandBuffer(ref ecb);
+
         foreach (var (playerState, match) in SystemAPI
             .Query<CurrentPlayerState, BelongsToMatch>()
             .WithAll<GhostOwnerIsLocal>())
         {
+            if (m_CashedState == playerState.Value)
+                continue;
+
             switch (playerState.Value)
             {                            
                 case PlayerState.PendingStartMatch :
@@ -52,6 +66,14 @@ public partial class DisplayGameScreenSystem : SystemBase
                     UIController.Instance.OnTeamSelectionCalled();
                     break;
             }
-        }        
+
+            m_CashedState = playerState.Value;
+        }
+
+        // Playback all recorded commands after iteration completes
+        ecb.Playback(EntityManager);
+    
+        UIController.Instance.ClearCommandBuffer();
+        ecb.Dispose();
     }
 }

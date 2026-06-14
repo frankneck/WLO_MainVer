@@ -4,16 +4,16 @@ using Unity.Entities;
 using Unity.NetCode;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
-// [BurstCompile]
+[BurstCompile]
 public partial struct CreateCharacterForDominationSystem : ISystem
 {
-    // [BurstCompile]
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<GhostPrefabs>();
     }
 
-    // [BurstCompile]
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         var ecb = new EntityCommandBuffer(Allocator.Temp);
@@ -21,7 +21,7 @@ public partial struct CreateCharacterForDominationSystem : ISystem
         GhostPrefabs ghostPrefabs = SystemAPI.GetSingleton<GhostPrefabs>();
 
         foreach (var (player, connection, playerName, match, playerEntity) in SystemAPI
-            .Query<RefRW<FirstPersonPlayer>, NetworkEntityReference, PlayerName, BelongsToMatch>()
+            .Query<RefRW<FirstPersonPlayer>, NetworkEntityReference, CharacterName, BelongsToMatch>()
             .WithAll<NeedToSpawnCharacterForPlayer>()
             .WithEntityAccess())
         {
@@ -62,7 +62,7 @@ public partial struct CreateCharacterForDominationSystem : ISystem
                 Value = TeamType.None 
             });
             
-            ecb.SetComponent(playerCharacterEntity, new PlayerName 
+            ecb.SetComponent(playerCharacterEntity, new CharacterName 
             { 
                 Value = playerName.Value
             });

@@ -63,7 +63,7 @@ public partial struct EquipmentBufferBuildSystem : ISystem
         {
             target.Add(new CharacterEquipment
             {
-                Item = source[i].ItemEntity,
+                ItemEntity = source[i].ItemEntity,
                 Quantity = source[i].Quantity
             });
         }

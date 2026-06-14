@@ -9,7 +9,7 @@ public partial struct DestoryItemEntityWithoutCharacterOwnerSystem : ISystem
         var ecb = new EntityCommandBuffer(Allocator.Temp);
 
         foreach (var (ghostCharacterTarget, entity) in SystemAPI
-            .Query<ItemOwner>()
+            .Query<ContainerEntityReference>()
             .WithEntityAccess()
             .WithNone<DestroyEntityTag>())
         {

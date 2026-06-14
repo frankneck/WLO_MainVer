@@ -16,7 +16,7 @@ public partial class UpdatePendingStartMatchScreenSystem : SystemBase
     protected override void OnCreate()
     {
         m_PlayerQuery = EntityManager.CreateEntityQuery(
-            ComponentType.ReadOnly<PlayerName>(),
+            ComponentType.ReadOnly<CharacterName>(),
             ComponentType.ReadOnly<GameTeam>(),
             ComponentType.ReadOnly<BelongsToMatchId>(),
             ComponentType.ReadOnly<PlayerPing>(),
@@ -111,7 +111,7 @@ public partial class UpdatePendingStartMatchScreenSystem : SystemBase
         // Rebuild list
         foreach (var e in m_CurrentPlayers)
         {
-            var name = EntityManager.GetComponentData<PlayerName>(e);
+            var name = EntityManager.GetComponentData<CharacterName>(e);
             var team = EntityManager.GetComponentData<GameTeam>(e);
             var ping = EntityManager.GetComponentData<PlayerPing>(e);
 

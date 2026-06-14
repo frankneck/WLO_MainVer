@@ -34,3 +34,19 @@ public static class RegisterDocumentHelper
         return entity;
     }
 }
+
+public static class ContainerVersionHelper
+{
+    public static void UpdateContainerVersion(
+        EntityCommandBuffer ecb,
+        Entity container
+    )
+    {
+        var request = ecb.CreateEntity();
+        
+        ecb.AddComponent(request, new UpdateContainerVersion 
+        { 
+            Container = container 
+        });
+    }
+}

@@ -1,14 +1,20 @@
+using Unity.Burst;
 using Unity.Entities;
 using Unity.NetCode;
 
 [UpdateInGroup(typeof(PredictedSimulationSystemGroup), OrderLast = true)]
+// [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation) ]
+// [UpdateInGroup(typeof(SimulationSystemGroup))]
+[BurstCompile]
 public partial struct CalculateFrameDamageSystem : ISystem
 {
+    [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
         state.RequireForUpdate<NetworkTime>();
     }
 
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         var currentTick = SystemAPI.GetSingleton<NetworkTime>().ServerTick;

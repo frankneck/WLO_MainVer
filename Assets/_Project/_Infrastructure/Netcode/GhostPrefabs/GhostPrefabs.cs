@@ -20,8 +20,4 @@ public struct GhostPrefabs : IComponentData
     // Item Container
     
     public Entity ItemContainer;
-
-    // Team
-
-    public Entity PlayerTeam;
 }

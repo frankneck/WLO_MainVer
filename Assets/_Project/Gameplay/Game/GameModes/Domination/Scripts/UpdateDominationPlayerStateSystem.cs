@@ -1,7 +1,11 @@
+using Unity.Burst;
 using Unity.Entities;
 
+[WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
+[BurstCompile]
 public partial struct UpdateDominationPlayerStateSystem : ISystem
 {
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         foreach( var (playerState, match) in SystemAPI

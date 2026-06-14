@@ -10,43 +10,41 @@ using UnityEngine.UIElements;
 [UpdateInGroup(typeof(PresentationSystemGroup))]
 public partial class UpdateWorldUIDataSystem : SystemBase
 {
+    protected override void OnCreate()
+    {
+        RequireForUpdate<WorldSpaceUIController>();
+    }
+
     protected override void OnUpdate()
     {
+        WorldSpaceUIController controller = SystemAPI.ManagedAPI.GetSingleton<WorldSpaceUIController>();
+
         foreach (var (target, cashed, entity) in SystemAPI
-            .Query<RefRO<WorldUITargetEntity>, RefRW<CashedWorldUIData>>()
+            .Query<RefRO<WorldUITargetEntity>, RefRW<CashedWorldUITargetEntityInfo>>()
             .WithEntityAccess())
         {
             var character = target.ValueRO.Entity;
 
             if (!SystemAPI.Exists(character)) 
                 continue;
-
-            if (!SystemAPI.ManagedAPI.HasComponent<WorldUIElements>(entity)) 
-                continue;
             
-            if (!SystemAPI.HasComponent<PlayerName>(character) || 
+            if (!SystemAPI.HasComponent<CharacterName>(character) || 
                 !SystemAPI.HasComponent<CurrentHealth>(character))
             {
                 continue;
             }
 
-            WorldUIElements uiElements = SystemAPI.ManagedAPI.GetComponent<WorldUIElements>(entity);
-
-            var playerName = SystemAPI.GetComponent<PlayerName>(character).Value;
+            var playerName = SystemAPI.GetComponent<CharacterName>(character).Value;
             var playerHealth = SystemAPI.GetComponent<CurrentHealth>(character).Value;
 
             if (cashed.ValueRW.Name != playerName)
             {
-                uiElements.PlayerName.text = playerName.ToString();
-                cashed.ValueRW.Name = playerName.ToString();
-                Debug.Log("$[UpdateWorldUIDataSystem] Name updated");
+                controller.SetName(character, playerName.ToString());
             }
 
             if (cashed.ValueRW.FillLength != Length.Percent(playerHealth))
             {
-                uiElements.HealthFill.style.width = Length.Percent(playerHealth);
-                cashed.ValueRW.FillLength = Length.Percent(playerHealth);
-                Debug.Log("$[UpdateWorldUIDataSystem] Healthbar updated");
+                controller.SetHealth(character, playerHealth);   
             }
         }
     }

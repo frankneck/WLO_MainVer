@@ -2,6 +2,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.NetCode;
+using Unity.Physics;
 
 /// <summary>
 /// Proccess request to add collectable the receiving entity in inventory buffer if the dealing entity has    
@@ -212,21 +213,24 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
     }
 
     private void MoveToCharacterContainer(
-        Entity item, 
-        Entity container)
+        Entity itemEntity, 
+        Entity containerEntity)
     {      
         // Change current item state on inventory
         var changeItemStateReq = ECB.CreateEntity();
         
         ECB.AddComponent(changeItemStateReq, new ChangeCurrentItemState 
         { 
-            ItemEntity = item,
-            NewState = ItemState.InContainer
+            ItemEntity = itemEntity,
+            NewState = ItemState.Inventory
         });
 
-        ECB.AddComponent(item, new ItemOwner
+        ECB.AddComponent(itemEntity, new ContainerEntityReference
         {
-            Entity = container
+            Entity = containerEntity
         });
+
+        ECB.RemoveComponent<WorldItemTag>(itemEntity);
+        ECB.RemoveComponent<DroppedItemTag>(itemEntity);
     }
 }

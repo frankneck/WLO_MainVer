@@ -77,7 +77,7 @@ public struct ActiveItem : IComponentData
     [GhostField] public Entity Entity;
 }
 
-public struct LastActiveItem : IComponentData
+public struct CashedActiveItem : IComponentData
 {
     public Entity Entity;
 }
@@ -111,7 +111,8 @@ public struct LocalCharacterTag : IComponentData { }
 /// Inventory Actinos
 /// </summary>
 [Serializable]
-public struct CharacterInteractionControl : IComponentData
+public struct CharacterActionControl : IComponentData
 {
     public bool Interact;
+    public bool Drop;
 }
