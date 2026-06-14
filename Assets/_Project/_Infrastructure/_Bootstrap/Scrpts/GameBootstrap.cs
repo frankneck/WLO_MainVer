@@ -40,7 +40,7 @@ public class CustomClientServerBootstrap : ClientServerBootstrap
             deathmatchRoundTime: 60, 
             deathmatchNumberOfRounds: 5, 
             
-            dominationMatchTime: 10,
+            dominationMatchTime: 30,
             dominationMaxScore: 100,
             dominationRivaleTime: 5
         );

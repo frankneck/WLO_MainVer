@@ -42,6 +42,11 @@
 
     --red-team-button-border-color: rgb(119, 38, 38);
     --blue-team-button-border-color: rgb(51, 67, 119);
+
+    /* healthbars */
+
+    --friend-healthbar-color: rgb(99, 223, 69);
+    --enemy-healthbar-color: rgb(237, 93, 67);
 }
 
 

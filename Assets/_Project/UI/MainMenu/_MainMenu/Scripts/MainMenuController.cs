@@ -74,7 +74,7 @@ public class MainMenuController : MonoBehaviour
         PrepareUI();
 
     #if !UNITY_SERVER && !UNITY_EDITOR
-        ModeDropdown.choices = new List<string> 
+        m_ConnectionModeDropdown.choices = new List<string> 
         { 
             "Client" 
         };

@@ -9,7 +9,6 @@ using Unity.Transforms;
 [BurstCompile]
 public partial struct DropItemSystem : ISystem
 {
-    private EntityArchetype m_RemoveDroppedItemFromBufferArchetype;
     private FixedList128Bytes<Entity> m_ItemEntities;
 
     private float m_ThrowSpeed;
@@ -18,10 +17,6 @@ public partial struct DropItemSystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        m_RemoveDroppedItemFromBufferArchetype = state.EntityManager.CreateArchetype(
-            typeof(RemoveDroppedItemFromBuffer)
-        );
-
         m_ItemEntities = new FixedList128Bytes<Entity>();
 
         m_ThrowSpeed = 3f;
@@ -65,8 +60,8 @@ public partial struct DropItemSystem : ISystem
                 });
 
                 // Send request to handle 
-                Entity removeFromBufferReq = ecb.CreateEntity(m_RemoveDroppedItemFromBufferArchetype);
-                ecb.SetComponent(removeFromBufferReq, new RemoveDroppedItemFromBuffer
+                Entity removeFromBufferReq = ecb.CreateEntity();
+                ecb.AddComponent(removeFromBufferReq, new RemoveDroppedItemFromBuffer
                 {
                     ContainerEntity = req.ContainerEntity,
                     IndexInBuffer = req.IndexInBuffer,

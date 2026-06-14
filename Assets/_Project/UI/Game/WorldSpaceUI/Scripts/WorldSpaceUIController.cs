@@ -56,7 +56,7 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
     {
         _worldUIMap.TryGetValue(entity, out GameObject playerInfo); 
 
-        if (!playerInfo.activeSelf)
+        if (playerInfo == null || !playerInfo.activeSelf)
             return;
         
         if (playerInfo.TryGetComponent(out UIDocument document))
@@ -70,7 +70,7 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
     {
         _worldUIMap.TryGetValue(entity, out GameObject playerInfo); 
 
-        if (!playerInfo.activeSelf)
+        if (playerInfo == null || !playerInfo.activeSelf)
             return;
         
         if (playerInfo.TryGetComponent(out UIDocument document))
@@ -80,7 +80,11 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         }
     }
 
-    public void SpawnWorldUIForEntity(EntityCommandBuffer ecb, float3 position, Entity entity)
+    public void SpawnAndSetHealthbarForEntity(
+        EntityCommandBuffer ecb, 
+        float3 position, 
+        Entity entity
+    )
     {
         // spawn only once
         if (_worldUIMap.ContainsKey(entity))
@@ -107,9 +111,55 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         CreatePlayerInfoEntity(ecb, worldSpaceHealthbar, fill, playerName, entity);
     } 
 
+    public void SetHealthbarOnRelationship(      
+        EntityCommandBuffer ecb,
+        Entity entity, 
+        TeamRelationship relationship,
+        Entity worldUiEntity
+    )
+    {
+        _worldUIMap.TryGetValue(entity, out GameObject playerInfo); 
+
+        if (playerInfo == null || !playerInfo.activeSelf)
+            return;
+
+        if (playerInfo == null)
+        {
+            UnityEngine.Debug.Log("[ShowWorldUIForEntity] Attention: player info equals null");
+            return;
+        }
+
+        if (!playerInfo.TryGetComponent<UIDocument>(out var document)) 
+            return;
+    
+        VisualElement fill = document.rootVisualElement.Q<VisualElement>(HealthiFill_ElementName);
+        Label playerName = document.rootVisualElement.Q<Label>(NameText_ElementName);
+
+        switch (relationship)
+        {
+            case TeamRelationship.Friend :
+                fill.AddToClassList("friend-team__fill");
+                playerName.AddToClassList("friend-team__name");
+                fill.RemoveFromClassList("enemy-team__fill");
+                playerName.RemoveFromClassList("enemy-team__name");
+                break;
+            case TeamRelationship.Enemy :
+                fill.AddToClassList("enemy-team__fill");
+                playerName.AddToClassList("enemy-team__name");
+                fill.RemoveFromClassList("friend-team__fill");
+                playerName.RemoveFromClassList("friend-team__name");
+                break;
+            default:
+                // I don't know who is this
+                break;
+        }
+
+        ecb.AddComponent<RelationShipInitialized>(worldUiEntity);
+    }
+
     private void CreatePlayerInfoEntity(
         EntityCommandBuffer ecb, 
-        GameObject playerInfo, 
+        GameObject go, 
         VisualElement fill, 
         Label playerName, 
         Entity targetEntity)
@@ -123,7 +173,7 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
 
         ecb.AddComponent(playerInfoEntity, new CashedWorldUITargetEntityInfo 
         { 
-            Position = playerInfo.transform.position,
+            Position = go.transform.position,
             Name = playerName.text,
             FillLength = fill.style.width
         }); 
@@ -132,6 +182,11 @@ public class WorldSpaceUIController : MonoBehaviour, IUIView
         {
             Entity = targetEntity
         });
+
+        if (!go.TryGetComponent<Transform>(out var goTransform))
+            return;
+
+        ecb.AddComponent(playerInfoEntity, goTransform);
     }
 
     public void RemoveWorldUIForEntity(Entity entity)

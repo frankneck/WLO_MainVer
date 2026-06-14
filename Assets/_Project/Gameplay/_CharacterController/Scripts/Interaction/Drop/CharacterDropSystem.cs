@@ -9,16 +9,11 @@ using Unity.Transforms;
 [BurstCompile]
 public partial struct CharacterDropSystem : ISystem
 {
-    private EntityArchetype m_DropRequestArchetype;
     private float3 m_Offset;
 
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        m_DropRequestArchetype = state.EntityManager.CreateArchetype(
-            typeof(DropItemRequest)
-        );
-
         m_Offset = new float3(0, 0, 1);
     }
 
@@ -32,8 +27,6 @@ public partial struct CharacterDropSystem : ISystem
         CharacterDropJob job = new CharacterDropJob
         {
             Offset = m_Offset,
-            DropRequestArchetype = m_DropRequestArchetype,
-
             ContainerEntityReferenceLookup = SystemAPI.GetComponentLookup<ContainerEntityReference>(true),
             ContainerBufferLookup = SystemAPI.GetBufferLookup<ContainerBuffer>(true),
             
@@ -48,9 +41,7 @@ public partial struct CharacterDropSystem : ISystem
 public partial struct CharacterDropJob : IJobEntity
 {
     [ReadOnly] public float3 Offset;
-    [ReadOnly] public EntityArchetype DropRequestArchetype;
     [ReadOnly] public ComponentLookup<ContainerEntityReference> ContainerEntityReferenceLookup;
-
     [ReadOnly] public BufferLookup<ContainerBuffer> ContainerBufferLookup;
 
     public EntityCommandBuffer.ParallelWriter ECB;
@@ -93,8 +84,8 @@ public partial struct CharacterDropJob : IJobEntity
             float3 cameraPosition = characterTransform.Position + new float3(0, 0.4f, 0);
             float3 worldOffset = math.rotate(cameraRotation, Offset);
 
-            Entity dropReq = ECB.CreateEntity(sortKey, DropRequestArchetype);
-            ECB.SetComponent(sortKey, dropReq, new DropItemRequest
+            Entity dropReq = ECB.CreateEntity(sortKey);
+            ECB.AddComponent(sortKey, dropReq, new DropItemRequest
             {
                 ItemEntity = activeItem.Entity,
                 ContainerEntity = container.Entity,

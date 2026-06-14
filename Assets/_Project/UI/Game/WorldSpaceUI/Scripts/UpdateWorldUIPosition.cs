@@ -34,14 +34,15 @@ public partial class UpdateWorldUIPositionSystem : SystemBase
             if (!SystemAPI.Exists(target.ValueRO.Entity))
                 continue;
 
-            if (!SystemAPI.ManagedAPI.HasComponent<GameObject>(entity))
+            if (!SystemAPI.ManagedAPI.HasComponent<Transform>(entity))
                 continue;
 
             if (!SystemAPI.HasComponent<LocalTransform>(target.ValueRO.Entity))
                 continue;
 
-            var playerInfo = SystemAPI.ManagedAPI.GetComponent<GameObject>(entity);
-            if (playerInfo == null)
+            var playerInfoTransform = SystemAPI.ManagedAPI.GetComponent<Transform>(entity);
+            
+            if (playerInfoTransform == null)
                 continue;
 
             float3 targetPos = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Entity).Position;
@@ -73,7 +74,7 @@ public partial class UpdateWorldUIPositionSystem : SystemBase
 
             if (math.distancesq(prevPos, targetPos) > 0.0001f)
             {
-                playerInfo.transform.position = targetPos;
+                playerInfoTransform.transform.position = targetPos;
                 cached.ValueRW.Position = targetPos;
             }
         }

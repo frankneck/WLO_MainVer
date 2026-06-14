@@ -18,7 +18,7 @@ public partial struct ProcessCreationMatchSystem : ISystem
         }
     }
 
-    [BurstCompile]
+    // [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
@@ -39,7 +39,7 @@ public partial struct ProcessCreationMatchSystem : ISystem
     }
 }
 
-[BurstCompile]
+// [BurstCompile]
 public partial struct ProcessCreationMatchJob : IJobEntity
 {
     public MatchIdGeneratorComponent GeneratorId;
@@ -51,6 +51,8 @@ public partial struct ProcessCreationMatchJob : IJobEntity
         Entity requestEntity
     )
     {
+        UnityEngine.Debug.Log("Create deathmatch entity");
+
         int choosedLevel = request.LevelMap;  
         GameMode choosedGameMode = request.GameMode;
 

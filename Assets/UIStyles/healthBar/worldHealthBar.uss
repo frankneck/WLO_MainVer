@@ -1,13 +1,28 @@
-.friend-team {
+:root{
+    --friend-healthbar-color: rgb(99, 223, 69);
+    --enemy-healthbar-color: rgb(237, 93, 67);
 }
 
-.enemy-team {
+.friend-team__name {
+    color: var(--friend-healthbar-color);
+}
+
+.friend-team__fill {
+    background-color: var(--friend-healthbar-color);
+}
+
+.enemy-team__name {
+    color: var(--enemy-healthbar-color);
+}
+
+.enemy-team__fill {
+    background-color: var(--enemy-healthbar-color);
 }
 
 .world-health-bar__container {
     position: absolute;
-    width: 500px;
-    height: 120px;
+    width: 400px;
+    height: 90px;
     align-items: flex-start;
     flex-grow: 0;
     aspect-ratio: auto;
@@ -25,13 +40,14 @@
 
 .playerName {
     align-items: flex-start;
-    color: rgb(255, 255, 255);
     -unity-font-style: bold;
     justify-content: flex-start;
     align-self: center;
     flex-grow: 0;
     width: 100%;
     height: 100%;
+    font-size: 43px;
+    -unity-text-align: middle-left;
 }
 
 .scale-container__root {
@@ -49,13 +65,17 @@
 }
 
 .root__background {
-    background-color: var(--health-bar-bg-color);
+    background-color: var(--second-color);
     width: 100%;
     height: 100%;
+    color: var(--second-color);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
 }
 
 .background__fill {
-    background-color: rgb(137, 219, 42);
     height: 100%;
     width: 100%;
 }
