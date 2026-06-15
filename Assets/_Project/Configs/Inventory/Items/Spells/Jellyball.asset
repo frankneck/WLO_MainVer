@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4749f20036ea01e47ad8f09a0f95f2e8, type: 3}
-  m_Name: Aoe
+  m_Name: Jellyball
   m_EditorClassIdentifier: Assembly-CSharp::SpellItemDetails
   Id:
     Value: 0
@@ -20,5 +20,7 @@ MonoBehaviour:
   MaxStack: 1
   AllowedSlots: 9
   Type: 1
-  PickupMode: 2
   ProjectilePrefab: {fileID: 5537249849309860163, guid: 412a1f46c087b8e479c7ca5a34c717e8, type: 3}
+  SpellType: 1
+  ManaCost: 50
+  Distance: 20

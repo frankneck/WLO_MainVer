@@ -14,10 +14,17 @@ public partial struct CalculateManaSpendSystem : ISystem
         var networkTime = SystemAPI.GetSingleton<NetworkTime>();
         var currentTick = networkTime.ServerTick;
 
-        foreach (var (manaSpendBuffer, manaSpendThisTickBuffer) in SystemAPI.Query<DynamicBuffer<ManaSpendBuffer>, DynamicBuffer<ManaSpendThisTickBuffer>>())
+        foreach (var (manaSpendBuffer, manaSpendThisTickBuffer) in SystemAPI
+            .Query<DynamicBuffer<ManaSpendBuffer>, DynamicBuffer<ManaSpendThisTickBuffer>>())
         {
             if (manaSpendBuffer.IsEmpty)
-                manaSpendThisTickBuffer.AddCommandData(new ManaSpendThisTickBuffer { Tick = currentTick, Value = 0 });
+            {
+                manaSpendThisTickBuffer.AddCommandData(new ManaSpendThisTickBuffer 
+                { 
+                    Tick = currentTick, 
+                    Value = 0 
+                });
+            }
             else
             {
                 float total = 0;
@@ -32,7 +39,12 @@ public partial struct CalculateManaSpendSystem : ISystem
                     total += manaSpend.Value;
                 }
 
-                manaSpendThisTickBuffer.AddCommandData(new ManaSpendThisTickBuffer { Tick = currentTick, Value = total });
+                manaSpendThisTickBuffer.AddCommandData(new ManaSpendThisTickBuffer 
+                { 
+                    Tick = currentTick, 
+                    Value = total 
+                });
+                
                 manaSpendBuffer.Clear();
             }
         }

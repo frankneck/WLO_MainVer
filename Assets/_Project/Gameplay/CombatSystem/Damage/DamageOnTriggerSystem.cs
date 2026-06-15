@@ -20,7 +20,7 @@ public partial struct DamageOnTriggerSystem : ISystem
             GameTeamLookup = SystemAPI.GetComponentLookup<GameTeam>(true),
             AlreadyDamagedLookup = SystemAPI.GetBufferLookup<AlreadyDamagedEntity>(true),
             DamageBufferLookup = SystemAPI.GetBufferLookup<DamageBufferElement>(true),
-            ProjectileOwnerLookup = SystemAPI.GetComponentLookup<ProjectileOwner>(true),
+            ProjectileOwnerLookup = SystemAPI.GetComponentLookup<ProjectileCasterEntityReference>(true),
             ECB = ecb,
         };
 
@@ -33,7 +33,7 @@ public struct DamageOnTriggerJob : ITriggerEventsJob
 {
     [ReadOnly] public ComponentLookup<DamageOnTrigger> DamageOnTriggerLookup; 
     [ReadOnly] public ComponentLookup<GameTeam> GameTeamLookup;
-    [ReadOnly] public ComponentLookup<ProjectileOwner> ProjectileOwnerLookup;
+    [ReadOnly] public ComponentLookup<ProjectileCasterEntityReference> ProjectileOwnerLookup;
     [ReadOnly] public BufferLookup<AlreadyDamagedEntity> AlreadyDamagedLookup;
     [ReadOnly] public BufferLookup<DamageBufferElement> DamageBufferLookup;
 

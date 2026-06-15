@@ -10,7 +10,7 @@ public partial struct RemoveInvincibilityOnAttackSystem : ISystem
     {
         var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-        foreach (var (_, entity) in SystemAPI.Query<RefRO<SpawnSpellRequest>>().WithEntityAccess())
+        foreach (var (_, entity) in SystemAPI.Query<RefRO<SelectedSpellToSpawn>>().WithEntityAccess())
         {
             // Remove Invincibility if player attacks
             if (SystemAPI.HasComponent<InvincibilityTag>(entity))

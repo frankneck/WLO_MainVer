@@ -20,5 +20,7 @@ MonoBehaviour:
   MaxStack: 1
   AllowedSlots: 9
   Type: 1
-  PickupMode: 2
   ProjectilePrefab: {fileID: 5537249849309860163, guid: fc828661885373c4aa609d36d58ad7f3, type: 3}
+  SpellType: 2
+  ManaCost: 20
+  Distance: 40

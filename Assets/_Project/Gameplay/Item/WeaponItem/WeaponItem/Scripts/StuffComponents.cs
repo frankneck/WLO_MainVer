@@ -48,10 +48,10 @@ public struct StuffSpellState : IComponentData
 
 // public struct StuffIsLocal : IComponentData { }
 
-public struct SpawnSpellRequest : IComponentData
+public struct SelectedSpellToSpawn : IComponentData
 {
     public NetworkTick FireTick;
-    public int Index;
+    public int Value;
 }
 
 public struct SpellCastRquest : IComponentData

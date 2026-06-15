@@ -42,11 +42,9 @@ public partial struct SpellChoiceAndCoodownSystem : ISystem
 
             ContainerBufferLookup = SystemAPI.GetBufferLookup<ContainerBuffer>(true),
 
-            ProjectileReferenceLookup = SystemAPI.GetComponentLookup<ProjectileReference>(true),
+            ProjectileReferenceLookup = SystemAPI.GetComponentLookup<ProjectileEntityReference>(true),
 
             ManaCostLookup = SystemAPI.GetComponentLookup<ManaCost>(true),
-
-            ManaSpendBufferLookup = SystemAPI.GetBufferLookup<ManaSpendBuffer>(true)
         };
         state.Dependency = jobHandle.Schedule(state.Dependency);
     }
@@ -62,26 +60,21 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
     public int SimulationTickRate;
     public int SimulationStepBatchSize;
     
-    // Item
+    // Weapon item
     [ReadOnly] public ComponentLookup<ItemControl> ItemControlLookup;
-    public BufferLookup<WeaponCastDelayTargetTicks> WeaponCastDelayTargetTicksLookup;
-
     [ReadOnly] public ComponentLookup<WeaponShuffle> IsShuffleLookup;
     [ReadOnly] public ComponentLookup<CurrentMana> CurrentManaLookup;
     [ReadOnly] public ComponentLookup<WithWeaponContainer> WithWeaponContainer;
     [ReadOnly] public ComponentLookup<WeaponCastDelay> WeaponCastDelayLookup;
     [ReadOnly] public ComponentLookup<StuffSpellState> WeaponSpellStateLookup;
+    public BufferLookup<WeaponCastDelayTargetTicks> WeaponCastDelayTargetTicksLookup;
 
     // Container buffer
     [ReadOnly] public BufferLookup<ContainerBuffer> ContainerBufferLookup;
 
     // Spell Item 
-    [ReadOnly] public ComponentLookup<ProjectileReference> ProjectileReferenceLookup;
-    
-    // Spell Projectile
+    [ReadOnly] public ComponentLookup<ProjectileEntityReference> ProjectileReferenceLookup;
     [ReadOnly] public ComponentLookup<ManaCost> ManaCostLookup;
-    
-    [ReadOnly] public BufferLookup<ManaSpendBuffer> ManaSpendBufferLookup;
 
     [BurstCompile]
     public void Execute(
@@ -96,29 +89,29 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
 
         if (!ItemControlLookup.HasComponent(weaponEntity)) return;
         if (!WeaponCastDelayTargetTicksLookup.HasBuffer(weaponEntity)) return;
-
         if (!IsShuffleLookup.HasComponent(weaponEntity)) return;
         if (!CurrentManaLookup.HasComponent(weaponEntity)) return;
         if (!WeaponSpellStateLookup.HasComponent(weaponEntity)) return;
         if (!WeaponCastDelayLookup.HasComponent(weaponEntity)) return;
         if (!WithWeaponContainer.HasComponent(weaponEntity)) return;
 
-        var delayTargetTicksBuffer = WeaponCastDelayTargetTicksLookup[weaponEntity];
-        var control = ItemControlLookup[weaponEntity];
-
-        var isShuffle = IsShuffleLookup[weaponEntity];
-        var mana = CurrentManaLookup[weaponEntity];
-        var spellState = WeaponSpellStateLookup[weaponEntity];
-        var delay = WeaponCastDelayLookup[weaponEntity];
-
+        // Getting weapon item data
+        var weaponControl = ItemControlLookup[weaponEntity];
+        var weaponIsShuffle = IsShuffleLookup[weaponEntity];
+        var weaponMana = CurrentManaLookup[weaponEntity];
+        var weaponSpellState = WeaponSpellStateLookup[weaponEntity];
+        var weaponDelay = WeaponCastDelayLookup[weaponEntity];
         var weaponContainer = WithWeaponContainer[weaponEntity].Container;
         
-        var spellBuffer = ContainerBufferLookup[weaponContainer];
+        var delayTargetTicksBuffer = WeaponCastDelayTargetTicksLookup[weaponEntity];
+        
+        // Getting weapon container data
+        var weaponContainerBuffer = ContainerBufferLookup[weaponContainer];
 
         bool isOnDelay = true;
         var curAbilityTargetTick = new WeaponCastDelayTargetTicks();
 
-        uint delayInTicks = (uint)(SimulationTickRate * delay.Value);
+        uint delayInTicks = (uint)(SimulationTickRate * weaponDelay.Value);
 
         for (var i = 0u; i < SimulationStepBatchSize; i++)
         {
@@ -147,21 +140,26 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
         }
 
         // but if not check Tick when the Player isSet (1 Tick)  
-        if (control.MainActionPressed)
+        if (weaponControl.MainActionPressed)
         {
-            if (spellBuffer.Length <= 0)
+            if (weaponContainerBuffer.Length <= 0)
             {
                 return;
             }
 
-            // Getting spell from slots
-            int originalIndex = GetSpellIndex(isShuffle.Value, ref spellState, spellBuffer);
+            // Getting spell index from buffer
+            int originalIndex = GetSpellIndex(
+                weaponIsShuffle.Value, 
+                ref weaponSpellState, 
+                weaponContainerBuffer
+            );
+
             int index = originalIndex;
             Entity spellItem = Entity.Null;
 
-            for (int i = 0; i < spellBuffer.Length; i++)
+            for (int i = 0; i < weaponContainerBuffer.Length; i++)
             {
-                var candidate = spellBuffer[index].ItemEntity;
+                var candidate = weaponContainerBuffer[index].ItemEntity;
                 
                 if (candidate != Entity.Null)
                 {
@@ -169,35 +167,27 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
                     break;
                 }
                 
-                index = (index + 1) % spellBuffer.Length;
+                index = (index + 1) % weaponContainerBuffer.Length;
             }
 
             // Write 
-            ECB.SetComponent(weaponEntity, spellState);
+            ECB.SetComponent(weaponEntity, weaponSpellState);
 
             if (spellItem == Entity.Null)
-            {
-                return;
-            }
-
-            var projectile = ProjectileReferenceLookup[spellItem].PrefabEntity;
-            var manaCost = ManaCostLookup[projectile];
-
-            if (mana.Value < manaCost.Value) // if mana is 0 skip spell spawningn
                 return;
 
-            if (!ManaSpendBufferLookup.HasBuffer(weaponEntity))
+            if (!ManaCostLookup.HasComponent(spellItem))
                 return;
 
-            ECB.AppendToBuffer( weaponEntity, new ManaSpendBuffer 
-            { 
-                Value = manaCost.Value 
-            }); 
+            ManaCost manaCost = ManaCostLookup[spellItem];
 
-            ECB.AddComponent(characterEntity, new SpawnSpellRequest
+            if (weaponMana.Value < manaCost.Value) // if mana is 0 skip spell spawningn
+                return;
+
+            ECB.AddComponent(characterEntity, new SelectedSpellToSpawn
             {
                 FireTick = CurrentTick,
-                Index = index
+                Value = index
             });
 
             var newCooldownTargetTick = CurrentTick;
@@ -262,6 +252,3 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
         return realSize;
     }
 }
-
-// WeaponItemEntity содержит Control
-// При нажатии изменяется Control 

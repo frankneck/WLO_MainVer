@@ -512,4 +512,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356c51aae11af894097604d43a3463f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellItemAuthoring
-  m_ItemDetails: {fileID: 11400000, guid: 1ee6a023d0b551e428a52c299869d9e1, type: 2}
+  m_Config: {fileID: 11400000, guid: 1ee6a023d0b551e428a52c299869d9e1, type: 2}

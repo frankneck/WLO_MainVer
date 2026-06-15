@@ -1,21 +1,37 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.NetCode;
-using Unity.Physics.Extensions;
 
 public struct ProjectileMoveSpeed : IComponentData
 {
     public float Value;
 }
 
+/// <summary>
+/// Mana cost to cast spell
+/// </summary>
+[GhostComponent]
 public struct ManaCost : IComponentData
 {
-    public float Value;
+    [GhostField(Quantization = 0)] public float Value;
 }
 
+/// <summary>
+/// Type of spell. Need to define projectile behaviour
+/// </summary>
+[GhostComponent]
 public struct SpellTypeComponent : IComponentData
 {
-    public SpellType Value;
+    [GhostField] public SpellType Value;
+}
+
+/// <summary>
+/// Distance where projectile can be moved or be casted
+/// </summary>
+[GhostComponent]
+public struct SpellDistance : IComponentData
+{
+    [GhostField(Quantization = 0)] public float Value;
 }
 
 // Data to store in stuff inventory
@@ -32,21 +48,16 @@ public struct SpellDirection : IComponentData
 }
 
 // Need to know who cast this spell (SpawnSpellSystem)
-public struct ProjectileOwner : IComponentData
+public struct ProjectileCasterEntityReference : IComponentData
 {
     public Entity Entity;
 }
 
 public enum SpellType : byte
 {
-    AoeSpell = 1,
-    SkillShot = 2,
+    StaticProjectile = 1,
+    MovingProjectile = 2,
     None = 0,
-}
-
-public struct ProjectileDistance : IComponentData
-{
-    public float Value;
 }
 
 // AOE Trap
@@ -62,7 +73,7 @@ public struct JellyZone : IComponentData
 }
 
 [GhostComponent(PrefabType = GhostPrefabType.All)]
-public struct ProjectileReference : IComponentData
+public struct ProjectileEntityReference : IComponentData
 {
     public Entity PrefabEntity;
 }

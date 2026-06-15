@@ -28,9 +28,19 @@ public partial struct InitContainerSystem : ISystem
                     Quantity = 0
                 });
             }
-
-            if (contaienrType.ValueRW.Value == ContainerType.Weapon)
+            
+            if (contaienrType.ValueRW.Value == ContainerType.CharacterWeaponEquipment)
             {
+                // Create request to create first weapons and fill container
+                var needToCreateeFirstWeaponRequest = ecb.CreateEntity();
+                ecb.AddComponent(needToCreateeFirstWeaponRequest, new CreateInitWeapons
+                {
+                    ContainerEntity = container 
+                });
+            }
+            else if (contaienrType.ValueRW.Value == ContainerType.Weapon)
+            {
+                // create request to create first spells for weapon container
                 var needFillContainerReq = ecb.CreateEntity();
                 ecb.AddComponent(needFillContainerReq, new FillWeaponContainer
                 {
@@ -51,4 +61,9 @@ public struct FillWeaponContainer : IComponentData
     public Entity Weapon;
     public Entity Container;
 
+}
+
+public struct CreateInitWeapons : IComponentData
+{
+    public Entity ContainerEntity;
 }

@@ -163,6 +163,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23dd85dd1e1e20a45b1b65e7b011d003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClientCurrentObservedObjectAuthoring
+--- !u!1 &551717591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551717596}
+  - component: {fileID: 551717595}
+  - component: {fileID: 551717594}
+  - component: {fileID: 551717593}
+  - component: {fileID: 551717592}
+  - component: {fileID: 551717597}
+  m_Layer: 0
+  m_Name: PlayerInitWeaponSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &551717592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d8f5bee63d9d7468aba8de12b54030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSpellSetAuthoring
+  m_Config: {fileID: 11400000, guid: 7936dcd9a1b6b1144925e6158b0b1dc0, type: 2}
+--- !u!114 &551717593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e3bc3378f5dde4bbadaa964f61cb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponParametersSetAuthoring
+  _parametersConfig: {fileID: 11400000, guid: 74aa8523efd84b140b8223d2a59b804d, type: 2}
+--- !u!114 &551717594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16280e5f2bbabb841829dd9b97928e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponParametersAuthoring
+--- !u!114 &551717595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c52e2df3b905d144afe3ca538b14d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponLevelAuthoring
+  m_WeaponLevel: 0
+--- !u!4 &551717596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551717597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551717591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27914d2756287da468887e53e7bc6d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstWeaponsSpawnerAuthoring
+  m_CollectableItem: {fileID: 8828312882565534448, guid: 5b31407c60f4aaf4f82e388f7fcc1382, type: 3}
 --- !u!1 &1330051750
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,3 +618,4 @@ SceneRoots:
   - {fileID: 2052815585}
   - {fileID: 1937969208}
   - {fileID: 1620842854}
+  - {fileID: 551717596}

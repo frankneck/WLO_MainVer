@@ -3,27 +3,46 @@ using UnityEngine;
 
 public class SpellItemAuthoring : MonoBehaviour
 {
-    [SerializeField] private SpellItemDetails m_ItemDetails;
+    [SerializeField] private SpellItemDetails m_Config;
 
     class Baker : Baker<SpellItemAuthoring>
     {
         public override void Bake(SpellItemAuthoring authoring)
         {
+            var config = authoring.m_Config;
+
             var entity = GetEntity(authoring, TransformUsageFlags.None);
             
             // Tag
             AddComponent<ItemTag>(entity);
             AddComponent<SpellTag>(entity);
             
-            // Common item data
+            // COMMON ITEM DATA
+
             AddComponent<CurrentItemState>(entity);
             AddComponent<CurrentPickupMode>(entity);
-            AddComponent(entity, new CurrentItemId { Value = authoring.m_ItemDetails.Id });
+            AddComponent(entity, new CurrentItemId { Value = config.Id });
             
-            // Special item data
-            AddComponent(entity, new ProjectileReference
+            // SPECIAL ITEM DATA
+
+            AddComponent(entity, new ProjectileEntityReference
             {
-                PrefabEntity = GetEntity(authoring.m_ItemDetails.ProjectilePrefab, TransformUsageFlags.Dynamic)
+                PrefabEntity = GetEntity(config.ProjectilePrefab, TransformUsageFlags.Dynamic)
+            });
+            
+            AddComponent(entity, new ManaCost 
+            { 
+                Value = config.ManaCost
+            });
+
+            AddComponent(entity, new SpellTypeComponent 
+            { 
+                Value = config.SpellType 
+            });
+
+            AddComponent(entity, new SpellDistance 
+            { 
+                Value = config.Distance 
             });
         }
     }
