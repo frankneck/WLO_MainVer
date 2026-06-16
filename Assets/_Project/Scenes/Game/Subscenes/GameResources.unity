@@ -173,12 +173,11 @@ GameObject:
   m_Component:
   - component: {fileID: 551717596}
   - component: {fileID: 551717595}
-  - component: {fileID: 551717594}
   - component: {fileID: 551717593}
   - component: {fileID: 551717592}
   - component: {fileID: 551717597}
   m_Layer: 0
-  m_Name: PlayerInitWeaponSpawner
+  m_Name: PlayerFirstWeaponsSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,18 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponParametersSetAuthoring
   _parametersConfig: {fileID: 11400000, guid: 74aa8523efd84b140b8223d2a59b804d, type: 2}
---- !u!114 &551717594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551717591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16280e5f2bbabb841829dd9b97928e3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponParametersAuthoring
 --- !u!114 &551717595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27914d2756287da468887e53e7bc6d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FirstWeaponsSpawnerAuthoring
-  m_CollectableItem: {fileID: 8828312882565534448, guid: 5b31407c60f4aaf4f82e388f7fcc1382, type: 3}
+  m_InventoryConfig: {fileID: 11400000, guid: c2fd7fa763e0cc344bbf7b1897c64188, type: 2}
+  m_Quantity: 2
+  m_WeaponItemPrefab: {fileID: 8828312882565534448, guid: 5b31407c60f4aaf4f82e388f7fcc1382, type: 3}
 --- !u!1 &1330051750
 GameObject:
   m_ObjectHideFlags: 0

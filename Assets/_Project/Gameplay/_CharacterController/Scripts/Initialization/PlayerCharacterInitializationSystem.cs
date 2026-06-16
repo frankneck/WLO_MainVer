@@ -81,6 +81,6 @@ public partial struct PlayerCharacterInitializeJob : IJobEntity
 
         ECB.AddComponent<PlayerCharacterInitializedTag>(characterEntity);
         
-        ECB.AddComponent<NeedToInitEquipmentTag>(characterEntity);
+        ECB.AddComponent<NeedToFirstUpdateEquipmentContainersVersionTag>(characterEntity);
     }
 }

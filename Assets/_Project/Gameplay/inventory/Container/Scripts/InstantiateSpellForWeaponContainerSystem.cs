@@ -16,7 +16,7 @@ public partial struct InstantiateSpellForWeaponContainerSystem : ISystem
 
         var jobHandle = new InstantiateSpellForWeaponContainerJob
         {
-            SpawnedByLookup = SystemAPI.GetComponentLookup<SpawnedBy>(true),
+            SpawnedByLookup = SystemAPI.GetComponentLookup<SpawnerEntityReference>(true),
             
             WeaponSpellSetLookup = SystemAPI.GetBufferLookup<WeaponSpellSet>(true),
             SlotFillChanceLookup = SystemAPI.GetBufferLookup<SlotFillChance>(true),
@@ -32,7 +32,7 @@ public partial struct InstantiateSpellForWeaponContainerSystem : ISystem
 [BurstCompile]
 public partial struct InstantiateSpellForWeaponContainerJob : IJobEntity
 {
-    [ReadOnly] public ComponentLookup<SpawnedBy> SpawnedByLookup;
+    [ReadOnly] public ComponentLookup<SpawnerEntityReference> SpawnedByLookup;
     [ReadOnly] public BufferLookup<WeaponSpellSet> WeaponSpellSetLookup;
     [ReadOnly] public BufferLookup<SlotFillChance> SlotFillChanceLookup;
 

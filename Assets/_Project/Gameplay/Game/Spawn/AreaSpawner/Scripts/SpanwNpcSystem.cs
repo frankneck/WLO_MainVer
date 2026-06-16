@@ -12,7 +12,7 @@ public partial struct SpawnNpcSystem : ISystem
 
         foreach (var (number, radius, random, spawnerState, spawnPrefab, transform) in SystemAPI
             .Query<RefRO<NumberEntitiesToSpawn>, RefRO<SpawnRadius>, RefRW<RadiusRandom>, 
-                RefRW<CurrentSpawnerState>, RefRO<SpawnTargetEntity>, RefRO<LocalTransform>>()
+                RefRW<CurrentSpawnerState>, RefRO<SpawnerTargetEntity>, RefRO<LocalTransform>>()
             .WithAll<SpawnerTag>())
         {
 
@@ -22,7 +22,7 @@ public partial struct SpawnNpcSystem : ISystem
             for (int i = 0; i < number.ValueRO.Value; i++)
             {
                 random.ValueRW.Value = Random.CreateFromIndex((uint)i);
-                var instanciatedEntity = ecb.Instantiate(spawnPrefab.ValueRO.Entity);
+                var instanciatedEntity = ecb.Instantiate(spawnPrefab.ValueRO.PrefabEntity);
 
                 float3 spawnerPosition = transform.ValueRO.Position;
                 float3 newPosition = new float3(spawnerPosition.x + random.ValueRO.Value.NextFloat(radius.ValueRO.Value),

@@ -30,7 +30,7 @@ public partial struct ProccesAddingCollectableItemToInventorySystem : ISystem
         {
             CurrentItemIdLookup = SystemAPI.GetComponentLookup<CurrentItemId>(true),
             CharacterContainersLookup = SystemAPI.GetComponentLookup<WithCharacterContainers>(true),
-            SpawnedByLookup = SystemAPI.GetComponentLookup<SpawnedBy>(true),
+            SpawnedByLookup = SystemAPI.GetComponentLookup<SpawnerEntityReference>(true),
             itemsData = itemDB,
 
             CurrentSpawnerStateLookup = SystemAPI.GetComponentLookup<CurrentSpawnerState>(),
@@ -48,7 +48,7 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
 {
     [ReadOnly] public ComponentLookup<CurrentItemId> CurrentItemIdLookup;
     [ReadOnly] public ComponentLookup<WithCharacterContainers> CharacterContainersLookup;
-    [ReadOnly] public ComponentLookup<SpawnedBy> SpawnedByLookup;
+    [ReadOnly] public ComponentLookup<SpawnerEntityReference> SpawnedByLookup;
     [ReadOnly] public ItemDataBlobArray itemsData;
 
     public ComponentLookup<CurrentSpawnerState> CurrentSpawnerStateLookup;
@@ -95,7 +95,7 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
                     collectable, 
                     weaponEquipmentContainer
                 );
-                UpdateContainerVersion(weaponEquipmentContainer);
+                ContainerVersionHelper.UpdateContainerVersion(ECB, weaponEquipmentContainer);
                 break;
             case ItemType.Spell :
                 AddToBackpack(
@@ -106,7 +106,7 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
                     blobRef, 
                     backpackContainer
                 );
-                UpdateContainerVersion(backpackContainer);
+                ContainerVersionHelper.UpdateContainerVersion(ECB, backpackContainer);
                 break;
             case ItemType.Consumable :
                 AddToEqipment(
@@ -114,21 +114,11 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
                     collectable, 
                     consumableEquipmentContainer
                 );
-                UpdateContainerVersion(consumableEquipmentContainer);
+                ContainerVersionHelper.UpdateContainerVersion(ECB, consumableEquipmentContainer);
                 break;
             default :
                 break;
         }
-    }
-
-    private void UpdateContainerVersion(Entity container)
-    {
-        var request = ECB.CreateEntity();
-        
-        ECB.AddComponent(request, new UpdateContainerVersion 
-        { 
-            Container = container 
-        });
     }
 
     private void AddToEqipment(

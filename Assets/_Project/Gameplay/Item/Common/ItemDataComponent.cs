@@ -37,7 +37,7 @@ public struct ItemData
 /// </summary>
 public struct CurrentPickupMode : IComponentData
 {
-    public PickupMode Mode;
+    public PickupMode Value;
 }
 
 public enum ItemType : byte

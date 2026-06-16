@@ -17,7 +17,7 @@ public partial struct SpawnedWeaponInitSystem : ISystem
 
         var job = new SpawnedWeaponInitJob
         {
-            SpawnerWeaponParametersSetLookup = SystemAPI.GetBufferLookup<SpawnerParamSet>(),
+            SpawnerWeaponParametersSetLookup = SystemAPI.GetBufferLookup<SpawnerWeaponParamSet>(),
             ParamSetLookup = SystemAPI.GetBufferLookup<WeaponParamSet>(),
             ItemLevelLookup = SystemAPI.GetComponentLookup<CurrentWeaponLevel>(),
             ECB = ecb  
@@ -31,7 +31,7 @@ public partial struct SpawnedWeaponInitSystem : ISystem
 [BurstCompile]
 public partial struct SpawnedWeaponInitJob : IJobEntity
 {
-    public BufferLookup<SpawnerParamSet> SpawnerWeaponParametersSetLookup;
+    public BufferLookup<SpawnerWeaponParamSet> SpawnerWeaponParametersSetLookup;
     public BufferLookup<WeaponParamSet> ParamSetLookup;
     public ComponentLookup<CurrentWeaponLevel> ItemLevelLookup;
     

@@ -105,6 +105,9 @@ public partial struct SpellChoiceAndCoodownJob : IJobEntity
         
         var delayTargetTicksBuffer = WeaponCastDelayTargetTicksLookup[weaponEntity];
         
+        if (!ContainerBufferLookup.HasBuffer(weaponContainer))
+            return;
+
         // Getting weapon container data
         var weaponContainerBuffer = ContainerBufferLookup[weaponContainer];
 

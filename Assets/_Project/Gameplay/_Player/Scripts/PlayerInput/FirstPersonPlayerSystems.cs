@@ -87,6 +87,12 @@ public partial class FirstPersonPlayerInputsSystem : SystemBase
                 playerCommands.ValueRW.JumpPressed.Set();
             }
 
+            // Freeze shooting
+            if (inputPermissions.ValueRO.Value.HasFlag(InputFlags.Shoot))
+                inputActions.Player.Shoot.Enable();
+            else
+                inputActions.Player.Shoot.Disable();
+
             // Use main action
             playerCommands.ValueRW.MainActionPressed = default;
             if (inputActions.Player.Shoot.IsPressed())

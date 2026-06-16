@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: InventoryConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacterInventoryConfig
   m_InventoryMaxCapacity: 10
-  m_WeaponEquipmentMaxCapacity: 4
+  m_WeaponEquipmentMaxCapacity: 5
   m_ConsumableEquipmentMaxCapacity: 5
   m_WeaponMaxCapacity: 10

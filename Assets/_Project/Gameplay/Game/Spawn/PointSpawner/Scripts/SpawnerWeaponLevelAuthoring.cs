@@ -1,15 +1,13 @@
 using UnityEngine;
 using Unity.Entities;
-using UnityEditor;
-using Unity.NetCode;
 
-public class WeaponLevelAuthoring : MonoBehaviour
+public class SpawnerWeaponLevelAuthoring : MonoBehaviour
 {
     [SerializeField] private WeaponLevel m_WeaponLevel;
     
-    class Baker : Baker<WeaponLevelAuthoring>
+    class Baker : Baker<SpawnerWeaponLevelAuthoring>
     {
-        public override void Bake(WeaponLevelAuthoring authoring)
+        public override void Bake(SpawnerWeaponLevelAuthoring authoring)
         {
             Entity entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 

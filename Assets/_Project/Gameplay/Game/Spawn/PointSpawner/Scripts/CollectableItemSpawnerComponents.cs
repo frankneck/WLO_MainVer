@@ -40,7 +40,7 @@ public struct AssignLevelRequest : IComponentData
 /// <summary>
 /// Need to init for each parameter for spawned entity
 /// </summary>
-public struct SpawnerParamSet : IBufferElementData
+public struct SpawnerWeaponParamSet : IBufferElementData
 {
     public ParameterId Id;
     public ParameterType Type;

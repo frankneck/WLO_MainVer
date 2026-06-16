@@ -53,7 +53,7 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
     public void Execute(
         [EntityIndexInQuery] int sortKey,
         in SpawnPointTransform spawnPoint,
-        in SpawnTargetEntity targetEntity,
+        in SpawnerTargetEntity targetEntity,
         ref SpawnerTargetTick targetTick,
         ref CurrentSpawnerState spawnerState,
         in SpawnerCooldown cooldown,
@@ -64,10 +64,10 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
         {
             if (CurrentTick.IsNewerThan(targetTick.Tick))
             {
-                var itemEntity = ECB.Instantiate(sortKey, targetEntity.Entity);
+                var itemEntity = ECB.Instantiate(sortKey, targetEntity.PrefabEntity);
 
                 // what spawned target entity
-                ECB.AddComponent(sortKey, itemEntity, new SpawnedBy
+                ECB.AddComponent(sortKey, itemEntity, new SpawnerEntityReference
                 {
                     Entity = entity
                 });
@@ -75,7 +75,7 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
                 // We can pickup item by interaction
                 ECB.SetComponent(sortKey, itemEntity, new CurrentPickupMode 
                 {
-                    Mode = PickupMode.OnInteract
+                    Value = PickupMode.OnInteract
                 });
 
                 ECB.SetComponent(sortKey, itemEntity, new CurrentItemState 

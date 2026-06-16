@@ -76,7 +76,7 @@ public partial struct SpendConsumableItemJob : IJobEntity
 
                 ECB.AddComponent<DestroyEntityTag>(itemEntity);
 
-                UpdateContainerVersion(ref ECB, consumableContainer);
+                ContainerVersionHelper.UpdateContainerVersion(ECB, consumableContainer);
             }
         }
 

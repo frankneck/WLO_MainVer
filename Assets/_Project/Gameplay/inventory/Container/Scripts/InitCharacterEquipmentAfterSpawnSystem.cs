@@ -4,44 +4,30 @@ using Unity.Entities;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
 [UpdateInGroup(typeof(SimulationSystemGroup))]
-// [BurstCompile]
+[BurstCompile]
 public partial struct InitCharacterEquipmentAfterSpawnSystem : ISystem
 {
-    // [BurstCompile]
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         var ecb = new EntityCommandBuffer(Allocator.Temp);
 
         foreach (var (containers, entity) in SystemAPI
             .Query<WithCharacterContainers>()
-            .WithAll<NeedToInitEquipmentTag>()
+            .WithAll<NeedToFirstUpdateEquipmentContainersVersionTag>()
             .WithEntityAccess())
         {
-            UnityEngine.Debug.Log("[InitCharacterEquipmentAfterSpawnSystem] Init first");
-
             var consumableContainer = containers.ConsumableEquipmentContainer;
             var weaponContainer = containers.WeaponEquipmentContainer;
 
-            UpdateContainerVersion(ref ecb, consumableContainer);
-            UpdateContainerVersion(ref ecb, weaponContainer);
+            ContainerVersionHelper.UpdateContainerVersion(ecb, consumableContainer);
+            ContainerVersionHelper.UpdateContainerVersion(ecb, weaponContainer);
 
-            ecb.RemoveComponent<NeedToInitEquipmentTag>(entity);
+            ecb.RemoveComponent<NeedToFirstUpdateEquipmentContainersVersionTag>(entity);
         }
 
         ecb.Playback(state.EntityManager);
     }
-
-    private void UpdateContainerVersion(
-        ref EntityCommandBuffer ecb, 
-        Entity container)
-    {
-        var request = ecb.CreateEntity();
-        
-        ecb.AddComponent(request, new UpdateContainerVersion 
-        { 
-            Container = container 
-        });
-    }
 }
 
-public struct NeedToInitEquipmentTag : IComponentData { }
+public struct NeedToFirstUpdateEquipmentContainersVersionTag : IComponentData { }

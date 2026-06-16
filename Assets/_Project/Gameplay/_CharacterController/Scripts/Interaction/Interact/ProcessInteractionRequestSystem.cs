@@ -44,7 +44,7 @@ public partial struct ProcessInteractionRequestJob : IJobEntity
 
         if (CollectableItemLookup.TryGetComponent(request.Interactable, out var collectableItem))
         {   
-            if (collectableItem.Mode != PickupMode.OnInteract)
+            if (collectableItem.Value != PickupMode.OnInteract)
                 return;
 
             var requestEntity = ECB.CreateEntity(sortKey);

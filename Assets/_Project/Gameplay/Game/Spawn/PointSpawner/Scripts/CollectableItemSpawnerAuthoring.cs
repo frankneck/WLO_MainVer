@@ -40,9 +40,9 @@ public class CollectableItemSpawnerAuthoring : MonoBehaviour
             });
             
             // target prefab
-            AddComponent(entity, new SpawnTargetEntity
+            AddComponent(entity, new SpawnerTargetEntity
             {
-                Entity = GetEntity(authoring.m_CollectableItem, TransformUsageFlags.Dynamic)
+                PrefabEntity = GetEntity(authoring.m_CollectableItem, TransformUsageFlags.Dynamic)
             });
             
             // where spawn

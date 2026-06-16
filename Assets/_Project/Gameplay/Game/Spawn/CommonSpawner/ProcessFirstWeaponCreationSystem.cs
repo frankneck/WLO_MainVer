@@ -4,12 +4,12 @@ using Unity.Entities;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
 [BurstCompile]
-public partial struct ProcessFirstWeaponCreationSystem : ISystem
+public partial struct ProcessCreatePlayerFirstWeaponsSystem : ISystem
 {
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<FirstWeaponsSpawnerTag>();
+        state.RequireForUpdate<PlayerFirstWeaponsSpawnerTag>();
     } 
 
     [BurstCompile]
@@ -18,23 +18,24 @@ public partial struct ProcessFirstWeaponCreationSystem : ISystem
         var ecb = new EntityCommandBuffer(Allocator.Temp);
 
         // Get common spawner data 
-        var commonSpawnerEntity = SystemAPI.GetSingletonEntity<FirstWeaponsSpawnerTag>();
+        var commonSpawnerEntity = SystemAPI.GetSingletonEntity<PlayerFirstWeaponsSpawnerTag>();
         
-        var targetEntity = SystemAPI.GetComponent<SpawnTargetEntity>(commonSpawnerEntity);
+        var targetEntity = SystemAPI.GetComponent<SpawnerTargetEntity>(commonSpawnerEntity);
         var spawnerWeaponLevel = SystemAPI.GetComponent<SpawnerWeaponLevel>(commonSpawnerEntity);
-        var quantity = SystemAPI.GetComponent<FirstWeaponsQuantity>(commonSpawnerEntity);
+        var quantity = SystemAPI.GetComponent<PlayerFirstWeaponsSpawnerQuantity>(commonSpawnerEntity);
 
         foreach (var (req, entity) in SystemAPI
-            .Query<CreateInitWeapons>()
+            .Query<SpawnPlayerFirstWeaponsToPutIntoContainer>()
             .WithEntityAccess())
         {
             for (int i = 0; i < quantity.Value; i++)
             {
                 // Create item entity
-                Entity itemEntity = targetEntity.Entity;
+                Entity itemEntity = ecb.Instantiate(targetEntity.PrefabEntity);
 
                 // Level assign 
                 var assignLevelReq = ecb.CreateEntity();
+                
                 ecb.AddComponent(assignLevelReq, new AssignLevelRequest
                 {
                     SpawnerEntity = commonSpawnerEntity,
@@ -43,11 +44,29 @@ public partial struct ProcessFirstWeaponCreationSystem : ISystem
                 });
 
                 // Add to container
-                ecb.AddComponent(itemEntity, new ReadyToAddInContainer
+                ecb.AddComponent(itemEntity, new AbleToAddIntoContainer
                 {
                     ContainerEntity = req.ContainerEntity
                 });
+
+                // what spawned target entity
+                ecb.AddComponent(itemEntity, new SpawnerEntityReference
+                {
+                    Entity = commonSpawnerEntity
+                });
+
+                ecb.AddComponent(itemEntity, new ContainerEntityReference
+                {
+                    Entity = req.ContainerEntity
+                });
+
+                ecb.AddComponent(itemEntity, new CurrentPickupMode
+                {
+                    Value = PickupMode.OnInteract
+                });
             }
+
+            ContainerVersionHelper.UpdateContainerVersion(ecb, req.ContainerEntity);
 
             ecb.DestroyEntity(entity);
         }

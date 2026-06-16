@@ -1,13 +1,19 @@
 using Unity.Entities;
 
-public struct FirstWeaponsSpawnerTag : IComponentData { }
+public struct PlayerFirstWeaponsSpawnerTag : IComponentData { }
 
-public struct ReadyToAddInContainer : IComponentData
+/// <summary>
+/// Marks that entity (e.g. Weapon item entity) is able to be added into container buffer 
+/// </summary>
+public struct AbleToAddIntoContainer : IComponentData
 {
     public Entity ContainerEntity;
 }
 
-public struct FirstWeaponsQuantity : IComponentData
+/// <summary>
+/// Quantity of first player weapons on match|round start 
+/// </summary>
+public struct PlayerFirstWeaponsSpawnerQuantity : IComponentData
 {
     public int Value;
 }

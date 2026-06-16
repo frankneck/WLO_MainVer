@@ -1,22 +1,22 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class WeaponParametersSetAuthoring : MonoBehaviour
+public class SpawnerWeaponParametersSetAuthoring : MonoBehaviour
 {
     [SerializeField] private WeaponParameterList _parametersConfig;
     
-    class Baker : Baker<WeaponParametersSetAuthoring>
+    class Baker : Baker<SpawnerWeaponParametersSetAuthoring>
     {
-        public override void Bake(WeaponParametersSetAuthoring authoring)
+        public override void Bake(SpawnerWeaponParametersSetAuthoring authoring)
         {
             var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
-            AddBuffer<SpawnerParamSet>(entity);
+            AddBuffer<SpawnerWeaponParamSet>(entity);
             
             var src = authoring._parametersConfig.Parameters;
 
             for (int i = 0; i < src.Count; i++)
             {
-                AppendToBuffer(entity, new SpawnerParamSet
+                AppendToBuffer(entity, new SpawnerWeaponParamSet
                 {
                     Id = src[i].Id,
                     Type = src[i].Type,

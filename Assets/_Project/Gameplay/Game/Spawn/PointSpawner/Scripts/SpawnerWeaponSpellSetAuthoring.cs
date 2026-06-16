@@ -4,13 +4,13 @@ using UnityEngine;
 /// <summary>
 /// Attach to weapon point spawner
 /// </summary>
-class WeaponSpellSetAuthoring : MonoBehaviour
+class SpawnerWeaponSpellSetAuthoring : MonoBehaviour
 {
     [SerializeField] private WeaponSpellSetConfig m_Config; 
 
-    class WeaponSpellSetAuthoringBaker : Baker<WeaponSpellSetAuthoring>
+    class WeaponSpellSetAuthoringBaker : Baker<SpawnerWeaponSpellSetAuthoring>
     {
-        public override void Bake(WeaponSpellSetAuthoring authoring)
+        public override void Bake(SpawnerWeaponSpellSetAuthoring authoring)
         {
             var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
 

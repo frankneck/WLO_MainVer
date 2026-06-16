@@ -19,7 +19,7 @@ public class SpawnerAuthoring : MonoBehaviour
             AddComponent(entity, new NumberEntitiesToSpawn { Value = authoring.NumberOfEntitiesToSpawn });
             AddComponent(entity, new SpawnRadius { Value = authoring.SpawnRadius });
             AddComponent<RadiusRandom>(entity);
-            AddComponent(entity, new SpawnTargetEntity { Entity = GetEntity(authoring.SpawningPrefab, TransformUsageFlags.None )});
+            AddComponent(entity, new SpawnerTargetEntity { PrefabEntity = GetEntity(authoring.SpawningPrefab, TransformUsageFlags.None )});
             AddComponent(entity, new CurrentSpawnerState { Value = SpawnerState.Active });
         }
     }

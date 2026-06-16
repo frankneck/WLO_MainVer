@@ -1,30 +1,47 @@
 using Unity.Entities;
 using UnityEngine;
 
-public class FirstWeaponsSpawnerAuthoring : MonoBehaviour
+public class PlayerFirstWeaponsSpawnerAuthoring : MonoBehaviour
 {
-    [SerializeField] private GameObject m_CollectableItem;
+    [SerializeField] private InventoryConfig m_InventoryConfig;
+    [SerializeField] [Range(1, 10)] private int m_Quantity;
+    [SerializeField] private GameObject m_WeaponItemPrefab;
 
-    class Baker : Baker<FirstWeaponsSpawnerAuthoring>
+    private void OnValidate()
     {
-        public override void Bake(FirstWeaponsSpawnerAuthoring authoring)
+        if (m_InventoryConfig == null)
+        {
+            Debug.LogError($"Error: player first weapons spawner hasn't been fully set. Set m_InventoryConfig.");
+            return;
+        }
+
+        if (m_Quantity > m_InventoryConfig.WeaponEquipmentMaxCapacity)
+        {
+            Debug.LogWarning($"Attention: player first weapons spawner quantity [{m_Quantity}] is more than m_InventoryConfig.MaxWeaponEquipmentCapacity [{m_InventoryConfig.WeaponEquipmentMaxCapacity}]. m_Quantity has been changed on m_InventoryConfig.MaxWeaponEquipmentCapacity");
+            m_Quantity = m_InventoryConfig.WeaponEquipmentMaxCapacity;
+        }
+    }
+
+    class Baker : Baker<PlayerFirstWeaponsSpawnerAuthoring>
+    {
+        public override void Bake(PlayerFirstWeaponsSpawnerAuthoring authoring)
         {
             var entity = GetEntity(authoring, TransformUsageFlags.None);
             
             // identifacl component
             AddComponent<SpawnerTag>(entity);
 
-            AddComponent<FirstWeaponsSpawnerTag>(entity);
+            AddComponent<PlayerFirstWeaponsSpawnerTag>(entity);
             
-            AddComponent(entity, new FirstWeaponsQuantity
+            AddComponent(entity, new PlayerFirstWeaponsSpawnerQuantity
             {
-                Value = 1
+                Value = authoring.m_Quantity
             });
 
             // target prefab
-            AddComponent(entity, new SpawnTargetEntity
+            AddComponent(entity, new SpawnerTargetEntity
             {
-                Entity = GetEntity(authoring.m_CollectableItem, TransformUsageFlags.Dynamic)
+                PrefabEntity = GetEntity(authoring.m_WeaponItemPrefab, TransformUsageFlags.Dynamic)
             });
         }
     }

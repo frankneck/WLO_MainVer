@@ -15,7 +15,7 @@ public partial struct MoveCreatedItemsToInventorySystem : ISystem
     [BurstCompile]
     public void OnCreate(ref SystemState state)
     {
-        state.RequireForUpdate<ReadyToAddInContainer>();    
+        state.RequireForUpdate<AbleToAddIntoContainer>();    
     }
 
     [BurstCompile]
@@ -44,7 +44,7 @@ public partial struct MoveCreatedItemsToInventoryJob : IJobEntity
     public EntityCommandBuffer ECB;
 
     public void Execute( 
-        ReadyToAddInContainer req,
+        AbleToAddIntoContainer req,
         Entity reqEntity)
     {
         if (ContainerBufferLookup.TryGetBuffer(req.ContainerEntity, out var containerBuffer))
@@ -52,7 +52,7 @@ public partial struct MoveCreatedItemsToInventoryJob : IJobEntity
             AddItemEntityToBuffer(ref containerBuffer, ref reqEntity);
         }
         
-        ECB.RemoveComponent<ReadyToAddInContainer>(reqEntity);
+        ECB.RemoveComponent<AbleToAddIntoContainer>(reqEntity);
     }
 
     private void AddItemEntityToBuffer(

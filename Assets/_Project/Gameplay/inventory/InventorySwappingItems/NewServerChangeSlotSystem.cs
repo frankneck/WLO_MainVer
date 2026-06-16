@@ -77,8 +77,8 @@
                     
                     MoveItem(ref state, blobRef, rpc.SourceIndex, rpc.TargetIndex, ref sourceBuffer, ref targetBuffer);
                     
-                    UpdateContainerVersion(ref ecb, rpc.SourceOwner);
-                    UpdateContainerVersion(ref ecb, rpc.TargetOwner);
+                    ContainerVersionHelper.UpdateContainerVersion(ecb, rpc.SourceOwner);
+                    ContainerVersionHelper.UpdateContainerVersion(ecb, rpc.TargetOwner);
                     
                     ecb.DestroyEntity(entity);   
                 }
@@ -88,23 +88,8 @@
         }
 
     #region Additional methods
-    
-    
-    private void UpdateContainerVersion(
-        ref EntityCommandBuffer ecb, 
-        Entity container)
-    {
-        var request = ecb.CreateEntity();
-        
-        ecb.AddComponent(request, new UpdateContainerVersion 
-        { 
-            Container = container 
-        });
-    }
 
-    /// <summary>
     /// Converts slot type to slotmask
-    /// </summary>
     private AllowedSlots SlotTypeToMask(SlotType slotType) => slotType switch
     {
         SlotType.WeaponEquipmentSlot => AllowedSlots.WeaponEquipmentSlots,

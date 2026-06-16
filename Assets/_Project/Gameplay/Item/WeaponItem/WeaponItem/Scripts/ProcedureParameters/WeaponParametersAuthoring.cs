@@ -31,7 +31,10 @@ class WeaponParametersAuthoring : MonoBehaviour
             SetComponentEnabled<NeedApplyFinalValuesTag>(entity, false);
             
             // 1 level is default
-            AddComponent(entity, new CurrentWeaponLevel { Value = WeaponLevel.Level1 });
+            AddComponent(entity, new CurrentWeaponLevel 
+            { 
+                Value = WeaponLevel.Level1 
+            });
         }
     }
 }

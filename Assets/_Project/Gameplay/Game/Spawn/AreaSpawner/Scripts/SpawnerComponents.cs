@@ -8,15 +8,15 @@ public struct SpawnerTag : IComponentData { }
 /// <summary>
 /// What entity spawner must spawn
 /// </summary>
-public struct SpawnTargetEntity : IComponentData
+public struct SpawnerTargetEntity : IComponentData
 {
-    public Entity Entity;
+    public Entity PrefabEntity;
 }
 
 /// <summary>
 /// What entity spawns target entity
 /// </summary>
-public struct SpawnedBy : IComponentData
+public struct SpawnerEntityReference : IComponentData
 {
     public Entity Entity;
 }

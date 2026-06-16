@@ -65,7 +65,7 @@ public struct PickupOnOverlapJob : ITriggerEventsJob
             return;
         }
 
-        var collectableMode = CollectableItemLookup[collectable].Mode;
+        var collectableMode = CollectableItemLookup[collectable].Value;
         if ((collectableMode & PickupMode.OnOverlap) != 0)
         {
             UnityEngine.Debug.Log($"[PickupOnOverlapJob] Add to inventory item request has been created for item {collectable}");
