@@ -21,7 +21,7 @@ public partial struct StartRoundSystem : ISystem
         foreach (var (settings, playedRoundsNumber, matchEntity) in SystemAPI
             .Query<DeathmatchMatchSettings, RefRW<PlayedRoundsNumber>>()
             .WithAll<ActiveMatchTag>()
-            .WithNone<StartedRoundTag>()
+            .WithNone<CurrentRoundEntityReference>()
             .WithEntityAccess())
         {
             if (settings.RoundsNumber <= 0)
@@ -34,7 +34,10 @@ public partial struct StartRoundSystem : ISystem
 
             Entity roundEntity = ecb.Instantiate(roundPrefabEntity);
 
-            ecb.AddComponent<StartedRoundTag>(matchEntity);
+            ecb.AddComponent(matchEntity, new CurrentRoundEntityReference
+            {
+                Entity = roundEntity
+            });
 
             ecb.SetComponent(roundEntity, new BelongsToMatch
             {

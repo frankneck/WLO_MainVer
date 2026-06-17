@@ -56,6 +56,11 @@ public partial struct EndRoundSystem : ISystem
                 );
 
                 SendClientsToUpdateWinnerScreen(ref ecb, TeamType.None);  
+
+                SendDeactivateMatchItemSpawnersRequest(
+                    ref ecb,
+                    matchEntity
+                );
             }
             else if (teams.ValueRW.BluePlayers == 0 
                 || teams.ValueRW.BluePlayersAlive == 0)
@@ -71,6 +76,11 @@ public partial struct EndRoundSystem : ISystem
                 );
                 
                 SendClientsToUpdateWinnerScreen(ref ecb, TeamType.Red);  
+
+                SendDeactivateMatchItemSpawnersRequest(
+                    ref ecb,
+                    matchEntity
+                );
             }
             else if (teams.ValueRW.RedPlayers == 0 
                 || teams.ValueRW.RedPlayersAlive == 0)
@@ -86,6 +96,11 @@ public partial struct EndRoundSystem : ISystem
                 );
                 
                 SendClientsToUpdateWinnerScreen(ref ecb, TeamType.Blue);
+
+                SendDeactivateMatchItemSpawnersRequest(
+                    ref ecb,
+                    matchEntity
+                );
             }
             else if (currentTick.IsNewerThan(roundFinishTick.ValueRW.Tick))
             {
@@ -112,6 +127,11 @@ public partial struct EndRoundSystem : ISystem
                     ref ecb, 
                     matchEntity, 
                     roundEntity
+                );
+
+                SendDeactivateMatchItemSpawnersRequest(
+                    ref ecb,
+                    matchEntity
                 );
             }
             else
@@ -190,6 +210,18 @@ public partial struct EndRoundSystem : ISystem
             Value = winnerTeam
         });
         ecb.AddComponent<SendRpcCommandRequest>(rpcEntity);
+    }
+
+    private void SendDeactivateMatchItemSpawnersRequest(
+        ref EntityCommandBuffer ecb,
+        Entity matchEntity
+    )
+    {
+        var reqEntity = ecb.CreateEntity();
+        ecb.AddComponent(reqEntity, new DeactivateMatchItemSpawners
+        {
+            MatchEntity = matchEntity 
+        });
     }
 }
  

@@ -5,7 +5,6 @@ using Unity.Collections;
 using Unity.Burst;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
-[UpdateAfter(typeof(InitCollectableItemSpawnerSystem))]
 [BurstCompile]
 public partial struct SpawnedWeaponInitSystem : ISystem
 {

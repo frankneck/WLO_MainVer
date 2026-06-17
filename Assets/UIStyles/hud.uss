@@ -197,9 +197,9 @@
 
 .slotKeyLabel {
     position: absolute;
-    top: 24px;
-    left: 36px;
-    font-size: 23px;
+    top: 21px;
+    left: 33px;
+    font-size: 28px;
     color: rgba(27, 27, 27, 0.51);
     padding: 2px 4px;
     border-radius: 2px;

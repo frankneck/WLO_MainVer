@@ -5,7 +5,6 @@ using Unity.Collections;
 using Unity.Burst;
 
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
-[UpdateAfter(typeof(InitCollectableItemSpawnerSystem))]
 [BurstCompile]
 public partial struct CreateCollectableItemBySpawnerSystem : ISystem
 {
@@ -31,6 +30,7 @@ public partial struct CreateCollectableItemBySpawnerSystem : ISystem
         {
             WithWeaponContainerLookup = SystemAPI.GetComponentLookup<WithWeaponContainer>(true),
             SpawnerWeaponLevelLookup = SystemAPI.GetComponentLookup<SpawnerWeaponLevel>(true),
+            CurrentRoundEntityReferenceLookup = SystemAPI.GetComponentLookup<CurrentRoundEntityReference>(true),
             TickRate = _tickRate,
             CurrentTick = currentTick,
             ECB = ecb  
@@ -45,6 +45,7 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
 {
     [ReadOnly] public ComponentLookup<WithWeaponContainer> WithWeaponContainerLookup;
     [ReadOnly] public ComponentLookup<SpawnerWeaponLevel> SpawnerWeaponLevelLookup;
+    [ReadOnly] public ComponentLookup<CurrentRoundEntityReference> CurrentRoundEntityReferenceLookup;
     [ReadOnly] public NetworkTick CurrentTick;
     [ReadOnly] public int TickRate;
     
@@ -54,6 +55,7 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
         [EntityIndexInQuery] int sortKey,
         in SpawnPointTransform spawnPoint,
         in SpawnerTargetEntity targetEntity,
+        in BelongsToMatch spawnerMatch,
         ref SpawnerTargetTick targetTick,
         ref CurrentSpawnerState spawnerState,
         in SpawnerCooldown cooldown,
@@ -92,6 +94,15 @@ public partial struct CollectableItemSpawnerJob : IJobEntity
                 // Turn off spawner
                 spawnerState.Value = SpawnerState.Disactive;
                 
+                // if match has round entity reference 
+                if (CurrentRoundEntityReferenceLookup.TryGetComponent(spawnerMatch.Entity, out var roundEntityRef))
+                {
+                    ECB.AddComponent(sortKey, itemEntity, new BelongsToRound
+                    {
+                        Entity = roundEntityRef.Entity
+                    });
+                }
+
                 if (!SpawnerWeaponLevelLookup.TryGetComponent(entity, out var spawnerWeaponLevel))
                     return;
 

@@ -64,6 +64,24 @@ public partial struct ProcessCreatePlayerFirstWeaponsSystem : ISystem
                 {
                     Value = PickupMode.OnInteract
                 });
+
+                // getting owner if there is 
+                if (!SystemAPI.HasComponent<ContainerOwnerEntityReference>(req.ContainerEntity))
+                    continue;
+                
+                ContainerOwnerEntityReference containerOwnerEntityRef = SystemAPI
+                    .GetComponent<ContainerOwnerEntityReference>(req.ContainerEntity);
+
+                if (SystemAPI.HasComponent<BelongsToRound>(containerOwnerEntityRef.Entity))
+                {
+                    // character owner has round entity ref   
+                    var round = SystemAPI.GetComponent<BelongsToRound>(containerOwnerEntityRef.Entity);
+                    
+                    ecb.AddComponent(itemEntity, new BelongsToRound
+                    {
+                        Entity = round.Entity 
+                    });
+                }
             }
 
             ContainerVersionHelper.UpdateContainerVersion(ecb, req.ContainerEntity);

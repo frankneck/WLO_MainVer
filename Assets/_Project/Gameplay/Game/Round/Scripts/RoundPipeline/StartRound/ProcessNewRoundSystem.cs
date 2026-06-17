@@ -78,6 +78,9 @@ public partial struct ProcessNewRoundSystem : ISystem
 
             ecb.AddComponent<StartingRoundTag>(roundEntity);
             ecb.AddComponent<DefineStartRoundTick>(roundEntity);
+
+            // Activate match item spawner
+            SendActivateMatchItemSpawnersRequest(ref ecb, match.Entity);
             
             ecb.RemoveComponent<NewRoundTag>(roundEntity);
         }
@@ -97,6 +100,18 @@ public partial struct ProcessNewRoundSystem : ISystem
             Player = playerEntity
         });
     }   
+
+    private void SendActivateMatchItemSpawnersRequest(
+        ref EntityCommandBuffer ecb,
+        Entity matchEntity
+    )
+    {
+        var reqEntity = ecb.CreateEntity();
+        ecb.AddComponent(reqEntity, new ActivateMatchItemSpawners
+        {
+            MatchEntity = matchEntity 
+        });
+    }
 }
 
 public struct CharacterAssignedTag : IComponentData { }

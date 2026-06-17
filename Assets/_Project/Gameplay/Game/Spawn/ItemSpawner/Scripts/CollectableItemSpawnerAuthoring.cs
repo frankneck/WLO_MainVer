@@ -1,7 +1,5 @@
 using UnityEngine;
 using Unity.Entities;
-using UnityEditor;
-using Unity.NetCode;
 
 public class CollectableItemSpawnerAuthoring : MonoBehaviour
 {
@@ -20,11 +18,12 @@ public class CollectableItemSpawnerAuthoring : MonoBehaviour
 
             // identifacl component
             AddComponent<SpawnerTag>(entity);
+            AddComponent<CollectableItemSpawnerTag>(entity);
             
             // current spawner state
             AddComponent(entity, new CurrentSpawnerState 
             { 
-                Value = SpawnerState.Active 
+                Value = SpawnerState.Disactive 
             });
             
             AddComponent(entity, new CurrentSpawnerMode 

@@ -10,21 +10,21 @@ public partial class ServerLevelSyncSystem : SystemBase
 {
     protected override void OnCreate()
     {
-        if (!SystemAPI.TryGetSingleton<LevelSyncStateComponent>(out var levelSyncState))
+        if (!SystemAPI.TryGetSingleton<CurrentLevelSyncState>(out var levelSyncState))
         {
-            var entity = EntityManager.CreateEntity(typeof(LevelSyncStateComponent));
+            var entity = EntityManager.CreateEntity(typeof(CurrentLevelSyncState));
 #if UNITY_EDITOR
             UnityEngine.Debug.Log("[_ServerLevelSyncSystem] Tracked subscenes added as buffer");
 #endif
             EntityManager.AddBuffer<TrackedSubscenes>(entity);
         }
 
-        RequireForUpdate<LevelSyncStateComponent>();    
+        RequireForUpdate<CurrentLevelSyncState>();    
     }
 
     protected override void OnUpdate()
     {
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
         
         // Order for all clients what level need to load when they're connected
         var connectionsQuery = EntityManager.CreateEntityQuery(ComponentType.ReadOnly<NetworkId>());

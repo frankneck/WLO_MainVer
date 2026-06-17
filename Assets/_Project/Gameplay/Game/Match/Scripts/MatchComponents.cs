@@ -73,9 +73,21 @@ public struct FinishingMatchTag : IComponentData { }
 /// <summary>
 /// Marks that the mathc doesn't have round entities and data
 /// </summary>
-public struct MatchWithoutRoundDataTag : IComponentData { }
 
 public struct RoundCleanupInProgress : IComponentData { }
+
+public struct DefineFinishMatchTick : IComponentData { }
+
+public struct FinishMatchTickDefined : IComponentData { }
+
+/// <summary>
+/// Stores current round entity 
+/// </summary>
+public struct CurrentRoundEntityReference : IComponentData
+{
+    public Entity Entity;
+}
+
 
 /// <summary>
 /// Defines what game mode on
@@ -97,6 +109,3 @@ public struct MatchId
     public static implicit operator int(MatchId id) => id.m_Value; 
     public static explicit operator MatchId(int value) => new(value);
 }
-
-public struct DefineFinishMatchTick : IComponentData { }
-public struct FinishMatchTickDefined : IComponentData { }

@@ -68,12 +68,12 @@ public partial struct ProcessCreationMatchJob : IJobEntity
                     maxPlayers: request.MaxPlayers,
                     numberOfRounds: request.DeathmatchNumberOfRounds
                 );
-                SendLoadLevelRequest(ref ECB, choosedLevel);
+                SendLoadLevelRequest(ref ECB, deathmatchEntity, choosedLevel);
 
                 break;
             
             case GameMode.Domination :
-                Entity deathraceEntity = CreateAndSetDomination(
+                Entity dominationEntity = CreateAndSetDomination(
                     ecb: ref ECB, 
                     matchId: newId, 
                     matchTime: request.DominationMatchTime, 
@@ -81,7 +81,7 @@ public partial struct ProcessCreationMatchJob : IJobEntity
                     maxScore: request.DominationMaxScore, 
                     maxPlayers: request.MaxPlayers
                 );
-                SendLoadLevelRequest(ref ECB, choosedLevel);
+                SendLoadLevelRequest(ref ECB, dominationEntity, choosedLevel);
 
                 break;
 
@@ -155,11 +155,13 @@ public partial struct ProcessCreationMatchJob : IJobEntity
 
     private void SendLoadLevelRequest(
         ref EntityCommandBuffer ecb,
+        Entity matchEntity,
         int levelIndex)
     {
         var loadLevelRequest = ecb.CreateEntity();
-        ecb.AddComponent(loadLevelRequest, new LoadLevelRequest 
+        ecb.AddComponent(loadLevelRequest, new LoadLevelAndBindToMatch 
         { 
+            MatchEntity = matchEntity,
             LevelNumber = levelIndex 
         });
     }

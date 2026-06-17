@@ -25,11 +25,6 @@ public struct WinnderBuffer : IBufferElementData
 public struct DeathmatchMatchTag : IComponentData { }
 
 /// <summary>
-/// Marks that match entit created round entity
-/// </summary>
-public struct StartedRoundTag : IComponentData { }
-
-/// <summary>
 /// Tick when round will finish
 /// </summary>
 [GhostComponent()]

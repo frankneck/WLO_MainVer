@@ -1,8 +1,6 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.NetCode;
-using Unity.Physics;
 
 /// <summary>
 /// Proccess request to add collectable the receiving entity in inventory buffer if the dealing entity has    
@@ -10,7 +8,7 @@ using Unity.Physics;
 [WorldSystemFilter(WorldSystemFilterFlags.ServerSimulation)]
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 [BurstCompile]
-public partial struct ProccesAddingCollectableItemToInventorySystem : ISystem
+public partial struct ProcessAddingCollectableItemToInventorySystem : ISystem
 {
     public void OnCreate(ref SystemState state)
     {
@@ -26,11 +24,11 @@ public partial struct ProccesAddingCollectableItemToInventorySystem : ISystem
 
         var itemDB = SystemAPI.GetSingleton<ItemDataBlobArray>();
 
-        var job = new ProccesAddingCollectableItemToInventoryJob
+        var job = new ProcessAddingCollectableItemToInventoryJob
         {
             CurrentItemIdLookup = SystemAPI.GetComponentLookup<CurrentItemId>(true),
             CharacterContainersLookup = SystemAPI.GetComponentLookup<WithCharacterContainers>(true),
-            SpawnedByLookup = SystemAPI.GetComponentLookup<SpawnerEntityReference>(true),
+            SpawnerEntityReferenceLookup = SystemAPI.GetComponentLookup<SpawnerEntityReference>(true),
             itemsData = itemDB,
 
             CurrentSpawnerStateLookup = SystemAPI.GetComponentLookup<CurrentSpawnerState>(),
@@ -44,11 +42,11 @@ public partial struct ProccesAddingCollectableItemToInventorySystem : ISystem
 }
 
 [BurstCompile]
-public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
+public partial struct ProcessAddingCollectableItemToInventoryJob : IJobEntity
 {
     [ReadOnly] public ComponentLookup<CurrentItemId> CurrentItemIdLookup;
     [ReadOnly] public ComponentLookup<WithCharacterContainers> CharacterContainersLookup;
-    [ReadOnly] public ComponentLookup<SpawnerEntityReference> SpawnedByLookup;
+    [ReadOnly] public ComponentLookup<SpawnerEntityReference> SpawnerEntityReferenceLookup;
     [ReadOnly] public ItemDataBlobArray itemsData;
 
     public ComponentLookup<CurrentSpawnerState> CurrentSpawnerStateLookup;
@@ -82,7 +80,7 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
         var consumableEquipmentBuffer = ContainerBufferLookup[consumableEquipmentContainer];
 
         // Try get spawner
-        SpawnedByLookup.TryGetComponent(collectable, out var spawner);
+        SpawnerEntityReferenceLookup.TryGetComponent(collectable, out var spawner);
 
         var collectableId = CurrentItemIdLookup[collectable].Value;
         var collectableType = blobRef.Value.Value.ItemDataArray[collectableId].Type;
@@ -138,8 +136,8 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
                 Quantity = 1 
             };
 
-            MoveToCharacterContainer(collectableItem, equipmentContainer);
-            TryChangeSpawnerState(collectableItem);
+            MoveToCharacterContainer(ECB, collectableItem, equipmentContainer);
+            TryChangeSpawnerState(ECB, collectableItem);
 
             return;
         }
@@ -169,8 +167,8 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
                     {
                         bufferItem.Quantity++;
                         backpackBuffer[i] = bufferItem;
-                        MoveToCharacterContainer(collectable, backpackContainer);
-                        TryChangeSpawnerState(collectable);
+                        MoveToCharacterContainer(ECB, collectable, backpackContainer);
+                        TryChangeSpawnerState(ECB, collectable);
                         return;
                     }
                 }
@@ -182,20 +180,26 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
             bufferItem.ItemEntity = collectable;
             bufferItem.Quantity = 1;
             backpackBuffer[i] = bufferItem;
-            MoveToCharacterContainer(collectable, backpackContainer);
-            TryChangeSpawnerState(collectable);
+            MoveToCharacterContainer(ECB, collectable, backpackContainer);
+            TryChangeSpawnerState(ECB, collectable);
             return;
         }
     }
 
     private void TryChangeSpawnerState(
-        Entity collectable)
+        EntityCommandBuffer ecb,
+        Entity collectableItemEntity)
     {
-        if (SpawnedByLookup.HasComponent(collectable))
+        if (SpawnerEntityReferenceLookup.HasComponent(collectableItemEntity))
         {
-            var spawnedBy = SpawnedByLookup[collectable].Entity;
+            SpawnerEntityReference itemSpawner = SpawnerEntityReferenceLookup[collectableItemEntity];
 
-            ECB.AddComponent(spawnedBy, new CurrentSpawnerState
+            // if spawner doesn't have spawner state skip it
+            if (!CurrentSpawnerStateLookup.HasComponent(itemSpawner.Entity))
+                return;
+
+            // if has change its spawner state
+            ecb.SetComponent(itemSpawner.Entity, new CurrentSpawnerState
             {
                 Value = SpawnerState.Active 
             });
@@ -203,24 +207,25 @@ public partial struct ProccesAddingCollectableItemToInventoryJob : IJobEntity
     }
 
     private void MoveToCharacterContainer(
+        EntityCommandBuffer ecb,
         Entity itemEntity, 
         Entity containerEntity)
     {      
         // Change current item state on inventory
-        var changeItemStateReq = ECB.CreateEntity();
+        var changeItemStateReq = ecb.CreateEntity();
         
-        ECB.AddComponent(changeItemStateReq, new ChangeCurrentItemState 
+        ecb.AddComponent(changeItemStateReq, new ChangeCurrentItemState 
         { 
             ItemEntity = itemEntity,
             NewState = ItemState.Inventory
         });
 
-        ECB.AddComponent(itemEntity, new ContainerEntityReference
+        ecb.AddComponent(itemEntity, new ContainerEntityReference
         {
             Entity = containerEntity
         });
 
-        ECB.RemoveComponent<WorldItemTag>(itemEntity);
-        ECB.RemoveComponent<DroppedItemTag>(itemEntity);
+        ecb.RemoveComponent<WorldItemTag>(itemEntity);
+        ecb.RemoveComponent<DroppedItemTag>(itemEntity);
     }
 }

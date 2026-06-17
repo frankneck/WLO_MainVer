@@ -83,7 +83,7 @@ public partial struct SummarizeRoundSystem : ISystem
             }
 
             SendClearRoundDataRequest(ref ecb, roundEntity);
-            ecb.RemoveComponent<StartedRoundTag>(matchEntity);
+            ecb.RemoveComponent<CurrentRoundEntityReference>(matchEntity);
         
             ecb.DestroyEntity(requestEntity);
         }   

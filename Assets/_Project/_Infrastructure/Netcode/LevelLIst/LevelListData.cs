@@ -4,10 +4,13 @@ using Unity.Entities.Serialization;
 using Unity.Collections;
 using System;
 
-// Common
-public struct LoadLevelRequest : IComponentData
+/// <summary>
+/// Request to load level on level number (index) and bind to certain match entity 
+/// </summary>
+public struct LoadLevelAndBindToMatch : IComponentData
 {
     public int LevelNumber;
+    public Entity MatchEntity;
 }
 
 // Buffer 

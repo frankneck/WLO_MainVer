@@ -14,13 +14,13 @@ public partial class ClientLoadLevelSystem : SystemBase
         m_LevelLoader = World.GetExistingSystemManaged<LevelLoaderSystem>();
         
         RequireForUpdate<NetworkStreamConnection>();
-        RequireForUpdate<LevelSyncStateComponent>();
+        RequireForUpdate<CurrentLevelSyncState>();
         RequireForUpdate<LevelListData>();
     }
 
     protected override void OnUpdate()
     {
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
         var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
 
         foreach (var (rpc, receive, entity) in SystemAPI
@@ -32,7 +32,7 @@ public partial class ClientLoadLevelSystem : SystemBase
             SystemAPI.SetSingleton(levelSyncState);
             
 #if UNITY_EDITOR
-            var currentState = SystemAPI.GetSingleton<LevelSyncStateComponent>();        
+            var currentState = SystemAPI.GetSingleton<CurrentLevelSyncState>();        
             UnityEngine.Debug.Log($"[_ClientLoadLevelSystem] Current level sync state {currentState.State} and next level {currentState.NextLevel}");
 #endif
 

@@ -13,42 +13,60 @@ public partial class ServerLoadSceneSystem : SystemBase
     protected override void OnCreate()
     {
         m_levelLoader = World.GetExistingSystemManaged<LevelLoaderSystem>();
-        RequireForUpdate<LevelSyncStateComponent>();
+        RequireForUpdate<CurrentLevelSyncState>();
         RequireForUpdate<LevelListData>(); 
     }
 
     protected override void OnUpdate()
     {
-        var shouldLoadNextLevel = false;
-        var lvlNumber = -1;
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
         var ecb = new EntityCommandBuffer(Allocator.Temp);
-
+        
+        CurrentLevelSyncState levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
+        
+        // Init values
+        bool shouldLoadNextLevel = false;
+        int lvlNumber = -1;
+        Entity matchEntity = Entity.Null;
+        
         foreach (var (loadLevelRequest, entity) in SystemAPI
-            .Query<LoadLevelRequest>()
+            .Query<LoadLevelAndBindToMatch>()
             .WithEntityAccess())
         {
             shouldLoadNextLevel = true;
             lvlNumber = loadLevelRequest.LevelNumber;
-            
+            matchEntity = loadLevelRequest.MatchEntity;
+
             ecb.DestroyEntity(entity);
         }
-        ecb.Playback(EntityManager);
-        ecb.Dispose();
 
-        if (shouldLoadNextLevel && lvlNumber != -1)
+        if (shouldLoadNextLevel && 
+            lvlNumber != -1 &&
+            matchEntity != Entity.Null
+        )
         {
             // Change state of level
             levelSyncState.NextLevel = lvlNumber;
             levelSyncState.State = LevelSyncState.LevelLoadRequest;
+            
             SystemAPI.SetSingleton(levelSyncState);
 
-#if UNITY_EDITOR
-            var currentState = SystemAPI.GetSingleton<LevelSyncStateComponent>();        
+        #if UNITY_EDITOR
+            var currentState = SystemAPI.GetSingleton<CurrentLevelSyncState>();        
             UnityEngine.Debug.Log($"[_ServerLoadSceneSystem] Current level sync state {currentState.State} and next level {currentState.NextLevel}");
-#endif
+        #endif
+        
+            // Getting loaded scene entity
+            Entity sceneEntity = m_levelLoader.LoadLevel(lvlNumber);
 
-            m_levelLoader.LoadLevel(lvlNumber);
+            if (sceneEntity == Entity.Null)
+                return;
+
+            ecb.AddComponent(sceneEntity, new BelongsToMatch
+            {
+                Entity = matchEntity
+            });
         }
+
+        ecb.Playback(EntityManager);
     }
 }

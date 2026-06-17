@@ -1,9 +1,8 @@
 using Unity.Entities;
 
-/// <summary>
-/// Marks spawner
-/// </summary>
 public struct SpawnerTag : IComponentData { }
+
+public struct CollectableItemSpawnerTag : IComponentData { }
 
 /// <summary>
 /// What entity spawner must spawn

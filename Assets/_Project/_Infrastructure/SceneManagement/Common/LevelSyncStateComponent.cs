@@ -3,7 +3,7 @@ using Unity.Entities;
 /// <summary>
 /// Display active current level and state of loading scene
 /// </summary>
-public struct LevelSyncStateComponent : IComponentData
+public struct CurrentLevelSyncState : IComponentData
 {
     public LevelSyncState State;
     public int CurrentLevel;

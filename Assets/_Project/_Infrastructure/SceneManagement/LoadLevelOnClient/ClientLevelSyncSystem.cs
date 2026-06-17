@@ -9,20 +9,20 @@ public partial class ClientLevelSyncSystem : SystemBase
 {
     protected override void OnCreate()
     {
-        if (!SystemAPI.TryGetSingleton<LevelSyncStateComponent>(out var levelSyncState))
+        if (!SystemAPI.TryGetSingleton<CurrentLevelSyncState>(out var levelSyncState))
         {
-            var entity = EntityManager.CreateEntity(typeof(LevelSyncStateComponent));
+            var entity = EntityManager.CreateEntity(typeof(CurrentLevelSyncState));
             UnityEngine.Debug.Log("[LevelLoader] Tracked subscenes added as buffer");
             EntityManager.AddBuffer<TrackedSubscenes>(entity);
         }
 
         RequireForUpdate<NetworkId>();
-        RequireForUpdate<LevelSyncStateComponent>();
+        RequireForUpdate<CurrentLevelSyncState>();
     }
 
     protected override void OnUpdate()
     {
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
         var connection = SystemAPI.GetSingletonEntity<NetworkId>();
 
         if (levelSyncState.State == LevelSyncState.LevelLoaded)
@@ -39,7 +39,7 @@ public partial class ClientLevelSyncSystem : SystemBase
             SystemAPI.SetSingleton(levelSyncState);
 
 #if UNITY_EDITOR
-        var currentState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var currentState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
         UnityEngine.Debug.Log($"[_ClientLevelSyncSystem] Set level sync state ({currentState.State}) and current level equals {currentState.CurrentLevel} on {World.Name}.");
 #endif
 

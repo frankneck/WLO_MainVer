@@ -25,7 +25,28 @@
         <ui:Instance template="Healthbar" name="Healthbar" class="healthbar__position" style="height: 52px; bottom: 80px; width: 394px; right: auto; left: 40px;"/>
         <ui:VisualElement name="equipment" class="equipment" style="bottom: 40px; display: flex;">
             <ui:VisualElement name="equipmentFrame" class="equipmentFrame" style="flex-grow: 1;">
-                <ui:VisualElement name="WeaponSlots" class="slotsContainer" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                <ui:VisualElement name="WeaponSlots" class="slotsContainer">
+                    <ui:VisualElement name="slot1" class="slot">
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
+                            <ui:Label text="1&#10;" class="stackCount" style="height: 8px;"/>
+                            <ui:Image source="project://database/Assets/_Project/Sprites/Weapon/Weapon.png?fileID=2800000&amp;guid=0b9e47905c38ed74687802b803e5b6d8&amp;type=3#Weapon" uv="0,0,1,1" enabled="true" tooltip="Something" class="slotIcon"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="slot1" class="slot">
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
+                            <ui:Label text="1&#10;" class="stackCount" style="height: 8px;"/>
+                            <ui:Image source="project://database/Assets/_Project/Sprites/Weapon/Weapon.png?fileID=2800000&amp;guid=0b9e47905c38ed74687802b803e5b6d8&amp;type=3#Weapon" uv="0,0,1,1" enabled="true" tooltip="Something" class="slotIcon"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="slot1" class="slot">
+                        <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
+                            <ui:Label text="1&#10;" class="stackCount" style="height: 8px;"/>
+                            <ui:Image source="project://database/Assets/_Project/Sprites/Weapon/Weapon.png?fileID=2800000&amp;guid=0b9e47905c38ed74687802b803e5b6d8&amp;type=3#Weapon" uv="0,0,1,1" enabled="true" tooltip="Something" class="slotIcon"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:VisualElement name="slot1" class="slot">
                         <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
                             <ui:Label text="1&#10;" class="stackCount" style="height: 8px;"/>
@@ -34,17 +55,17 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="ConsumableSlots" class="slotsContainer" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                <ui:VisualElement name="ConsumableSlots" class="slotsContainer">
                     <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
                         <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color">
                             <ui:Image class="slotIcon"/>
-                            <ui:Label text="1&#10;" class="slotKeyLabel"/>
+                            <ui:Label text="1&#10;" class="slotKeyLabel" style="height: 27px;"/>
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
                         <ui:Image class="slotIcon"/>
                         <ui:VisualElement name="slotFrame" class="slotFrame slot-original__color" style="flex-grow: 1;"/>
-                        <ui:Label text="2" class="slotKeyLabel"/>
+                        <ui:Label text="2" class="slotKeyLabel" style="height: 30px;"/>
                     </ui:VisualElement>
                     <ui:VisualElement name="slot1" class="slot" style="flex-grow: 1;">
                         <ui:Image class="slotIcon"/>

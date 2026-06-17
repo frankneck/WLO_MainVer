@@ -16,7 +16,7 @@ public partial class LevelLoaderSystem : SystemBase
 
     protected override void OnCreate()
     {
-        RequireForUpdate<LevelSyncStateComponent>();
+        RequireForUpdate<CurrentLevelSyncState>();
         RequireForUpdate<LevelListData>();
         m_Levels = new NativeHashMap<int, EntitySceneReference>(m_NativeHashMapSize, Allocator.Persistent);
     }
@@ -55,11 +55,11 @@ public partial class LevelLoaderSystem : SystemBase
     /// </summary>
     public void CheckLevelLoading()
     {
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
 
         if (levelSyncState.State == LevelSyncState.LevelLoadInProgress)
         {
-            var levelSyncStateEntity = SystemAPI.GetSingletonEntity<LevelSyncStateComponent>();
+            var levelSyncStateEntity = SystemAPI.GetSingletonEntity<CurrentLevelSyncState>();
             var trackedSubScenes = SystemAPI.GetBuffer<TrackedSubscenes>(levelSyncStateEntity);
      
             bool allScenesLoaded = true;
@@ -92,7 +92,7 @@ public partial class LevelLoaderSystem : SystemBase
     /// <summary>
     /// Loads new subscene and add to TrackedSubscenes
     /// </summary>
-    public void LoadLevel(int number)
+    public Entity LoadLevel(int number)
     {
         // Getting guid of scene
         var sceneRefs = m_Levels.GetValueArray(Allocator.Temp);
@@ -104,26 +104,33 @@ public partial class LevelLoaderSystem : SystemBase
 #if UNITY_EDITOR
             UnityEngine.Debug.Log($"[_LoadLevel] Scene {lookupScene} by number {number} is already loaded on {World.Name}.");
 #endif
-            return;
+            return Entity.Null;
         }
 
-        var levelSyncState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var levelSyncState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
 
         // Getting scene
-        var scene = SceneSystem.LoadSceneAsync(World.Unmanaged, sceneRefs[number]);
-        var trackedSubscenes = SystemAPI.GetBuffer<TrackedSubscenes>(SystemAPI.GetSingletonEntity<LevelSyncStateComponent>());
-        trackedSubscenes.Add(new TrackedSubscenes { Entity = scene });
+        Entity sceneEntity = SceneSystem.LoadSceneAsync(World.Unmanaged, sceneRefs[number]);
+        
+        var trackedSubscenes = SystemAPI.GetBuffer<TrackedSubscenes>(SystemAPI.GetSingletonEntity<CurrentLevelSyncState>());
+        trackedSubscenes.Add(new TrackedSubscenes 
+        { 
+            Entity = sceneEntity 
+        });
 
         // Change state
         levelSyncState.State = LevelSyncState.LevelLoadInProgress;
         levelSyncState.CurrentLevel = number;
+        
         SystemAPI.SetSingleton(levelSyncState);
 
 #if UNITY_EDITOR
-        var currentState = SystemAPI.GetSingleton<LevelSyncStateComponent>();
+        var currentState = SystemAPI.GetSingleton<CurrentLevelSyncState>();
         UnityEngine.Debug.Log($"[_LoadLevel] Set level sync state ({currentState.State}) and current level equals {currentState.CurrentLevel} on {World.Name}.");
 #endif
 
         sceneRefs.Dispose();
+
+        return sceneEntity;
     } 
 } 
